@@ -153,18 +153,19 @@ public class PolygonGenerator {
          }  // while loop: finish the polygon
 
          // print out & draw the polygon
-
+         //Old - POLYGON ((926 918) (941 903) (913 954) (882 881))
+         //New - POLYGON ((926 918, 941 903, 913 954, 882 881))
             if (VerCNT >= 3)
             {
                NumVer = VerCNT;
                pointsX[NumVer] = pointsX[0];
                pointsY[NumVer] = pointsY[0];
-               out.print("POLYGON (");
-               out.print("(" + pointsX[0] +" " + pointsY[0] + ") ");
+               out.print("POLYGON ((");
+               out.print(pointsX[0] + " " + pointsY[0] + ", ");
                for (i = 1; i <= NumVer-2; i++)
-                  out.print("(" + pointsX[i] +" " + pointsY[i] + ") ");
-               out.print("(" + pointsX[NumVer-1] +" " + pointsY[NumVer-1] + ")");
-               out.println(")");
+                  out.print(pointsX[i] +" " + pointsY[i] + ", ");
+               out.print(pointsX[NumVer-1] +" " + pointsY[NumVer-1]);
+               out.println("))");
             }
             PolygonCNT ++;
             if (PolygonCNT % 1000 == 0)

@@ -59,13 +59,13 @@ public class TriangleGenerator {
            leftX  = (int) Math.round(Math.random() * (aModel.theSceneLength - aModel.theTriangleBBoxWidth) );
            lowerY = (int) Math.round(Math.random() * (aModel.theSceneLength - aModel.theTriangleBBoxHeight) );
 
-           // the initial vertice of the Triangle
+           // the initial vertices of the Triangle
            x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
            y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
            pointsX[0] = x;
            pointsY[0] = y;
 
-           // the 2nd vertice of the Triangle
+           // the 2nd vertices of the Triangle
            x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
            y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
            while (inList(pointsX, pointsY, 1, x, y))
@@ -76,7 +76,7 @@ public class TriangleGenerator {
            pointsX[1] = x;
            pointsY[1] = y;
 
-           // the 3rd vertice of the Triangle
+           // the 3rd vertices of the Triangle
            x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
            y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
            collinear = isCollinear(pointsX[0], pointsY[0], pointsX[1], pointsY[1], x, y);
@@ -91,11 +91,13 @@ public class TriangleGenerator {
            pointsX[2] = x;
            pointsY[2] = y;
 
-           out.print("TRIANGLE (");
-           out.print("(" + pointsX[0] +" " + pointsY[0] + ") ");
-           out.print("(" + pointsX[1] +" " + pointsY[1] + ") ");
-           out.print("(" + pointsX[2] +" " + pointsY[2] + ")");
-           out.println(")");
+           //Old TRIANGLE ((926 918) (941 903) (913 954))
+           //New TRIANGLE ((926 918, 941 903, 913 954))
+           out.print("TRIANGLE ((");
+           out.print(pointsX[0] +" " + pointsY[0] + ", ");
+           out.print(pointsX[1] +" " + pointsY[1] + ", ");
+           out.print(pointsX[2] +" " + pointsY[2]);
+           out.println("))");
 
            cnt++;
            if (cnt%10000 == 0)
