@@ -118,16 +118,18 @@ public class LineStringGenerator {
             // write line string to output file
             //***
             
+            //Old - LINESTRING ((30 10) (10 30) (40 40))
+            //New - LINESTRING (30 10, 10 30, 40 40)
             out.print("LINESTRING (");
             for (int i = 0; i < xyCoords.size()-1; i++)
             {
                x = (int)xyCoords.get(i).getX();
                y = (int)xyCoords.get(i).getY();
-               out.print("("+x+" "+y+") ");
+               out.print(x+" "+y+", ");
             }
             x = (int)xyCoords.get(xyCoords.size()-1).getX();
             y = (int)xyCoords.get(xyCoords.size()-1).getY();
-            out.println("("+x+" "+y+"))");
+            out.println(x+" "+y+")");
          }
          lineCount++;
          if (lineCount%10000 == 0)

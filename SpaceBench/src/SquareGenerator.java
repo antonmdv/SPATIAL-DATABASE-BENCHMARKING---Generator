@@ -91,12 +91,14 @@ public class SquareGenerator {
          pointsX[3] = x1;
          pointsY[3] = y2 - s;
 
-         out.print("SQUARE (");
-         out.print("(" + pointsX[0] +" " + pointsY[0] + ") ");
-         out.print("(" + pointsX[1] +" " + pointsY[1] + ") ");
-         out.print("(" + pointsX[2] +" " + pointsY[2] + ") ");
-         out.print("(" + pointsX[3] +" " + pointsY[3] + ")");
-         out.println(")");
+         //Old SQUARE ((926 918) (941 903) (913 954) (882 881))
+         //New POLYGON ((926 918, 941 903, 913 954, 882 881))
+         out.print("POLYGON ((");
+         out.print(pointsX[0] +" " + pointsY[0] + ", ");
+         out.print(pointsX[1] +" " + pointsY[1] + ", ");
+         out.print(pointsX[2] +" " + pointsY[2] + ", ");
+         out.print(pointsX[3] +" " + pointsY[3]);
+         out.println("))");
 
          cnt++;
          if (cnt%10000 == 0)

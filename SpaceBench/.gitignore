@@ -1,1 +1,6 @@
 /bin/
+/data.linestrings.txt
+/data.points.txt
+/data.polygons.txt
+/data.squares.txt
+/data.triangles.txt
