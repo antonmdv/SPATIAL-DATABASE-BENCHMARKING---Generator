@@ -9,7 +9,7 @@
 import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
-
+// test
 public class TriangleGenerator {
         
    /**
