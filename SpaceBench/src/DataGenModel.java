@@ -53,6 +53,13 @@ public class DataGenModel {
    public int theNumberOfLineStrings;
    public int theLineStringMaxSegmentCount;
    public int theLineStringMaxSegmentLength;
+   
+   //Random Walk values
+   
+   public boolean theGenerateRandomWalksFlag;
+   public int theNumberOfRandomWalks;
+   public int theMaximumStepLength;
+   public int theNumberOfSteps;
 
    /**
     * DataGenModel()
@@ -181,6 +188,28 @@ public class DataGenModel {
          }
       }
 
+      //***
+      // validate random walk options
+      //***
+
+      if (isValid && theGenerateRandomWalksFlag)
+      {
+         if (theNumberOfRandomWalks <= 0)
+         {
+            msg = "Random Walk file must contain at least 1 element";
+            isValid = false;
+         }
+         if ((theMaximumStepLength <= 0) || (theMaximumStepLength >= theSceneLength))
+         {
+            msg = "Maximum step length has to be < scene length, and > 0";
+            isValid = false;
+         }
+         if ((theNumberOfSteps <= 2) || (theNumberOfSteps >= theSceneLength))
+         {
+            msg = "The number of steps has to be < scene length, and > 2";
+            isValid = false;
+         }
+      }
       //***
       // show error message
       //***
@@ -427,7 +456,17 @@ public class DataGenModel {
       if (aKey.equalsIgnoreCase("LineStringMaxSegmentCount"))
          theLineStringMaxSegmentCount = Integer.valueOf(aValue);
       if (aKey.equalsIgnoreCase("LineStringMaxSegmentLength"))
-         theLineStringMaxSegmentLength = Integer.valueOf(aValue); 
+         theLineStringMaxSegmentLength = Integer.valueOf(aValue);
+      
+      //Random Walks options
+      if (aKey.equalsIgnoreCase("GenerateRandomWalksFlag"))
+          theGenerateRandomWalksFlag = Boolean.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("NumberOfRandomWalks"))
+          theNumberOfRandomWalks = Integer.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("MaximumStepLength"))
+          theMaximumStepLength = Integer.valueOf(aValue);
+       if (aKey.equals("NumberOfSteps"))
+    	   theNumberOfSteps = Integer.valueOf(aValue);
    }
 
    /**
@@ -468,5 +507,11 @@ public class DataGenModel {
       bufWtr.write("NumberOfLineStrings," + Integer.toString(theNumberOfLineStrings) + "\n");
       bufWtr.write("LineStringMaxSegmentCount," + Integer.toString(theLineStringMaxSegmentCount) + "\n");
       bufWtr.write("LineStringMaxSegmentLength," + Integer.toString(theLineStringMaxSegmentLength) + "\n");
+      
+      //Random Walks options
+      bufWtr.write("GenerateRandomWalkFlag," + Boolean.toString(theGenerateRandomWalksFlag) + "\n");
+      bufWtr.write("NumberOfRandomWalks," + Integer.toString(theNumberOfRandomWalks) + "\n");
+      bufWtr.write("MaximumStepLength," + Integer.toString(theMaximumStepLength) + "\n");
+      bufWtr.write("NumberOfSteps," + Integer.toString(theNumberOfSteps) + "\n");
    }
 }

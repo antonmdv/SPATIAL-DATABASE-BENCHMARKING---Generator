@@ -50,6 +50,9 @@ public class DataGenerator implements ActionListener {
    TriangleGenerator theTriangleGenerator;
    PolygonGenerator thePolygonGenerator;
    LineStringGenerator theLineStringGenerator;
+   
+   //New
+   RandomWalkGenerator theRandomWalkGenerator;
 
    // data generator views
    SceneOptionsView theSceneOptionsView;
@@ -58,12 +61,16 @@ public class DataGenerator implements ActionListener {
    TriangleGeneratorView theTriangleGeneratorView;
    PolygonGeneratorView thePolygonGeneratorView;
    LineStringGeneratorView theLineStringGeneratorView;
+   
+   //New
+   RandomWalkGeneratorView theRandomWalkGeneratorView;
 
    /**
     * DataGenerator()
     * 
     * This method create the main application window
     */
+   
    DataGenerator()
    {
       theAppFrame = new JFrame("SpaceBench Data Generation");
@@ -109,6 +116,9 @@ public class DataGenerator implements ActionListener {
       theTriangleGenerator = new TriangleGenerator();
       thePolygonGenerator = new PolygonGenerator();
       theLineStringGenerator = new LineStringGenerator();
+      
+      //New
+      theRandomWalkGenerator = new RandomWalkGenerator();
 
       // build their views
       theSceneOptionsView = new SceneOptionsView();
@@ -117,6 +127,9 @@ public class DataGenerator implements ActionListener {
       theTriangleGeneratorView = new TriangleGeneratorView();
       thePolygonGeneratorView = new PolygonGeneratorView();
       theLineStringGeneratorView = new LineStringGeneratorView();
+      
+      //New
+      theRandomWalkGeneratorView = new RandomWalkGeneratorView();
   }
 
    /**
@@ -137,6 +150,9 @@ public class DataGenerator implements ActionListener {
       theTriangleGeneratorView.build(theOptionsPane);
       thePolygonGeneratorView.build(theOptionsPane);
       theLineStringGeneratorView.build(theOptionsPane);
+      
+      //New
+      theRandomWalkGeneratorView.build(theOptionsPane);
 
       //***
       // add management buttons to bottom of options pane
@@ -252,6 +268,16 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theNumberOfLineStrings = theLineStringGeneratorView.getNumberOfLineStrings();
       theDataGenModel.theLineStringMaxSegmentCount = theLineStringGeneratorView.getMaximumSegmentCount();
       theDataGenModel.theLineStringMaxSegmentLength = theLineStringGeneratorView.getMaximumSegmentLength();
+      
+      //**************************************************************************************
+      // the Random walk options
+      theDataGenModel.theGenerateRandomWalksFlag = theRandomWalkGeneratorView.getGenerateFlag();
+      theDataGenModel.theNumberOfRandomWalks = theRandomWalkGeneratorView.getNumberOfRandomWalks();
+      theDataGenModel.theMaximumStepLength = theRandomWalkGeneratorView.getMaximumStepLength();
+      
+      //***************
+      theDataGenModel.theNumberOfSteps = theRandomWalkGeneratorView.getNumberOfSteps();
+      
    }
 
    /**
@@ -292,6 +318,13 @@ public class DataGenerator implements ActionListener {
        theLineStringGeneratorView.setNumberOfLineStrings(theDataGenModel.theNumberOfLineStrings);
        theLineStringGeneratorView.setMaximumSegmentCount(theDataGenModel.theLineStringMaxSegmentCount);
        theLineStringGeneratorView.setMaximumSegmentLength(theDataGenModel.theLineStringMaxSegmentLength);
+       
+       //**************************************************************************************
+       //Random Walk options
+       theRandomWalkGeneratorView.setGenerateFlag(theDataGenModel.theGenerateRandomWalksFlag);
+       theRandomWalkGeneratorView.setNumberOfRandomWalks(theDataGenModel.theNumberOfRandomWalks);
+       theRandomWalkGeneratorView.setMaximumStepLength(theDataGenModel.theMaximumStepLength);
+       theRandomWalkGeneratorView.setNumberOfSteps(theDataGenModel.theNumberOfSteps);
    }
 
    /**
@@ -323,6 +356,10 @@ public class DataGenerator implements ActionListener {
          theTriangleGenerator.generate(theDataGenModel);
          thePolygonGenerator.generate(theDataGenModel);
          theLineStringGenerator.generate(theDataGenModel);
+         
+         //new
+         theRandomWalkGenerator.generate(theDataGenModel);
+         
          System.out.println("  finished data generation");
       }
       catch (IOException e)
