@@ -53,6 +53,7 @@ public class DataGenerator implements ActionListener {
    
    //New
    RandomWalkGenerator theRandomWalkGenerator;
+   ConicSpiralGenerator theConicSpiralGenerator;
 
    // data generator views
    SceneOptionsView theSceneOptionsView;
@@ -64,6 +65,7 @@ public class DataGenerator implements ActionListener {
    
    //New
    RandomWalkGeneratorView theRandomWalkGeneratorView;
+   ConicSpiralGeneratorView theConicSpiralGeneratorView;
 
    /**
     * DataGenerator()
@@ -119,6 +121,8 @@ public class DataGenerator implements ActionListener {
       
       //New
       theRandomWalkGenerator = new RandomWalkGenerator();
+      theConicSpiralGenerator = new ConicSpiralGenerator();
+      
 
       // build their views
       theSceneOptionsView = new SceneOptionsView();
@@ -130,6 +134,7 @@ public class DataGenerator implements ActionListener {
       
       //New
       theRandomWalkGeneratorView = new RandomWalkGeneratorView();
+      theConicSpiralGeneratorView = new ConicSpiralGeneratorView();
   }
 
    /**
@@ -138,6 +143,7 @@ public class DataGenerator implements ActionListener {
     * This method buids the user interface, each generator is asked
     * for its corresponding UI which is placed within a tab
     */
+   
    private void buildOptionsDialog()
    {
       //***
@@ -153,6 +159,7 @@ public class DataGenerator implements ActionListener {
       
       //New
       theRandomWalkGeneratorView.build(theOptionsPane);
+      theConicSpiralGeneratorView.build(theOptionsPane);
 
       //***
       // add management buttons to bottom of options pane
@@ -274,9 +281,13 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theGenerateRandomWalksFlag = theRandomWalkGeneratorView.getGenerateFlag();
       theDataGenModel.theNumberOfRandomWalks = theRandomWalkGeneratorView.getNumberOfRandomWalks();
       theDataGenModel.theMaximumStepLength = theRandomWalkGeneratorView.getMaximumStepLength();
-      
-      //***************
       theDataGenModel.theNumberOfSteps = theRandomWalkGeneratorView.getNumberOfSteps();
+      
+      // Conic spiral options
+      theDataGenModel.theGenerateConicSpiralsFlag = theConicSpiralGeneratorView.getGenerateFlag();
+      theDataGenModel.theNumberOfConicSpirals = theConicSpiralGeneratorView.getNumberOfConicSpirals();
+      theDataGenModel.theMaximumRadiusLength = theConicSpiralGeneratorView.getMaximumRadiusLength();
+      theDataGenModel.theNumberOfVertices = theConicSpiralGeneratorView.getNumberOfVertices();
       
    }
 
@@ -325,6 +336,13 @@ public class DataGenerator implements ActionListener {
        theRandomWalkGeneratorView.setNumberOfRandomWalks(theDataGenModel.theNumberOfRandomWalks);
        theRandomWalkGeneratorView.setMaximumStepLength(theDataGenModel.theMaximumStepLength);
        theRandomWalkGeneratorView.setNumberOfSteps(theDataGenModel.theNumberOfSteps);
+       
+       //Spiral Conic options
+       theConicSpiralGeneratorView.setGenerateFlag(theDataGenModel.theGenerateConicSpiralsFlag);
+       theConicSpiralGeneratorView.setNumberOfConicSpirals(theDataGenModel.theNumberOfConicSpirals);
+       theConicSpiralGeneratorView.setMaximumRadiusLength(theDataGenModel.theMaximumRadiusLength);
+       theConicSpiralGeneratorView.setNumberOfVertices(theDataGenModel.theNumberOfVertices);
+       
    }
 
    /**
@@ -359,6 +377,7 @@ public class DataGenerator implements ActionListener {
          
          //new
          theRandomWalkGenerator.generate(theDataGenModel);
+         //add Conic Spiral Generator
          
          System.out.println("  finished data generation");
       }

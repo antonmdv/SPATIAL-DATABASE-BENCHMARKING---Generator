@@ -55,12 +55,17 @@ public class DataGenModel {
    public int theLineStringMaxSegmentLength;
    
    //Random Walk values
-   
    public boolean theGenerateRandomWalksFlag;
    public int theNumberOfRandomWalks;
    public int theMaximumStepLength;
    public int theNumberOfSteps;
-
+   
+   //Conic Spiral values
+   public boolean theGenerateConicSpiralsFlag;
+   public int theNumberOfConicSpirals;
+   public int theMaximumRadiusLength;
+   public int theNumberOfVertices;
+   
    /**
     * DataGenModel()
     * 
@@ -210,6 +215,13 @@ public class DataGenModel {
             isValid = false;
          }
       }
+      
+      //********************************************************
+      //***
+      // validate square options -> needs validation
+      //***
+      //********************************************************
+      
       //***
       // show error message
       //***
@@ -467,6 +479,18 @@ public class DataGenModel {
           theMaximumStepLength = Integer.valueOf(aValue);
        if (aKey.equals("NumberOfSteps"))
     	   theNumberOfSteps = Integer.valueOf(aValue);
+       
+       //Conic Spiral options
+       if (aKey.equalsIgnoreCase("GenerateConicSpiralFlag"))
+    	   theGenerateConicSpiralsFlag = Boolean.valueOf(aValue);
+        if (aKey.equalsIgnoreCase("NumberOfConicSpirals"))
+        	theNumberOfConicSpirals = Integer.valueOf(aValue);
+        if (aKey.equalsIgnoreCase("MaximumRadiusLength"))
+        	theMaximumRadiusLength = Integer.valueOf(aValue);
+        if (aKey.equals("NumberOfVertices"))
+        	theNumberOfVertices = Integer.valueOf(aValue);
+       
+       
    }
 
    /**
@@ -513,5 +537,11 @@ public class DataGenModel {
       bufWtr.write("NumberOfRandomWalks," + Integer.toString(theNumberOfRandomWalks) + "\n");
       bufWtr.write("MaximumStepLength," + Integer.toString(theMaximumStepLength) + "\n");
       bufWtr.write("NumberOfSteps," + Integer.toString(theNumberOfSteps) + "\n");
+      
+      //Random Walks options
+      bufWtr.write("GenerateConicSpiralFlag," + Boolean.toString(theGenerateConicSpiralsFlag) + "\n");
+      bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
+      bufWtr.write("MaximumRadiusLength," + Integer.toString(theMaximumRadiusLength) + "\n");
+      bufWtr.write("NumberOfVertices," + Integer.toString(theNumberOfVertices) + "\n");
    }
 }
