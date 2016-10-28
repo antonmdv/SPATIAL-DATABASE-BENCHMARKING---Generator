@@ -215,7 +215,23 @@ public class DataGenModel {
             isValid = false;
          }
       }
-      
+      //***
+      // validate conic spiral options
+      //***
+
+      if (isValid && theGenerateConicSpiralsFlag)
+      {
+         if (theNumberOfConicSpirals <= 0)
+         {
+            msg = "Conic Spiral file must contain at least 1 element";
+            isValid = false;
+         }
+         if ((theMaximumRadiusLength <= 0) || (theMaximumRadiusLength >= theSceneLength))
+         {
+            msg = "Maximum radius length has to be < scene length, and > 0";
+            isValid = false;
+         }
+      }
       //********************************************************
       //***
       // validate square options -> needs validation
@@ -470,24 +486,24 @@ public class DataGenModel {
       if (aKey.equalsIgnoreCase("LineStringMaxSegmentLength"))
          theLineStringMaxSegmentLength = Integer.valueOf(aValue);
       
-      //Random Walks options
+      // random walks options
       if (aKey.equalsIgnoreCase("GenerateRandomWalksFlag"))
           theGenerateRandomWalksFlag = Boolean.valueOf(aValue);
-       if (aKey.equalsIgnoreCase("NumberOfRandomWalks"))
+      if (aKey.equalsIgnoreCase("NumberOfRandomWalks"))
           theNumberOfRandomWalks = Integer.valueOf(aValue);
-       if (aKey.equalsIgnoreCase("MaximumStepLength"))
+      if (aKey.equalsIgnoreCase("MaximumStepLength"))
           theMaximumStepLength = Integer.valueOf(aValue);
-       if (aKey.equals("NumberOfSteps"))
+      if (aKey.equals("NumberOfSteps"))
     	   theNumberOfSteps = Integer.valueOf(aValue);
        
-       //Conic Spiral options
+       // conic spiral options
        if (aKey.equalsIgnoreCase("GenerateConicSpiralFlag"))
     	   theGenerateConicSpiralsFlag = Boolean.valueOf(aValue);
-        if (aKey.equalsIgnoreCase("NumberOfConicSpirals"))
+       if (aKey.equalsIgnoreCase("NumberOfConicSpirals"))
         	theNumberOfConicSpirals = Integer.valueOf(aValue);
-        if (aKey.equalsIgnoreCase("MaximumRadiusLength"))
+       if (aKey.equalsIgnoreCase("MaximumRadiusLength"))
         	theMaximumRadiusLength = Integer.valueOf(aValue);
-        if (aKey.equals("NumberOfVertices"))
+       if (aKey.equals("NumberOfVertices"))
         	theNumberOfVertices = Integer.valueOf(aValue);
        
        
@@ -532,13 +548,13 @@ public class DataGenModel {
       bufWtr.write("LineStringMaxSegmentCount," + Integer.toString(theLineStringMaxSegmentCount) + "\n");
       bufWtr.write("LineStringMaxSegmentLength," + Integer.toString(theLineStringMaxSegmentLength) + "\n");
       
-      //Random Walks options
+      // random walks options
       bufWtr.write("GenerateRandomWalkFlag," + Boolean.toString(theGenerateRandomWalksFlag) + "\n");
       bufWtr.write("NumberOfRandomWalks," + Integer.toString(theNumberOfRandomWalks) + "\n");
       bufWtr.write("MaximumStepLength," + Integer.toString(theMaximumStepLength) + "\n");
       bufWtr.write("NumberOfSteps," + Integer.toString(theNumberOfSteps) + "\n");
       
-      //Random Walks options
+      // conic spirals options
       bufWtr.write("GenerateConicSpiralFlag," + Boolean.toString(theGenerateConicSpiralsFlag) + "\n");
       bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
       bufWtr.write("MaximumRadiusLength," + Integer.toString(theMaximumRadiusLength) + "\n");

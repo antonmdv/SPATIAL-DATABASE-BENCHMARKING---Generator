@@ -30,7 +30,7 @@ public class RandomWalkGenerator {
 	    if (aModel.theGenerateRandomWalksFlag == false)
 	    	return;
 	    
-	    //Input from User (grabbign from data model)
+	    // Input from User (grabbign from data model)
 	    int desiredNumberOfAlgorithms = aModel.theNumberOfRandomWalks;		//number of paths produced 	 
 	    int desiredNumberOfSteps = aModel.theNumberOfSteps;					//Range of steps per algorithm (from 3 to n)
 	    int stepLength = aModel.theMaximumStepLength;						//Range of step length(from 0 to n)

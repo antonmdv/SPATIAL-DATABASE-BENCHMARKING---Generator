@@ -377,7 +377,7 @@ public class DataGenerator implements ActionListener {
          
          //new
          theRandomWalkGenerator.generate(theDataGenModel);
-         //add Conic Spiral Generator
+         theConicSpiralGenerator.generate(theDataGenModel);
          
          System.out.println("  finished data generation");
       }
