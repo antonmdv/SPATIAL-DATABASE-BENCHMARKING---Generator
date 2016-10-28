@@ -248,7 +248,7 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       //***
 
       // build format arguments
-      theBBoxLengthFormat = NumberFormat.getIntegerInstance();
+      theBBoxLengthFormat = NumberFormat.getNumberInstance();
 
       // create number of point elements [label, field]
       theBBoxLengthLabel = new JLabel("Maximum side length:");

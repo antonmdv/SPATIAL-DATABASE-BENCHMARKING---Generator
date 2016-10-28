@@ -28,8 +28,8 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
    private static final String GENERATE_CHECKBOX_TITLE = "Generate data file?";
    private static final boolean DEFAULT_GENERATE_FLAG = true;
    private static final int DEFAULT_TRIANGLE_COUNT = 75;
-   private static final int DEFAULT_BBOX_HEIGHT = 50;
-   private static final int DEFAULT_BBOX_WIDTH = 50;
+   private static final double DEFAULT_BBOX_HEIGHT = 50;
+   private static final double DEFAULT_BBOX_WIDTH = 50;
 
    //***
    // instance variables
@@ -63,8 +63,8 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
    // property values
    private boolean theGenerateFlag;
    private int theNumberOfTriangles;
-   private int theBBoxHeight;
-   private int theBBoxWidth;
+   private double theBBoxHeight;
+   private double theBBoxWidth;
    
    /**
     * TriangleGeneratorView
@@ -117,7 +117,7 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
     * 
     * This method sets the current bbox height
     */
-   public void setBBoxHeight(int aLength)
+   public void setBBoxHeight(double aLength)
    {
       theBBoxHeight = aLength;
       if (theBBoxHeightField != null)
@@ -132,7 +132,7 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
     *
     * This method sets the current bbox width
     */
-   public void setBBoxWidth(int aLength)
+   public void setBBoxWidth(double aLength)
    {
       theBBoxWidth = aLength;
       if (theBBoxWidthField != null)
@@ -166,7 +166,7 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
     * 
     * This method returns the current bbox height
     */
-   public int getBBoxHeight()
+   public double getBBoxHeight()
    {
       return theBBoxHeight;
    }
@@ -176,7 +176,7 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
     *
     * This method returns the current bbox width
     */
-   public int getBBoxWidth()
+   public double getBBoxWidth()
    {
       return theBBoxWidth;
    }
@@ -227,7 +227,7 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       //***
 
       // build format arguments
-      theBBoxHeightFormat = NumberFormat.getIntegerInstance();
+      theBBoxHeightFormat = NumberFormat.getNumberInstance();
 
       // create number of point elements [label, field]
       theBBoxHeightLabel = new JLabel("Maximum height of triangle bounding box:");
@@ -247,7 +247,7 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       //***
 
       // build format arguments
-      theBBoxWidthFormat = NumberFormat.getIntegerInstance();
+      theBBoxWidthFormat = NumberFormat.getNumberInstance();
 
       // create number of point elements [label, field]
       theBBoxWidthLabel = new JLabel("Maximum width of triangle bounding box:");
@@ -294,13 +294,13 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       }
       else if (source == theBBoxHeightField)
       {
-         theBBoxHeight = ((Number)theBBoxHeightField.getValue()).intValue();
+         theBBoxHeight = ((Number)theBBoxHeightField.getValue()).doubleValue();
          if (TRACE)
             System.out.println("Triangles: bbox height = " + theBBoxHeight);
       }
       else if (source == theBBoxWidthField)
       {
-         theBBoxWidth = ((Number)theBBoxWidthField.getValue()).intValue();
+         theBBoxWidth = ((Number)theBBoxWidthField.getValue()).doubleValue();
          if (TRACE)
             System.out.println("Triangles: bbox width = " + theBBoxWidth);
       }

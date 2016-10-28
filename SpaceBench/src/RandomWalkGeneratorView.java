@@ -17,7 +17,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	   private static final String GENERATE_CHECKBOX_TITLE = "Generate data file?";
 	   private static final boolean DEFAULT_GENERATE_FLAG = true;
 	   private static final int DEFAULT_RW_COUNT = 20;
-	   private static final int DEFAULT_STEP_LENGTH = 10;
+	   private static final double DEFAULT_STEP_LENGTH = 10;
 	   private static final int DEFAULT_NS_COUNT = 10;
 	   
 	   //***
@@ -52,7 +52,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	   // property values
 	   private boolean theGenerateFlag;
 	   private int theNumberOfRandomWalks;
-	   private int theMaximumStepLength;
+	   private double theMaximumStepLength;
 	   private int theNumberOfSteps;
 	   
 	   /**
@@ -109,7 +109,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	    * This method sets the current maximum side length
 	    */
 	   
-	   public void setMaximumStepLength(int aLength)
+	   public void setMaximumStepLength(double aLength)
 	   {
 		   theMaximumStepLength = aLength;
 	      if (theMaximumStepLengthField != null)
@@ -161,7 +161,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	    * 
 	    * This method returns the current step length
 	    */
-	   public int getMaximumStepLength()
+	   public double getMaximumStepLength()
 	   {
 	      return theMaximumStepLength;
 	   }
@@ -248,7 +248,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      //***
 
 	      // build format arguments
-	      theMaximumStepLengthFormat = NumberFormat.getIntegerInstance();
+	      theMaximumStepLengthFormat = NumberFormat.getNumberInstance();
 
 	      // create number of point elements [label, field]
 	      theMaximumStepLengthLabel = new JLabel("Maximum bound of each step length (0<n) :");
@@ -325,7 +325,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      }
 	      else if (source == theMaximumStepLengthField)
 	      {
-	    	  theMaximumStepLength = ((Number)theMaximumStepLengthField.getValue()).intValue();
+	    	  theMaximumStepLength = ((Number)theMaximumStepLengthField.getValue()).doubleValue();
 	         if (TRACE)
 	            System.out.println("Random Walk: maximum step length = " + theMaximumStepLength);
 	      }

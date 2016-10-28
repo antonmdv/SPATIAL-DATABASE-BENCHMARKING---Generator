@@ -71,7 +71,7 @@ public class PointGenerator
       else
       {
            System.out.println("    data will contain only unique points");
-           boolean[][] Grid = new boolean[aModel.theSceneLength + 1][aModel.theSceneLength + 1];
+           boolean[][] Grid = new boolean[(int) (aModel.theSceneLength + 1)][(int) (aModel.theSceneLength + 1)];
            int duplicates = 0;
            cnt = 0;
            while (cnt < aModel.theNumberOfPoints)

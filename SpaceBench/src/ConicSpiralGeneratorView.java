@@ -57,7 +57,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   // property values
 	   private boolean theGenerateFlag;
 	   private int theNumberOfConicSpirals;
-	   private int theMaximumRadius;
+	   private double theMaximumRadius;
 	   private int theNumberOfVertices;
 	   
 	   /**
@@ -113,7 +113,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	    * This method sets the current maximum radius length
 	    */
 	   
-	   public void setMaximumRadiusLength(int aLength)
+	   public void setMaximumRadiusLength(double aLength)
 	   {
 		   theMaximumRadius = aLength;
 	      if (theMaximumRadiusField != null)
@@ -163,7 +163,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		    * 
 		    * This method returns the current Radius length
 		    */
-		   public int getMaximumRadiusLength()
+		   public double getMaximumRadiusLength()
 		   {
 		      return theMaximumRadius;
 		   }
@@ -227,7 +227,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		      //***
 		      
 		      // build format arguments
-		      theMaximumRadiusFormat = NumberFormat.getIntegerInstance();
+		      theMaximumRadiusFormat = NumberFormat.getNumberInstance();
 
 		      // create number of point elements [label, field]
 		      theMaximumRadiusLabel = new JLabel("Radius Length:");
@@ -296,7 +296,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		      }
 		      else if (source == theMaximumRadiusField)
 		      {
-		    	  theMaximumRadius = ((Number)theMaximumRadiusField.getValue()).intValue();
+		    	  theMaximumRadius = ((Number)theMaximumRadiusField.getValue()).doubleValue();
 		         if (TRACE)
 		            System.out.println("Conic Spiral: maximum step length = " + theMaximumRadius);
 		      }

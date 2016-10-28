@@ -25,7 +25,7 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
    
    private static final String TAB_TITLE = "Scene";
    private static final String TAB_TOOLTIP = "Scene size and output options";
-   private static final int DEFAULT_SCENE_LENGTH = 1000;
+   private static final double DEFAULT_SCENE_LENGTH = 1000;
    private static final String DEFAULT_FILENAME_PREFIX = "data.";
    
    //***
@@ -47,7 +47,7 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
    private JTextField theFilenamePrefixField;
 
    // property values
-   private int theSceneLength;
+   private double theSceneLength;
    private String theFilenamePrefix;
 
    /**
@@ -67,7 +67,7 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
     * 
     * This method sets the current number of squares
     */
-   public void setSceneLength(int aCount)
+   public void setSceneLength(double aCount)
    {
       theSceneLength = aCount;
       if (theSceneLengthField != null)
@@ -97,7 +97,7 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
     * 
     * This method returns the current number of scene length
     */
-   public int getSceneLength()
+   public double getSceneLength()
    {
       return theSceneLength;
    }
@@ -125,7 +125,7 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
       //***
 
       // build format arguments
-      theSceneLengthFormat = NumberFormat.getIntegerInstance();
+      theSceneLengthFormat = NumberFormat.getNumberInstance();
 
       // create scene length elements [label, field]
       theSceneLengthLabel = new JLabel("Length of (NxN) scene:");
@@ -184,7 +184,7 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
       Object source = e.getSource();
       if (source == theSceneLengthField)
       {
-         theSceneLength = ((Number)theSceneLengthField.getValue()).intValue();
+         theSceneLength = ((Number)theSceneLengthField.getValue()).doubleValue();
          if (TRACE)
             System.out.println("Scene: scene length = " + theSceneLength);
       }

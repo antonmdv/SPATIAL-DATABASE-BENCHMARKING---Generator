@@ -30,15 +30,15 @@ public class TriangleGenerator {
       String parameter;
       
         int cnt;
-        int leftX, lowerY;
-        int i, x, y;
+        double leftX, lowerY;
+        double i, x, y;
         boolean collinear = false, inlist = false;
         String outFilename;
         FileWriter f = null;
         PrintWriter out = null;
 
-        int[] pointsX = new int[4];
-        int[] pointsY = new int[4];
+        double[] pointsX = new double[4];
+        double[] pointsY = new double[4];
 
       // do we wish data generated?
       if (aModel.theGenerateTrianglesFlag == false)
@@ -56,35 +56,35 @@ public class TriangleGenerator {
         while (cnt < aModel.theNumberOfTriangles)
         {
            // randomly position the bounding rectangle in the grid
-           leftX  = (int) Math.round(Math.random() * (aModel.theSceneLength - aModel.theTriangleBBoxWidth) );
-           lowerY = (int) Math.round(Math.random() * (aModel.theSceneLength - aModel.theTriangleBBoxHeight) );
+           leftX  = (Math.random() * (aModel.theSceneLength - aModel.theTriangleBBoxWidth) );
+           lowerY = (Math.random() * (aModel.theSceneLength - aModel.theTriangleBBoxHeight) );
 
            // the initial vertices of the Triangle
-           x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
-           y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
+           x = leftX  + (Math.random() * aModel.theTriangleBBoxWidth);
+           y = lowerY + (Math.random() * aModel.theTriangleBBoxHeight);
            pointsX[0] = x;
            pointsY[0] = y;
 
            // the 2nd vertices of the Triangle
-           x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
-           y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
+           x = leftX  + (Math.random() * aModel.theTriangleBBoxWidth);
+           y = lowerY + (Math.random() * aModel.theTriangleBBoxHeight);
            while (inList(pointsX, pointsY, 1, x, y))
            {
-              x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
-              y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
+              x = leftX  + (Math.random() * aModel.theTriangleBBoxWidth);
+              y = lowerY + (Math.random() * aModel.theTriangleBBoxHeight);
            }
            pointsX[1] = x;
            pointsY[1] = y;
 
            // the 3rd vertices of the Triangle
-           x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
-           y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
+           x = leftX  + (Math.random() * aModel.theTriangleBBoxWidth);
+           y = lowerY + (Math.random() * aModel.theTriangleBBoxHeight);
            collinear = isCollinear(pointsX[0], pointsY[0], pointsX[1], pointsY[1], x, y);
            inlist    = inList(pointsX, pointsY, 2, x, y);
            while (collinear || inlist)
            {
-              x = leftX  + (int) Math.round(Math.random() * aModel.theTriangleBBoxWidth);
-              y = lowerY + (int) Math.round(Math.random() * aModel.theTriangleBBoxHeight);
+              x = leftX  + (Math.random() * aModel.theTriangleBBoxWidth);
+              y = lowerY + (Math.random() * aModel.theTriangleBBoxHeight);
               collinear = isCollinear(pointsX[0], pointsY[0], pointsX[1], pointsY[1], x, y);
               inlist    = inList(pointsX, pointsY, 2, x, y);
            }
@@ -107,17 +107,17 @@ public class TriangleGenerator {
         System.out.println("    " + aModel.theNumberOfTriangles + " triangles were generated.");
     }
     
-    private boolean inList(int[] pointsX, int[] pointsY, int length,
-                                  int x, int y)  {
+    private boolean inList(double[] pointsX, double[] pointsY, int length,
+                                  double x, double y)  {
       for (int i = 0; i < length; i ++)
          if ((pointsX[i] == x) && (pointsY[i] == y))
                 return true;
         return false;
     }
 
-    private boolean isCollinear(int x1, int y1, int x2, int y2, int x3, int y3)  {
+    private boolean isCollinear(double x1, double y1, double x2, double y2, double x3, double y3)  {
          // check collinearity of three points (x1, y1), (x2, y2), & (x3, y3)
-         int d1, d2;
+    	 double d1, d2;
          d1 = x2 - x1;
          d2 = x3 - x1;
          if (d1 == 0 && d2 == 0)
