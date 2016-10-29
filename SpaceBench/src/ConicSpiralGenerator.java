@@ -49,7 +49,7 @@ public class ConicSpiralGenerator {
 		double nextY;
 		double dist;
 		double distLast2Pts;
-		double t = 0;
+		double t;
 	
 		while (cnt < numOfConicSpirals)
         {
@@ -59,12 +59,14 @@ public class ConicSpiralGenerator {
 			centerX = r.nextDouble() * aModel.theSceneLength + 1;
 			centerY = r.nextDouble() * aModel.theSceneLength + 1;
 			
+			t = 0;
+			
 			do {
 				// generating new vertex
 				x = centerX + t*Math.cos(2*Math.PI*t);
 				y = centerY + t*Math.sin(2*Math.PI*t);
 				
-				out.print("(" + x + ", " + y + ")");
+				out.printf("(%.2f, %.2f)", x, y);
 				
 				// projected vertex after the last one generated
 				nextX = x + 0.1*Math.cos(2*Math.PI*0.1);
@@ -77,11 +79,14 @@ public class ConicSpiralGenerator {
 				distLast2Pts = Math.sqrt(Math.pow(nextX - x, 2) + Math.pow(nextY - y, 2));
 				
 				t += 0.1;	// time increment
-				cnt++;
-			} while (radius < dist + distLast2Pts);		// if next vertex will make spiral's radius > given radius, stop
+				//System.out.print("cnt: " + cnt + "    ");
+				//System.out.println(radius < dist + distLast2Pts);
+			} while (radius > dist + distLast2Pts);		// if next vertex will make spiral's radius > given radius, stop
 			out.println("]");
+			cnt++;
         }
 		out.close();
 		System.out.println("    " + numOfConicSpirals + " conic spirals were generated.");
+		System.out.println("Num of Conic spirals: " + cnt);
 	}
 }
