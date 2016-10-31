@@ -34,14 +34,14 @@ public class SquareGenerator {
       String outFilename;
 
       int cnt, SquareNum;
-      int MaxSize, d, s;
-      int i;
-      int leftX, lowerY, x1, x2, y1, y2, tmp;
+      double MaxSize, d, s;
+      double i;
+      double leftX, lowerY, x1, x2, y1, y2, tmp;
       FileWriter f = null;
       PrintWriter out = null;
 
-      int[] pointsX = new int[4];
-      int[] pointsY = new int[4];
+      double[] pointsX = new double[4];
+      double[] pointsY = new double[4];
 
       // do we wish squares generated?
       if (aModel.theGenerateSquaresFlag == false)
@@ -59,14 +59,14 @@ public class SquareGenerator {
       while (cnt < aModel.theNumberOfSquares)
       {
          // randomly position the max bounding square in the grid
-         leftX = (int)Math.round(Math.random() * (aModel.theSceneLength - aModel.theMaximumSquareSideLength));
-         lowerY = (int)Math.round(Math.random() * (aModel.theSceneLength - aModel.theMaximumSquareSideLength));
+         leftX = (Math.random() * (aModel.theSceneLength - aModel.theMaximumSquareSideLength));
+         lowerY = (Math.random() * (aModel.theSceneLength - aModel.theMaximumSquareSideLength));
 
          // the x intervel locating the square in the max bounding square
-         x1 = leftX + (int) Math.round(Math.random() * aModel.theMaximumSquareSideLength);
-         x2 = leftX + (int) Math.round(Math.random() * aModel.theMaximumSquareSideLength);
+         x1 = leftX + (Math.random() * aModel.theMaximumSquareSideLength);
+         x2 = leftX + (Math.random() * aModel.theMaximumSquareSideLength);
          while (x1 == x2)
-            x2 = leftX + (int) Math.round(Math.random() * aModel.theMaximumSquareSideLength);
+            x2 = leftX + (Math.random() * aModel.theMaximumSquareSideLength);
          if (x1 > x2)
          {
             tmp = x1;
@@ -76,11 +76,11 @@ public class SquareGenerator {
          d = x2 - x1;
 
          // the y interval locating the square in the max bounding square
-         y1 = lowerY + (int) Math.round(Math.random() * (aModel.theMaximumSquareSideLength - d));
+         y1 = lowerY + (Math.random() * (aModel.theMaximumSquareSideLength - d));
          y2 = y1 + d;
 
          // the coordinates of the left bottom vertice of the square
-         s = (int) Math.round(Math.random() * d);
+         s = (Math.random() * d);
 
          pointsX[0] = x1 + s;
          pointsY[0] = y1;

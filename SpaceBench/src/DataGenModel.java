@@ -1,5 +1,4 @@
 /**
- * DataGenModel.java
  *
  * @author :  Tim Faulkner
  * @version : 12/28/2011
@@ -23,7 +22,7 @@ public class DataGenModel {
    private static final boolean TRACE = false;
 
    // scene options
-   public int theSceneLength;
+   public double theSceneLength;
    public String theFilenamePrefix;
    
    // point values
@@ -34,13 +33,13 @@ public class DataGenModel {
    // square values
    public boolean theGenerateSquaresFlag;
    public int theNumberOfSquares;
-   public int theMaximumSquareSideLength;
+   public double theMaximumSquareSideLength;
 
    // triangle values
    public boolean theGenerateTrianglesFlag;
    public int theNumberOfTriangles;
-   public int theTriangleBBoxHeight;
-   public int theTriangleBBoxWidth;
+   public double theTriangleBBoxHeight;
+   public double theTriangleBBoxWidth;
 
    // polygon values
    public boolean theGeneratePolygonsFlag;
@@ -52,18 +51,18 @@ public class DataGenModel {
    public boolean theGenerateLineStringsFlag;
    public int theNumberOfLineStrings;
    public int theLineStringMaxSegmentCount;
-   public int theLineStringMaxSegmentLength;
+   public double theLineStringMaxSegmentLength;
    
    //Random Walk values
    public boolean theGenerateRandomWalksFlag;
    public int theNumberOfRandomWalks;
-   public int theMaximumStepLength;
+   public double theMaximumStepLength;
    public int theNumberOfSteps;
    
    //Conic Spiral values
    public boolean theGenerateConicSpiralsFlag;
    public int theNumberOfConicSpirals;
-   public int theMaximumRadiusLength;
+   public double theMaximumRadiusLength;
    public int theNumberOfVertices;
    
    /**
@@ -436,7 +435,7 @@ public class DataGenModel {
 
       // scene options
       if (aKey.equalsIgnoreCase("SceneLength"))
-         theSceneLength = Integer.valueOf(aValue);
+         theSceneLength = Double.valueOf(aValue);
       if (aKey.equalsIgnoreCase("FilenamePrefix"))
          theFilenamePrefix = aValue;
 
@@ -454,7 +453,7 @@ public class DataGenModel {
       if (aKey.equalsIgnoreCase("NumberOfSquares"))
          theNumberOfSquares = Integer.valueOf(aValue);
       if (aKey.equalsIgnoreCase("MaximumSquareSideLength"))
-         theMaximumSquareSideLength = Integer.valueOf(aValue);
+         theMaximumSquareSideLength = Double.valueOf(aValue);
 
       // triangle options
       if (aKey.equalsIgnoreCase("GenerateTrianglesFlag"))
@@ -462,9 +461,9 @@ public class DataGenModel {
       if (aKey.equalsIgnoreCase("NumberOfTriangles"))
          theNumberOfTriangles = Integer.valueOf(aValue);
       if (aKey.equalsIgnoreCase("TriangleBBoxHeight"))
-         theTriangleBBoxHeight = Integer.valueOf(aValue);
+         theTriangleBBoxHeight = Double.valueOf(aValue);
       if (aKey.equalsIgnoreCase("TriangleBBoxWidth"))
-         theTriangleBBoxWidth = Integer.valueOf(aValue);
+         theTriangleBBoxWidth = Double.valueOf(aValue);
 
       // polygon options
       if (aKey.equalsIgnoreCase("GeneratePolygonsFlag"))
@@ -484,7 +483,7 @@ public class DataGenModel {
       if (aKey.equalsIgnoreCase("LineStringMaxSegmentCount"))
          theLineStringMaxSegmentCount = Integer.valueOf(aValue);
       if (aKey.equalsIgnoreCase("LineStringMaxSegmentLength"))
-         theLineStringMaxSegmentLength = Integer.valueOf(aValue);
+         theLineStringMaxSegmentLength = Double.valueOf(aValue);
       
       // random walks options
       if (aKey.equalsIgnoreCase("GenerateRandomWalksFlag"))
@@ -492,7 +491,7 @@ public class DataGenModel {
       if (aKey.equalsIgnoreCase("NumberOfRandomWalks"))
           theNumberOfRandomWalks = Integer.valueOf(aValue);
       if (aKey.equalsIgnoreCase("MaximumStepLength"))
-          theMaximumStepLength = Integer.valueOf(aValue);
+          theMaximumStepLength = Double.valueOf(aValue);
       if (aKey.equals("NumberOfSteps"))
     	   theNumberOfSteps = Integer.valueOf(aValue);
        
@@ -502,7 +501,7 @@ public class DataGenModel {
        if (aKey.equalsIgnoreCase("NumberOfConicSpirals"))
         	theNumberOfConicSpirals = Integer.valueOf(aValue);
        if (aKey.equalsIgnoreCase("MaximumRadiusLength"))
-        	theMaximumRadiusLength = Integer.valueOf(aValue);
+        	theMaximumRadiusLength = Double.valueOf(aValue);
        if (aKey.equals("NumberOfVertices"))
         	theNumberOfVertices = Integer.valueOf(aValue);
        
@@ -517,7 +516,7 @@ public class DataGenModel {
    private void writeKeyValuePairs(BufferedWriter bufWtr) throws IOException
    {
       // scene options
-      bufWtr.write("SceneLength," + Integer.toString(theSceneLength) + "\n");
+      bufWtr.write("SceneLength," + Double.toString(theSceneLength) + "\n");
       bufWtr.write("FilenamePrefix," + theFilenamePrefix + "\n");
 
       // point options
@@ -528,13 +527,13 @@ public class DataGenModel {
       // square options
       bufWtr.write("GenerateSquaresFlag," + Boolean.toString(theGenerateSquaresFlag) + "\n");
       bufWtr.write("NumberOfSquares," + Integer.toString(theNumberOfSquares) + "\n");
-      bufWtr.write("MaximumSquareSideLength," + Integer.toString(theMaximumSquareSideLength) + "\n");
+      bufWtr.write("MaximumSquareSideLength," + Double.toString(theMaximumSquareSideLength) + "\n");
 
       // triangle options
       bufWtr.write("GenerateTrianglesFlag," + Boolean.toString(theGenerateTrianglesFlag) + "\n");
       bufWtr.write("NumberOfTriangles," + Integer.toString(theNumberOfTriangles) + "\n");
-      bufWtr.write("TriangleBBoxHeight," + Integer.toString(theTriangleBBoxHeight) + "\n");
-      bufWtr.write("TriangleBBoxWidth," + Integer.toString(theTriangleBBoxWidth) + "\n");
+      bufWtr.write("TriangleBBoxHeight," + Double.toString(theTriangleBBoxHeight) + "\n");
+      bufWtr.write("TriangleBBoxWidth," + Double.toString(theTriangleBBoxWidth) + "\n");
 
       // polygon options
       bufWtr.write("GeneratePolygonsFlag," + Boolean.toString(theGeneratePolygonsFlag) + "\n");
@@ -546,18 +545,18 @@ public class DataGenModel {
       bufWtr.write("GenerateLineStringsFlag," + Boolean.toString(theGenerateLineStringsFlag) + "\n");
       bufWtr.write("NumberOfLineStrings," + Integer.toString(theNumberOfLineStrings) + "\n");
       bufWtr.write("LineStringMaxSegmentCount," + Integer.toString(theLineStringMaxSegmentCount) + "\n");
-      bufWtr.write("LineStringMaxSegmentLength," + Integer.toString(theLineStringMaxSegmentLength) + "\n");
+      bufWtr.write("LineStringMaxSegmentLength," + Double.toString(theLineStringMaxSegmentLength) + "\n");
       
       // random walks options
       bufWtr.write("GenerateRandomWalkFlag," + Boolean.toString(theGenerateRandomWalksFlag) + "\n");
       bufWtr.write("NumberOfRandomWalks," + Integer.toString(theNumberOfRandomWalks) + "\n");
-      bufWtr.write("MaximumStepLength," + Integer.toString(theMaximumStepLength) + "\n");
+      bufWtr.write("MaximumStepLength," + Double.toString(theMaximumStepLength) + "\n");
       bufWtr.write("NumberOfSteps," + Integer.toString(theNumberOfSteps) + "\n");
       
       // conic spirals options
       bufWtr.write("GenerateConicSpiralFlag," + Boolean.toString(theGenerateConicSpiralsFlag) + "\n");
       bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
-      bufWtr.write("MaximumRadiusLength," + Integer.toString(theMaximumRadiusLength) + "\n");
+      bufWtr.write("MaximumRadiusLength," + Double.toString(theMaximumRadiusLength) + "\n");
       bufWtr.write("NumberOfVertices," + Integer.toString(theNumberOfVertices) + "\n");
    }
 }

@@ -64,7 +64,7 @@ public class PolygonGenerator {
       System.out.println("  creating polygon datafile [" + outFilename + "]");
 
 
-      char[][] Grid = new char[aModel.theSceneLength + 1][aModel.theSceneLength + 1];
+      char[][] Grid = new char[(int) (aModel.theSceneLength + 1)][(int) (aModel.theSceneLength + 1)];
 
         int[] pointsX = new int[aModel.thePolygonMaxVertexCount + 1];
         int[] pointsY = new int[aModel.thePolygonMaxVertexCount + 1];

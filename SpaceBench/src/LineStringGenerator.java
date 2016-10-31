@@ -29,7 +29,8 @@ public class LineStringGenerator {
       String outFilename;
       FileWriter f = null;
       PrintWriter out = null;
-      int desiredSegmentCount, currSegmentCount, x, y;
+      int desiredSegmentCount, currSegmentCount;
+      double x, y;
 
       // do we wish points generated?
       if (aModel.theGenerateLineStringsFlag == false)
@@ -59,8 +60,8 @@ public class LineStringGenerator {
          {
             while (currSegmentCount < desiredSegmentCount)
             {
-               x = (int)(Math.random()*aModel.theSceneLength)+1;
-               y = (int)(Math.random()*aModel.theSceneLength)+1;
+               x = (Math.random()*aModel.theSceneLength)+1;
+               y = (Math.random()*aModel.theSceneLength)+1;
                Point2D candidatePt = new Point2D.Double(x,y);
                if (xyCoords.contains(candidatePt) == false)
                {
@@ -123,12 +124,12 @@ public class LineStringGenerator {
             out.print("LINESTRING (");
             for (int i = 0; i < xyCoords.size()-1; i++)
             {
-               x = (int)xyCoords.get(i).getX();
-               y = (int)xyCoords.get(i).getY();
+               x = xyCoords.get(i).getX();
+               y = xyCoords.get(i).getY();
                out.print(x+" "+y+", ");
             }
-            x = (int)xyCoords.get(xyCoords.size()-1).getX();
-            y = (int)xyCoords.get(xyCoords.size()-1).getY();
+            x = xyCoords.get(xyCoords.size()-1).getX();
+            y = xyCoords.get(xyCoords.size()-1).getY();
             out.println(x+" "+y+")");
          }
          lineCount++;

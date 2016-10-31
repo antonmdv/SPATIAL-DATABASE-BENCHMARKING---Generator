@@ -32,7 +32,7 @@ public class ConicSpiralGenerator {
 
 		// input from user
 		int numOfConicSpirals = aModel.theNumberOfConicSpirals;
-		int radius = aModel.theMaximumRadiusLength;
+		double radius = aModel.theMaximumRadiusLength;
 		//int vertices = aModel.theNumberOfVertices;
 		
 		

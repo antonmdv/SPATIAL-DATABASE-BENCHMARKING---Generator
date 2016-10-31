@@ -20,7 +20,7 @@ public class RandomWalkGenerator {
 	    Random rnd = new Random();
 	    
 	    //Points
-	    int x,y;
+	    double x,y;
 	    
 	    //For random walk direction choice 
 	    String[] direction = {"North","South","East","West"};
@@ -33,7 +33,7 @@ public class RandomWalkGenerator {
 	    // Input from User (grabbign from data model)
 	    int desiredNumberOfAlgorithms = aModel.theNumberOfRandomWalks;		//number of paths produced 	 
 	    int desiredNumberOfSteps = aModel.theNumberOfSteps;					//Range of steps per algorithm (from 3 to n)
-	    int stepLength = aModel.theMaximumStepLength;						//Range of step length(from 0 to n)
+	    double stepLength = aModel.theMaximumStepLength;						//Range of step length(from 0 to n)
 	    
 	    //generate output file
 	    outFilename = aModel.theFilenamePrefix + "randomWalk.txt";
@@ -64,8 +64,8 @@ public class RandomWalkGenerator {
 		   	desiredNumberOfSteps = rnd.nextInt(desiredNumberOfSteps) + 3;		
 			
 			//generate the starting point
-			x = (int)(Math.random()*aModel.theSceneLength)+1;
-            y = (int)(Math.random()*aModel.theSceneLength)+1;
+			x = (Math.random()*aModel.theSceneLength)+1;
+            y = (Math.random()*aModel.theSceneLength)+1;
             
             //add point to the list
             Point2D startPt = new Point2D.Double(x,y);
@@ -123,14 +123,14 @@ public class RandomWalkGenerator {
 			 
 		            for (int i = 0; i < xyCoords.size()-1; i++)
 		            {
-		               x = (int)xyCoords.get(i).getX();
-		               y = (int)xyCoords.get(i).getY();
+		               x = xyCoords.get(i).getX();
+		               y = xyCoords.get(i).getY();
 		               
 		               out.print(x+" "+y+", ");
 		            }
 		            
-		            x = (int)xyCoords.get(xyCoords.size()-1).getX();
-		            y = (int)xyCoords.get(xyCoords.size()-1).getY();
+		            x = xyCoords.get(xyCoords.size()-1).getX();
+		            y = xyCoords.get(xyCoords.size()-1).getY();
 		            out.println(x+" "+y+")");   
 		            
         	}

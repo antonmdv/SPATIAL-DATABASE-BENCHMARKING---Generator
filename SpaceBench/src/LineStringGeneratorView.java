@@ -29,7 +29,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
    private static final boolean DEFAULT_GENERATE_FLAG = true;
    private static final int DEFAULT_LINESTRING_COUNT = 25;
    private static final int DEFAULT_MAX_SEGMENT_COUNT = 10;
-   private static final int DEFAULT_MAX_SEGMENT_LENGTH = 100;
+   private static final double DEFAULT_MAX_SEGMENT_LENGTH = 100;
    
    //***
    // instance variables
@@ -64,7 +64,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
    private boolean theGenerateFlag;
    private int theNumberOfLineStrings;
    private int theMaximumSegmentCount;
-   private int theMaximumSegmentLength;
+   private double theMaximumSegmentLength;
 
    /**
     * LineStringGeneratorView
@@ -132,7 +132,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
     * 
     * This method sets the current maximum bbox length
     */
-   public void setMaximumSegmentLength(int aLength)
+   public void setMaximumSegmentLength(double aLength)
    {
       theMaximumSegmentLength = aLength;
       if (theMaximumSegmentLengthField != null)
@@ -177,7 +177,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
     * 
     * This method returns the maximum segment length
     */
-   public int getMaximumSegmentLength()
+   public double getMaximumSegmentLength()
    {
       return theMaximumSegmentLength;
    }
@@ -301,7 +301,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       }
       else if (source == theMaximumSegmentLengthField)
       {
-         theMaximumSegmentLength = ((Number)theMaximumSegmentLengthField.getValue()).intValue();
+         theMaximumSegmentLength = ((Number)theMaximumSegmentLengthField.getValue()).doubleValue();
          if (TRACE)
             System.out.println("LineStrings: maximum segment length = " + theMaximumSegmentLength);
       }

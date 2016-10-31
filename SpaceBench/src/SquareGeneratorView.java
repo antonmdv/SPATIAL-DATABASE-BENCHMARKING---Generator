@@ -28,7 +28,7 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
    private static final String GENERATE_CHECKBOX_TITLE = "Generate data file?";
    private static final boolean DEFAULT_GENERATE_FLAG = true;
    private static final int DEFAULT_SQUARE_COUNT = 50;
-   private static final int DEFAULT_MAX_SIDE_LENGTH = 100;
+   private static final double DEFAULT_MAX_SIDE_LENGTH = 100;
    
    //***
    // instance variables
@@ -56,7 +56,7 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
    // property values
    private boolean theGenerateFlag;
    private int theNumberOfSquares;
-   private int theMaximumSideLength;
+   private double theMaximumSideLength;
 
    /**
     * SquareGeneratorView
@@ -108,7 +108,7 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
     * 
     * This method sets the current maximum side length
     */
-   public void setMaximumSideLength(int aLength)
+   public void setMaximumSideLength(double aLength)
    {
       theMaximumSideLength = aLength;
       if (theMaximumSideLengthField != null)
@@ -143,7 +143,7 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
     * 
     * This method returns the current maximum side length
     */
-   public int getMaximumSideLength()
+   public double getMaximumSideLength()
    {
       return theMaximumSideLength;
    }
@@ -194,7 +194,7 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       //***
 
       // build format arguments
-      theMaximumSideLengthFormat = NumberFormat.getIntegerInstance();
+      theMaximumSideLengthFormat = NumberFormat.getNumberInstance();
 
       // create number of point elements [label, field]
       theMaximumSideLengthLabel = new JLabel("Maximum side length:");
@@ -240,7 +240,7 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       }
       else if (source == theMaximumSideLengthField)
       {
-         theMaximumSideLength = ((Number)theMaximumSideLengthField.getValue()).intValue();
+         theMaximumSideLength = ((Number)theMaximumSideLengthField.getValue()).doubleValue();
          if (TRACE)
             System.out.println("Squares: maximum side length = " + theMaximumSideLength);
       }
