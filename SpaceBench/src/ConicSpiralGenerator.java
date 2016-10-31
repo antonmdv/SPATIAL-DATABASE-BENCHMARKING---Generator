@@ -79,14 +79,11 @@ public class ConicSpiralGenerator {
 				distLast2Pts = Math.sqrt(Math.pow(nextX - x, 2) + Math.pow(nextY - y, 2));
 				
 				t += 0.1;	// time increment
-				//System.out.print("cnt: " + cnt + "    ");
-				//System.out.println(radius < dist + distLast2Pts);
 			} while (radius > dist + distLast2Pts);		// if next vertex will make spiral's radius > given radius, stop
 			out.println("]");
 			cnt++;
         }
 		out.close();
 		System.out.println("    " + numOfConicSpirals + " conic spirals were generated.");
-		System.out.println("Num of Conic spirals: " + cnt);
 	}
 }
