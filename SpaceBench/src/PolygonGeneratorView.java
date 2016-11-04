@@ -31,6 +31,10 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
    private static final int DEFAULT_MAX_VERTEX_COUNT = 10;
    private static final int DEFAULT_BBOX_LENGTH = 100;
    
+   //New Constrains
+   private static final int DEFAULT_MIN_VERTEX_COUNT = 3;
+   private static final int DEFAULT_MIN_SIDE_LENGTH = 1;
+   
    //***
    // instance variables
    //***
@@ -42,7 +46,7 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
    private JCheckBox theGenerateCheckbox;
    private JPanel theGeneratePanel;
 
-   // elements for 'number of squares'
+   // elements for 'number of Polygons'
    private NumberFormat theNumberOfPolygonsFormat;
    private JPanel theNumberOfPolygonsPanel;
    private JLabel theNumberOfPolygonsLabel;
@@ -53,6 +57,15 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
    private JPanel theMaximumVertexCountPanel;
    private JLabel theMaximumVertexCountLabel;
    private JFormattedTextField theMaximumVertexCountField;
+   
+   // elements for 'min vertex count'
+   private NumberFormat theMinimumVertexCountFormat;
+   private JPanel theMinimumVertexCountPanel;
+   private JLabel theMinimumVertexCountLabel;
+   private JFormattedTextField theMinimumVertexCountField;
+   
+   // elements for 'min side length'
+   
 
    // elements for 'bounding box length'
    private NumberFormat theBBoxLengthFormat;
@@ -65,6 +78,7 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
    private int theNumberOfPolygons;
    private int theMaximumVertexCount;
    private int theBBoxLength;
+   private int theMinimumVertexCount;
 
    /**
     * PolygonGeneratorView
@@ -78,6 +92,8 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       theNumberOfPolygons = DEFAULT_POLYGON_COUNT;
       theMaximumVertexCount = DEFAULT_MAX_VERTEX_COUNT;
       theBBoxLength = DEFAULT_BBOX_LENGTH;
+      theMinimumVertexCount = DEFAULT_MIN_VERTEX_COUNT;
+      
    }
 
    /**
@@ -141,6 +157,16 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
          theBBoxLengthField.updateUI();
       }
    }
+   
+   public void setMinimumVertexCount(int aCount)
+   {
+	   theMinimumVertexCount = aCount;
+      if (theMinimumVertexCountField != null)
+      {
+    	  theMinimumVertexCountField.setValue(theMinimumVertexCount);
+    	  theMinimumVertexCountField.updateUI();
+      }
+   }
 
   /**
    * getGenerateFlag
@@ -180,6 +206,10 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
    public int getBBoxLength()
    {
       return theBBoxLength;
+   }
+   public int getMinimumVertexCount()
+   {
+      return theMinimumVertexCount;
    }
 
    /**
@@ -242,6 +272,26 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       theMaximumVertexCountPanel = new JPanel();
       theMaximumVertexCountPanel.add(theMaximumVertexCountLabel);
       theMaximumVertexCountPanel.add(theMaximumVertexCountField);
+      
+      //***
+      // minimum vertex count
+      //***
+
+      // build format arguments
+      theMinimumVertexCountFormat = NumberFormat.getIntegerInstance();
+
+      // create number of point elements [label, field]
+      theMinimumVertexCountLabel = new JLabel("Minimum vertex count:");
+      theMinimumVertexCountLabel.setHorizontalAlignment(JLabel.LEFT);
+      theMinimumVertexCountField = new JFormattedTextField(theMinimumVertexCountFormat);
+      theMinimumVertexCountField.setValue(new Double(theMinimumVertexCount));
+      theMinimumVertexCountField.setColumns(10);
+      theMinimumVertexCountField.addPropertyChangeListener("value", this);
+
+      // add to containing panel
+      theMinimumVertexCountPanel = new JPanel();
+      theMinimumVertexCountPanel.add(theMinimumVertexCountLabel);
+      theMinimumVertexCountPanel.add(theMinimumVertexCountField);
 
       //***
       // bbox length
@@ -274,6 +324,7 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       theTabbedPanePanel.add(theNumberOfPolygonsPanel);
       theTabbedPanePanel.add(theMaximumVertexCountPanel);
       theTabbedPanePanel.add(theBBoxLengthPanel);
+      theTabbedPanePanel.add(theMinimumVertexCountPanel);
 
       // add new tab to tabbed pane
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
@@ -305,6 +356,11 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
          if (TRACE)
             System.out.println("Polygons: maximum side length = " + theBBoxLength);
       }
+      else if(source == theMinimumVertexCountField){
+    	  theMinimumVertexCount = ((Number)theMinimumVertexCountField.getValue()).intValue();
+    	  if (TRACE)
+              System.out.println("Polygons: minimum side length = " + theMinimumVertexCount);
+      }
    }
    
    /**
@@ -323,12 +379,14 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
            theNumberOfPolygonsField.setEnabled(true);
            theMaximumVertexCountField.setEnabled(true);
            theBBoxLengthField.setEnabled(true);
+           theMinimumVertexCountField.setEnabled(true);
          }
          else
          {
            theNumberOfPolygonsField.setEnabled(false);
            theMaximumVertexCountField.setEnabled(false);
            theBBoxLengthField.setEnabled(false);
+           theMinimumVertexCountField.setEnabled(false);
          }
          if (TRACE)
             System.out.println("Polygons: generate = " + theGenerateFlag);

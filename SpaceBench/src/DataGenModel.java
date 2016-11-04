@@ -46,12 +46,22 @@ public class DataGenModel {
    public int theNumberOfPolygons;
    public int thePolygonMaxVertexCount;
    public int thePolygonBBoxLength;
+   //new
+   public int thePolygonMinVertexCount;
    
    // linestring values
    public boolean theGenerateLineStringsFlag;
    public int theNumberOfLineStrings;
    public int theLineStringMaxSegmentCount;
+
+   //public int theLineStringMaxSegmentLength;
+   //new
+   public int theLineStringMinSegmentCount;
+   public int theLineStringMinSegmentLength;
+   
+
    public double theLineStringMaxSegmentLength;
+// branch 'master' of ssh://git@github.fit.edu/haltammami2013/SpaceBench.git
    
    //Random Walk values
    public boolean theGenerateRandomWalksFlag;
@@ -167,6 +177,7 @@ public class DataGenModel {
             msg = "Maximum polygon width has to be < scene length, and > 0.";
             isValid = false;
          }
+         //need to validate options for min vertex count
       }
 
       //***
@@ -190,6 +201,9 @@ public class DataGenModel {
             msg = "Maximum line string segment length has to be < scene length, and > 0.";
             isValid = false;
          }
+         
+         //theLineStringMinSegmentCount needs validation
+         //theLineStringMinSegmentLength needs validation
       }
 
       //***
@@ -474,6 +488,8 @@ public class DataGenModel {
          thePolygonMaxVertexCount = Integer.valueOf(aValue);
       if (aKey.equalsIgnoreCase("PolygonBBoxLength"))
          thePolygonBBoxLength = Integer.valueOf(aValue);
+      if (aKey.equalsIgnoreCase("PolygonMinVertexCount"))
+    	  thePolygonMinVertexCount = Integer.valueOf(aValue);
   
       // linestring options
       if (aKey.equalsIgnoreCase("GenerateLineStringsFlag"))
@@ -483,7 +499,15 @@ public class DataGenModel {
       if (aKey.equalsIgnoreCase("LineStringMaxSegmentCount"))
          theLineStringMaxSegmentCount = Integer.valueOf(aValue);
       if (aKey.equalsIgnoreCase("LineStringMaxSegmentLength"))
-         theLineStringMaxSegmentLength = Double.valueOf(aValue);
+
+         theLineStringMaxSegmentLength = Integer.valueOf(aValue);
+      if (aKey.equalsIgnoreCase("LineStringMinSegmentCount"))
+          theLineStringMinSegmentCount = Integer.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("LineStringMinSegmentLength"))
+          theLineStringMinSegmentLength = Integer.valueOf(aValue);
+
+         //theLineStringMaxSegmentLength = Double.valueOf(aValue);
+//branch 'master' of ssh://git@github.fit.edu/haltammami2013/SpaceBench.git
       
       // random walks options
       if (aKey.equalsIgnoreCase("GenerateRandomWalksFlag"))
@@ -540,12 +564,20 @@ public class DataGenModel {
       bufWtr.write("NumberOfPolygons," + Integer.toString(theNumberOfPolygons) + "\n");
       bufWtr.write("PolygonMaxVertexCount," + Integer.toString(thePolygonMaxVertexCount) + "\n");
       bufWtr.write("PolygonBBoxLength," + Integer.toString(thePolygonBBoxLength) + "\n");
+      bufWtr.write("PolygonMinVertexCount," + Integer.toString(thePolygonMinVertexCount) + "\n");
+      
 
       // linestring options
       bufWtr.write("GenerateLineStringsFlag," + Boolean.toString(theGenerateLineStringsFlag) + "\n");
       bufWtr.write("NumberOfLineStrings," + Integer.toString(theNumberOfLineStrings) + "\n");
       bufWtr.write("LineStringMaxSegmentCount," + Integer.toString(theLineStringMaxSegmentCount) + "\n");
+
+      //bufWtr.write("LineStringMaxSegmentLength," + Integer.toString(theLineStringMaxSegmentLength) + "\n");
+      bufWtr.write("LineStringMinSegmentCount," + Integer.toString(theLineStringMinSegmentCount) + "\n");
+      bufWtr.write("LineStringMinSegmentLength," + Integer.toString(theLineStringMinSegmentLength) + "\n");
+
       bufWtr.write("LineStringMaxSegmentLength," + Double.toString(theLineStringMaxSegmentLength) + "\n");
+// branch 'master' of ssh://git@github.fit.edu/haltammami2013/SpaceBench.git
       
       // random walks options
       bufWtr.write("GenerateRandomWalkFlag," + Boolean.toString(theGenerateRandomWalksFlag) + "\n");
