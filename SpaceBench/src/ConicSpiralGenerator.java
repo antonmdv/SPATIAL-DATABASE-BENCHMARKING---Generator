@@ -53,7 +53,7 @@ public class ConicSpiralGenerator {
 	
 		while (cnt < numOfConicSpirals)
         {
-			out.print("SPIRAL [");
+			out.print("LINESTRING (");
 			
 			// generating random center within scene bounds
 			centerX = r.nextDouble() * aModel.theSceneLength + 1;
@@ -66,7 +66,7 @@ public class ConicSpiralGenerator {
 				x = centerX + t*Math.cos(2*Math.PI*t);
 				y = centerY + t*Math.sin(2*Math.PI*t);
 				
-				out.printf("(%.2f, %.2f)", x, y);
+				out.printf("%f %f, ", x, y);
 				
 				// projected vertex after the last one generated
 				nextX = x + 0.1*Math.cos(2*Math.PI*0.1);
@@ -80,7 +80,7 @@ public class ConicSpiralGenerator {
 				
 				t += 0.1;	// time increment
 			} while (radius > dist + distLast2Pts);		// if next vertex will make spiral's radius > given radius, stop
-			out.println("]");
+			out.println(")");
 			cnt++;
         }
 		out.close();
