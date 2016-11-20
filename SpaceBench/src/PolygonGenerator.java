@@ -46,7 +46,7 @@ public class PolygonGenerator {
         int PolygonCNT;
         int NumVer, VerCNT;
         int i, j;
-        int x, y, leftX, lowerY;
+        double x, y, leftX, lowerY;
       String outFilename;
       FileWriter f = null;
       PrintWriter out = null;
@@ -63,21 +63,14 @@ public class PolygonGenerator {
       // generate polygons
       System.out.println("  creating polygon datafile [" + outFilename + "]");
 
-
-      char[][] Grid = new char[(int) (aModel.theSceneLength + 1)][(int) (aModel.theSceneLength + 1)];
-
-        int[] pointsX = new int[aModel.thePolygonMaxVertexCount + 1];
-        int[] pointsY = new int[aModel.thePolygonMaxVertexCount + 1];
+        double[] pointsX = new double[aModel.thePolygonMaxVertexCount + 1];
+        double[] pointsY = new double[aModel.thePolygonMaxVertexCount + 1];
 
       int cnt, trialNum = (int)Math.pow((double)(aModel.thePolygonBBoxLength + 1), 2.0) / 2;
 
         PolygonCNT = 0;
         while (PolygonCNT < aModel.theNumberOfPolygons)
         {
-         // wipe away polygon vertices from the grid
-         for (i = 0; i <= aModel.theSceneLength; i ++)
-            for (j = 0; j <= aModel.theSceneLength; j ++)
-               Grid[i][j] = '.';
 
             // the number of vertices of the polygon >= 3
             NumVer = (int)Math.round( Math.random() * (aModel.thePolygonMaxVertexCount - 3) + 3 );
@@ -91,7 +84,6 @@ public class PolygonGenerator {
          y = lowerY + (int) Math.round(Math.random() * aModel.thePolygonBBoxLength);
          pointsX[0] = x;
          pointsY[0] = y;
-         Grid[x][y] = '*';
 
             while(true)
             {
@@ -104,7 +96,6 @@ public class PolygonGenerator {
             {
                pointsX[1] = x;
                pointsY[1] = y;
-               Grid[x][y] = '*';
                break;
             }
 
@@ -120,15 +111,15 @@ public class PolygonGenerator {
             while (cnt <= trialNum)
             {
                  // give a candidate vertex
-               x = leftX + (int) Math.round(Math.random() * aModel.thePolygonBBoxLength);
-               y = lowerY + (int) Math.round(Math.random() * aModel.thePolygonBBoxLength);
+               x = leftX + Math.round(Math.random() * aModel.thePolygonBBoxLength);
+               y = lowerY + Math.round(Math.random() * aModel.thePolygonBBoxLength);
 
                   // check the validness of the vertex
                 if ( (x < leftX || x > (leftX+aModel.thePolygonBBoxLength)) || (y < lowerY || y > (lowerY+aModel.thePolygonBBoxLength)) )
                   //if (x, y) is outside the bounding square
                    ;
 
-                else if ( InvalidVertex(x, y, pointsX, pointsY, VerCNT - 1, Grid, '*') )
+                else if ( InvalidVertex(x, y, pointsX, pointsY, VerCNT - 1) )
                         ;
 
                 else
@@ -136,7 +127,6 @@ public class PolygonGenerator {
                   // (x, y) is selected
                    pointsX[VerCNT] = x;
                    pointsY[VerCNT] = y;
-                  Grid[x][y] = '*';
                    break;
                 }
 
@@ -175,59 +165,59 @@ public class PolygonGenerator {
         System.out.println("    " + aModel.theNumberOfPolygons + " polygons were generated.");
     }
     
-    private boolean isCollinear(int x1, int y1, int x2, int y2, int x3, int y3)  {
+    private boolean isCollinear(double pointsX, double pointsY, double pointsX2, double pointsY2, double x, double y)  {
          // check collinearity of three points (x1, y1), (x2, y2), & (x3, y3)
 
         // Case 1: two of the points overlap
-        if ( (x1 == x2 && y1 == y2) || (x2 == x3 && y2 == y3) || (x3 == x1 && y3 == y1) )
+        if ( (pointsX == pointsX2 && pointsY == pointsY2) || (pointsX2 == x && pointsY2 == y) || (x == pointsX && y == pointsY) )
          return true;
 
         // Case 2: the points are totally isolated
-      int d1 = x1 - x3;
-      int d2 = x2 - x3;
+      double d1 = pointsX - x;
+      double d2 = pointsX2 - x;
       if (d1 == 0 && d2 == 0)
          return true;
       else
       if (d1 != 0 && d2 != 0)
-         if ( (y1 - y3)/d1 == (y2 - y3)/d2 )
+         if ( (pointsY - y)/d1 == (pointsY2 - y)/d2 )
             return true;
 
       return false;
 
     }
 
-    private boolean passVertex(int x1, int y1, int x2, int y2, int[] X, int[] Y, int start, int end)  {
+    private boolean passVertex(double pointsX, double pointsY, double x, double y, double[] pointsX2, double[] pointsY2, int start, int end)  {
       // detects if line segment (x1, y1) -> (x2, y2) passes thru any (X[i], Y[i]) for i = start ~ end
 
       for (int i = start; i <= end; i ++)
-         if (isCollinear(X[i], Y[i], x1, y1, x2, y2))
+         if (isCollinear(pointsX2[i], pointsY2[i], pointsX, pointsY, x, y))
          {
              /* Case 1: (x1, y1) -> (x2, y2) is vertical */
-            if (x1 == x2)
-                if ( (y1 <= Y[i] && Y[i] <= y2) || (y2 <= Y[i] && Y[i] <= y1) )
+            if (pointsX == x)
+                if ( (pointsY <= pointsY2[i] && pointsY2[i] <= y) || (y <= pointsY2[i] && pointsY2[i] <= pointsY) )
                   return true;
              /* Case 2: (x1, y1) -> (x2, y2) is NOT vertical */
             else
-                if ( (x1 <= X[i] && X[i] <= x2) || (x2 <= X[i] && X[i] <= x1) )
+                if ( (pointsX <= pointsX2[i] && pointsX2[i] <= x) || (x <= pointsX2[i] && pointsX2[i] <= pointsX) )
                   return true;
          }
 
         return false;
     }
 
-    private boolean inSegment(int x, int y, int[] X, int[] Y, int m)  {
+    private boolean inSegment(double x, double y, double[] pointsX, double[] pointsY, int m)  {
       // detect if (x, y) lies in line segments (X[i-1], Y[i-1]) -> (X[i], Y[i]), for i = 1, 2, ..., m
 
         for (int i = 1; i <= m; i ++)
-         if (isCollinear(x, y, X[i-1], Y[i-1], X[i], Y[i]))
+         if (isCollinear(x, y, pointsX[i-1], pointsY[i-1], pointsX[i], pointsY[i]))
          {
              /* Case 1: the segment is vertical */
-            if (X[i-1] == X[i])
-                if ( (Y[i-1] <= y && y <= Y[i]) || (Y[i] <= y && y <= Y[i-1]) )
+            if (pointsX[i-1] == pointsX[i])
+                if ( (pointsY[i-1] <= y && y <= pointsY[i]) || (pointsY[i] <= y && y <= pointsY[i-1]) )
                   return true;
              /* Case 2: the segment is NOT vertical */
             else
-                if ( (X[i-1] <= x && x <= X[i]) || (X[i] <= x && x <= X[i-1]) )
+                if ( (pointsX[i-1] <= x && x <= pointsX[i]) || (pointsX[i] <= x && x <= pointsX[i-1]) )
                   return true;
          }
 
@@ -235,50 +225,50 @@ public class PolygonGenerator {
     }
 
 
-    private boolean Intersect(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4)  {
+    private boolean Intersect(double pointsX, double pointsY, double x2, double y2, double pointsX2, double pointsY2, double pointsX3, double pointsY3)  {
       // detects if line segments S12 (x1, y1) -> (x2, y2) & S34 (x3, y3) -> (x4, y4) intersect
         // ATTENTION:  accuracy matters to calculation of slopes, and to solving equations
 
-        int  x12min = Math.min(x1, x2),    x12max = Math.max(x1, x2);
-        int  x34min = Math.min(x3, x4),    x34max = Math.max(x3, x4);
-        int  y12min = Math.min(y1, y2),    y12max = Math.max(y1, y2);
-        int  y34min = Math.min(y3, y4),    y34max = Math.max(y3, y4);
+        double  x12min = Math.min(pointsX, x2),    x12max = Math.max(pointsX, x2);
+        double  x34min = Math.min(pointsX2, pointsX3),    x34max = Math.max(pointsX2, pointsX3);
+        double  y12min = Math.min(pointsY, y2),    y12max = Math.max(pointsY, y2);
+        double  y34min = Math.min(pointsY2, pointsY3),    y34max = Math.max(pointsY2, pointsY3);
 
         double y, m12, b12, m34, b34;
 
 
         // S12 and S34 are vertical
-        if (x1 == x2 && x3 == x4)
-            if (x1 == x3 && y12min <= y34max && y34min <= y12max)
+        if (pointsX == x2 && pointsX2 == pointsX3)
+            if (pointsX == pointsX2 && y12min <= y34max && y34min <= y12max)
                return true;
 
         // only S12 is vertical
-        if (x1 == x2 && x3 != x4)
+        if (pointsX == x2 && pointsX2 != pointsX3)
         {
-         m34 = (double)(y4 - y3) / (double)(x4 - x3);
-         b34 = y3 - m34*x3;
-         y = m34 * x1 + b34;
-            if ((x34min <= x1 && x1 <= x34max) && (y12min <= y && y <= y12max))
+         m34 = (double)(pointsY3 - pointsY2) / (double)(pointsX3 - pointsX2);
+         b34 = pointsY2 - m34*pointsX2;
+         y = m34 * pointsX + b34;
+            if ((x34min <= pointsX && pointsX <= x34max) && (y12min <= y && y <= y12max))
                return true;
         }
 
         // only S34 is vertical
-        if (x1 != x2 && x3 == x4)
+        if (pointsX != x2 && pointsX2 == pointsX3)
         {
-         m12 = (double)(y2 - y1) / (double)(x2 - x1);
-         b12 = y1 - m12*x1;
-         y = m12 * x3 + b12;
-            if ((x12min <= x3 && x3 <= x12max) && (y34min <= y && y <= y34max))
+         m12 = (double)(y2 - pointsY) / (double)(x2 - pointsX);
+         b12 = pointsY - m12*pointsX;
+         y = m12 * pointsX2 + b12;
+            if ((x12min <= pointsX2 && pointsX2 <= x12max) && (y34min <= y && y <= y34max))
                return true;
         }
 
         // neither of S12 & S34 is vertical
-        if (x1 != x2 && x3 != x4)
+        if (pointsX != x2 && pointsX2 != pointsX3)
         {
-         m12 = (double)(y2 - y1) / (double)(x2 - x1);
-         b12 = y1 - m12*x1;
-         m34 = (double)(y4 - y3) / (double)(x4 - x3);
-         b34 = y3 - m34*x3;
+         m12 = (double)(y2 - pointsY) / (double)(x2 - pointsX);
+         b12 = pointsY - m12*pointsX;
+         m34 = (double)(pointsY3 - pointsY2) / (double)(pointsX3 - pointsX2);
+         b34 = pointsY2 - m34*pointsX2;
 
          // they have equal slopes
          if (m12 == m34)
@@ -289,11 +279,11 @@ public class PolygonGenerator {
             if (m12 != m34)
                 if (x12min <= x34max && x34min <= x12max);
                 {
-                  int x_highmin = Math.max(x12min, x34min);
-               int x_lowmax  = Math.min(x12max, x34max);
-               double x = (b34 - b12) / (m12 - m34);   // the x value of the intersection point
-               if (x_highmin <= x && x <= x_lowmax)
-                  return true;
+                	double x_highmin = Math.max(x12min, x34min);
+                	double x_lowmax  = Math.min(x12max, x34max);
+                	double x = (b34 - b12) / (m12 - m34);   // the x value of the intersection point
+                	if (x_highmin <= x && x <= x_lowmax)
+                		return true;
                 }
         }
 
@@ -301,38 +291,42 @@ public class PolygonGenerator {
 
     }
 
-    private boolean InvalidVertex(int x, int y, int[] X, int[] Y, int n, char[][] Grid, char vertex)  {
+    private boolean InvalidVertex(double x, double y, double[] pointsX, double[] pointsY, int n)  {
 
     /* the coordinates of vertices 0 ~ n of the polygon are already stored by X and Y */
 
     // (1) check the invalidness of segment (X[n], Y[n]) -> (x, y)
 
         /* Case 1: (X[n-1], Y[n-1]), (X[n], Y[n]), and (x, y) are collinear */
-        if ( isCollinear(X[n-1], Y[n-1], X[n], Y[n], x, y) )    return true;
+        if ( isCollinear(pointsX[n-1], pointsY[n-1], pointsX[n], pointsY[n], x, y) )    return true;
 
         /* Case 2: (X[n], Y[n]) -> (x, y) passes thru one of vertices 0 ~ n - 1 of the polygon */
-        if (passVertex(X[n], Y[n], x, y, X, Y, 0, n - 1))       return true;
+        if (passVertex(pointsX[n], pointsY[n], x, y, pointsX, pointsY, 0, n - 1))       return true;
 
         /* Case 3: (x, y) falls in one of the first n - 1 segments of the polygon */
-        if (Grid[x][y] == vertex)               return true;
-        if (inSegment(x, y, X, Y, n - 1))       return true;
+        for(int i = 0; i < pointsX.length; i++) {
+        	if(x == pointsX[i] && y == pointsY[i]) {
+        		return true;
+        	}
+        }
+        if (inSegment(x, y, pointsX, pointsY, n - 1))       return true;
 
       /* Case 4: (X[n], Y[n]) -> (x, y) intersects and overlaps (X[i-1], Y[i-1]) -> (X[i], Y[i]) */
         for (int i = n - 1; i > 0; i --)
-         if ( Intersect(X[n], Y[n], x, y, X[i-1], Y[i-1], X[i], Y[i]) )
+         if ( Intersect(pointsX[n], pointsY[n], x, y, pointsX[i-1], pointsY[i-1], pointsX[i], pointsY[i]) )
             return true;
 
     // (2) check the invalidness of segment (x, y) -> (X[0], Y[0])
 
         /* Case 1: (X[n], Y[n]), (x, y), and (X[0], Y[0]) are collinear */
-        if ( isCollinear(X[n], Y[n], x, y, X[0], Y[0]) )    return true;
+        if ( isCollinear(pointsX[n], pointsY[n], x, y, pointsX[0], pointsY[0]) )    return true;
 
         /* Case 2: (x, y) -> (X[0], Y[0]) passes thru one of vertices 1 ~ n of the polygon */
-        if (passVertex(x, y, X[0], Y[0], X, Y, 1, n))       return true;
+        if (passVertex(x, y, pointsX[0], pointsY[0], pointsX, pointsY, 1, n))       return true;
 
       /* Case 3: (x, y) -> (X[0], Y[0]) intersects and overlaps (X[i-1], Y[i-1]) -> (X[i], Y[i]) */
         for (int i = n; i > 0; i --)
-         if ( Intersect(x, y, X[0], Y[0], X[i-1], Y[i-1], X[i], Y[i]) )
+         if ( Intersect(x, y, pointsX[0], pointsY[0], pointsX[i-1], pointsY[i-1], pointsX[i], pointsY[i]) )
             return true;
 
 

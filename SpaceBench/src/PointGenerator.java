@@ -71,23 +71,32 @@ public class PointGenerator
       else
       {
            System.out.println("    data will contain only unique points");
-           boolean[][] Grid = new boolean[(int) (aModel.theSceneLength + 1)][(int) (aModel.theSceneLength + 1)];
+           double[] xValues = new double[(aModel.theNumberOfPoints)];
+           double[] yValues = new double[(aModel.theNumberOfPoints)];
            int duplicates = 0;
            cnt = 0;
            while (cnt < aModel.theNumberOfPoints)
            {
                  x = (int)(Math.random()*aModel.theSceneLength)+1;
                  y = (int)(Math.random()*aModel.theSceneLength)+1;
-                 if (Grid[x][y])
-                    duplicates++;
-                 else
-                 {
-                    Grid[x][y] = true;
-                    out.println("POINT (" + x + " " + y + ")");
-                    cnt++;
-                   if (cnt%100000 == 0)
-                      System.out.println("    generated " + cnt + " of " + aModel.theNumberOfPoints);
+                 int prevdup = duplicates;
+                 
+                 for(int a = 0; a < cnt; a++) {
+                	 if (xValues[a] == x) {
+                		 if (yValues[a] == y){
+                			 duplicates++; 
+                		 }
+                	 }
                  }
+                 
+                 if(prevdup == duplicates) {
+                     xValues[(int) cnt] = x;
+                     yValues[(int) cnt] = y;
+                     out.println("POINT (" + x + " " + y + ")");
+                     cnt++;
+                     if (cnt%100000 == 0)
+                        System.out.println("    generated " + cnt + " of " + aModel.theNumberOfPoints);
+                   }
            }
            System.out.println("    " + aModel.theNumberOfPoints + " points were generated.");
            System.out.println("    " + duplicates + " duplicates were eliminated.");

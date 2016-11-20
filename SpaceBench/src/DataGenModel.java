@@ -108,11 +108,6 @@ public class DataGenModel {
             msg = "Points file must contain at least 1 element";
             isValid = false;
          }
-         if (theUniquePointsFlag && (theNumberOfPoints >= (theSceneLength * theSceneLength)))
-         {
-            msg = "Scene is too small for number of unique points.";
-            isValid = false;
-         }
       }
       
       //***
