@@ -33,7 +33,7 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
    
    //New Constrains
    private static final int DEFAULT_MIN_VERTEX_COUNT = 3;
-   private static final int DEFAULT_MIN_SIDE_LENGTH = 1;
+   //private static final int DEFAULT_MIN_SIDE_LENGTH = 1;
    
    //***
    // instance variables
@@ -163,8 +163,14 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
 	   theMinimumVertexCount = aCount;
       if (theMinimumVertexCountField != null)
       {
-    	  theMinimumVertexCountField.setValue(theMinimumVertexCount);
-    	  theMinimumVertexCountField.updateUI();
+    	  if (theMinimumVertexCount >= 3) {
+    		  theMinimumVertexCountField.setValue(theMinimumVertexCount);
+        	  theMinimumVertexCountField.updateUI(); 
+    	  } else {
+    		  theMinimumVertexCountField.setValue(3);
+        	  theMinimumVertexCountField.updateUI(); 
+    	  }
+    	  
       }
    }
 

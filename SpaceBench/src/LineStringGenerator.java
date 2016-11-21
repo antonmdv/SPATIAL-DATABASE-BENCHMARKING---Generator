@@ -55,10 +55,10 @@ public class LineStringGenerator {
 
          currSegmentCount = 0;
          xyCoords.clear();
-         desiredSegmentCount = (int)(Math.random()*aModel.theLineStringMaxSegmentCount)+1;
-         if (desiredSegmentCount >= 3)
+         desiredSegmentCount = (int)(Math.random()*aModel.theLineStringMaxSegmentCount)+aModel.theLineStringMinSegmentCount;
+         if (desiredSegmentCount >= 1)
          {
-            while (currSegmentCount < desiredSegmentCount)
+            while (currSegmentCount <= desiredSegmentCount)
             {
                x = (Math.random()*aModel.theSceneLength)+1;
                y = (Math.random()*aModel.theSceneLength)+1;

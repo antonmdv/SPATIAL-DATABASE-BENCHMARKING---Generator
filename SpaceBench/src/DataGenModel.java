@@ -167,6 +167,16 @@ public class DataGenModel {
             msg = "Polygons must have at least 3 verticies.";
             isValid = false;
          }
+         if (thePolygonMinVertexCount < 3)
+         {
+            msg = "Polygons must have at least 3 verticies.";
+            isValid = false;
+         }
+         if (thePolygonMinVertexCount > thePolygonMaxVertexCount)
+         {
+            msg = "The Minimum Vertex Count should not be more than the Maximum.";
+            isValid = false;
+         }
          if ((thePolygonBBoxLength <= 0) || (thePolygonBBoxLength >= theSceneLength))
          {
             msg = "Maximum polygon width has to be < scene length, and > 0.";
@@ -186,14 +196,34 @@ public class DataGenModel {
             msg = "Line string file must contain at least 1 element";
             isValid = false;
          }
-         if (theLineStringMaxSegmentCount < 3)
+         if (theLineStringMaxSegmentCount < 1)
          {
-            msg = "LineStrings must have at least 3 segments.";
+            msg = "LineStrings must have at least 1 segments.";
+            isValid = false;
+         }
+         if (theLineStringMinSegmentCount < 1)
+         {
+            msg = "LineStrings must have at least 1 segments.";
+            isValid = false;
+         }
+         if (theLineStringMaxSegmentCount < theLineStringMinSegmentCount)
+         {
+            msg = "The Minimum Segment Count must not be more than the Maximum.";
             isValid = false;
          }
          if ((theLineStringMaxSegmentLength <= 0) || (theLineStringMaxSegmentLength >= theSceneLength))
          {
             msg = "Maximum line string segment length has to be < scene length, and > 0.";
+            isValid = false;
+         }
+         if ((theLineStringMinSegmentLength <= 0) || (theLineStringMinSegmentLength >= theSceneLength))
+         {
+            msg = "Minimum line string segment length has to be < scene length, and > 0.";
+            isValid = false;
+         }
+         if (theLineStringMaxSegmentLength < theLineStringMinSegmentLength)
+         {
+            msg = "Minimum Line Segment Length must not be more than the Maximum.";
             isValid = false;
          }
          

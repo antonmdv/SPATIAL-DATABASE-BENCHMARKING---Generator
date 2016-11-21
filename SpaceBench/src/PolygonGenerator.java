@@ -73,7 +73,7 @@ public class PolygonGenerator {
         {
 
             // the number of vertices of the polygon >= 3
-            NumVer = (int)Math.round( Math.random() * (aModel.thePolygonMaxVertexCount - 3) + 3 );
+            NumVer = (int)Math.round( Math.random() * (aModel.thePolygonMaxVertexCount - aModel.thePolygonMinVertexCount) + aModel.thePolygonMinVertexCount);
 
             // the least x & y of the bounding square
             leftX  = (int)Math.round( Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength));
