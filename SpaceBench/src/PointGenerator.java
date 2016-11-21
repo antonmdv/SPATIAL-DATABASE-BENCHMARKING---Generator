@@ -36,7 +36,7 @@ public class PointGenerator
     */
    public void generate(DataGenModel aModel) throws IOException
    {
-      int x,y,i,j;
+      double x,y,i,j;
       long cnt;
       String outFilename;
       FileWriter f = null;
@@ -59,8 +59,8 @@ public class PointGenerator
          cnt = 0;
          while (cnt < aModel.theNumberOfPoints)
          {
-               x = (int)(Math.random()*aModel.theSceneLength)+1;
-               y = (int)(Math.random()*aModel.theSceneLength)+1;
+               x = (Math.random()*aModel.theSceneLength)+1;
+               y = (Math.random()*aModel.theSceneLength)+1;
                out.println("POINT (" + x + " " + y + ")");
                cnt++;
                if (cnt%100000 == 0)
@@ -77,8 +77,8 @@ public class PointGenerator
            cnt = 0;
            while (cnt < aModel.theNumberOfPoints)
            {
-                 x = (int)(Math.random()*aModel.theSceneLength)+1;
-                 y = (int)(Math.random()*aModel.theSceneLength)+1;
+                 x = (Math.random()*aModel.theSceneLength)+1;
+                 y = (Math.random()*aModel.theSceneLength)+1;
                  int prevdup = duplicates;
                  
                  for(int a = 0; a < cnt; a++) {

@@ -76,19 +76,19 @@ public class PolygonGenerator {
             NumVer = (int)Math.round( Math.random() * (aModel.thePolygonMaxVertexCount - aModel.thePolygonMinVertexCount) + aModel.thePolygonMinVertexCount);
 
             // the least x & y of the bounding square
-            leftX  = (int)Math.round( Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength));
+            leftX  = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
             lowerY = leftX;
 
          // the vertex 0 of the polygon
-         x = leftX + (int) Math.round(Math.random() * aModel.thePolygonBBoxLength);
-         y = lowerY + (int) Math.round(Math.random() * aModel.thePolygonBBoxLength);
+         x = leftX + Math.random() * aModel.thePolygonBBoxLength;
+         y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
          pointsX[0] = x;
          pointsY[0] = y;
 
             while(true)
             {
-            x = leftX + (int) Math.round(Math.random() * aModel.thePolygonBBoxLength);
-            y = lowerY + (int) Math.round(Math.random() * aModel.thePolygonBBoxLength);
+            x = leftX + Math.random() * aModel.thePolygonBBoxLength;
+            y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
 
              if ( (x >= leftX && x <= (leftX+aModel.thePolygonBBoxLength)) && (y >= lowerY && y <= (lowerY+aModel.thePolygonBBoxLength))
                  // if (x, y) falls in the bounding square
@@ -111,8 +111,8 @@ public class PolygonGenerator {
             while (cnt <= trialNum)
             {
                  // give a candidate vertex
-               x = leftX + Math.round(Math.random() * aModel.thePolygonBBoxLength);
-               y = lowerY + Math.round(Math.random() * aModel.thePolygonBBoxLength);
+               x = leftX + Math.random() * aModel.thePolygonBBoxLength;
+               y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
 
                   // check the validness of the vertex
                 if ( (x < leftX || x > (leftX+aModel.thePolygonBBoxLength)) || (y < lowerY || y > (lowerY+aModel.thePolygonBBoxLength)) )
