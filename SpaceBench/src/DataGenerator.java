@@ -66,6 +66,7 @@ public class DataGenerator implements ActionListener {
    //New
    RandomWalkGeneratorView theRandomWalkGeneratorView;
    ConicSpiralGeneratorView theConicSpiralGeneratorView;
+   MidPointDisplacementGeneratorView theMidPointDisplacementGeneratorView;
 
    /**
     * DataGenerator()
@@ -135,6 +136,7 @@ public class DataGenerator implements ActionListener {
       //New
       theRandomWalkGeneratorView = new RandomWalkGeneratorView();
       theConicSpiralGeneratorView = new ConicSpiralGeneratorView();
+      theMidPointDisplacementGeneratorView = new MidPointDisplacementGeneratorView();
   }
 
    /**
@@ -160,7 +162,9 @@ public class DataGenerator implements ActionListener {
       //New
       theRandomWalkGeneratorView.build(theOptionsPane);
       theConicSpiralGeneratorView.build(theOptionsPane);
+      theMidPointDisplacementGeneratorView.build(theOptionsPane);
 
+  
       //***
       // add management buttons to bottom of options pane
       //***
@@ -268,7 +272,6 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theGeneratePolygonsFlag = thePolygonGeneratorView.getGenerateFlag();
       theDataGenModel.theNumberOfPolygons = thePolygonGeneratorView.getNumberOfPolygons();
       theDataGenModel.thePolygonMaxVertexCount = thePolygonGeneratorView.getMaximumVertexCount();
-      theDataGenModel.thePolygonMinVertexCount = thePolygonGeneratorView.getMinimumVertexCount();
       theDataGenModel.thePolygonBBoxLength = thePolygonGeneratorView.getBBoxLength();
 
       // line string options
@@ -276,8 +279,6 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theNumberOfLineStrings = theLineStringGeneratorView.getNumberOfLineStrings();
       theDataGenModel.theLineStringMaxSegmentCount = theLineStringGeneratorView.getMaximumSegmentCount();
       theDataGenModel.theLineStringMaxSegmentLength = theLineStringGeneratorView.getMaximumSegmentLength();
-      theDataGenModel.theLineStringMinSegmentCount = theLineStringGeneratorView.getMinimumSegmentCount();
-      theDataGenModel.theLineStringMinSegmentLength = theLineStringGeneratorView.getMinimumSegmentLength();
       
       //**************************************************************************************
       // the Random walk options
@@ -291,6 +292,9 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theNumberOfConicSpirals = theConicSpiralGeneratorView.getNumberOfConicSpirals();
       theDataGenModel.theMaximumRadiusLength = theConicSpiralGeneratorView.getMaximumRadiusLength();
       theDataGenModel.theNumberOfVertices = theConicSpiralGeneratorView.getNumberOfVertices();
+      
+      // MidPoint Displacement options 
+      //Update Model
       
    }
 
@@ -325,7 +329,6 @@ public class DataGenerator implements ActionListener {
        thePolygonGeneratorView.setGenerateFlag(theDataGenModel.theGeneratePolygonsFlag);
        thePolygonGeneratorView.setNumberOfPolygons(theDataGenModel.theNumberOfPolygons);
        thePolygonGeneratorView.setMaximumVertexCount(theDataGenModel.thePolygonMaxVertexCount);
-       thePolygonGeneratorView.setMinimumVertexCount(theDataGenModel.thePolygonMinVertexCount);
        thePolygonGeneratorView.setBBoxLength(theDataGenModel.thePolygonBBoxLength);
 
        // line string options
@@ -333,8 +336,6 @@ public class DataGenerator implements ActionListener {
        theLineStringGeneratorView.setNumberOfLineStrings(theDataGenModel.theNumberOfLineStrings);
        theLineStringGeneratorView.setMaximumSegmentCount(theDataGenModel.theLineStringMaxSegmentCount);
        theLineStringGeneratorView.setMaximumSegmentLength(theDataGenModel.theLineStringMaxSegmentLength);
-       theLineStringGeneratorView.setMinimumSegmentCount(theDataGenModel.theLineStringMinSegmentCount);
-       theLineStringGeneratorView.setMinimumSegmentLength(theDataGenModel.theLineStringMinSegmentLength);
        
        //**************************************************************************************
        //Random Walk options
@@ -348,6 +349,13 @@ public class DataGenerator implements ActionListener {
        theConicSpiralGeneratorView.setNumberOfConicSpirals(theDataGenModel.theNumberOfConicSpirals);
        theConicSpiralGeneratorView.setMaximumRadiusLength(theDataGenModel.theMaximumRadiusLength);
        theConicSpiralGeneratorView.setNumberOfVertices(theDataGenModel.theNumberOfVertices);
+       
+       
+       //Midpoint Displacement options 
+       theMidPointDisplacementGeneratorView.setGenerateFlag(true);
+       theMidPointDisplacementGeneratorView.setNumberOfMidPointDisplacements(5);
+       theMidPointDisplacementGeneratorView.setMinimumNumberOfSteps(1);
+       theMidPointDisplacementGeneratorView.setMaximumNumberOfSteps(2);
        
    }
 
