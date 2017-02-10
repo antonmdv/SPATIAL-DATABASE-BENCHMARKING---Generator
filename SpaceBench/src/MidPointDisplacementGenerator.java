@@ -95,7 +95,7 @@ public class MidPointDisplacementGenerator {
 		}
 		out.close();
 		
-		System.out.println("    " + desiredNumberOfAlgorithms + " line strings(MPD) were generated.");
+		System.out.println("    " + desiredNumberOfAlgorithms + " line strings (MPD) were generated.");
 					    
 					    
 	}
