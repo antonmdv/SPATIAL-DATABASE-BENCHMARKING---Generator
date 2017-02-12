@@ -54,6 +54,7 @@ public class DataGenerator implements ActionListener {
    //New
    RandomWalkGenerator theRandomWalkGenerator;
    ConicSpiralGenerator theConicSpiralGenerator;
+   MidPointDisplacementGenerator theMidPointDisplacementGenerator;
 
    // data generator views
    SceneOptionsView theSceneOptionsView;
@@ -123,6 +124,7 @@ public class DataGenerator implements ActionListener {
       //New
       theRandomWalkGenerator = new RandomWalkGenerator();
       theConicSpiralGenerator = new ConicSpiralGenerator();
+      theMidPointDisplacementGenerator = new MidPointDisplacementGenerator();
       
 
       // build their views
@@ -294,6 +296,12 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theNumberOfVertices = theConicSpiralGeneratorView.getNumberOfVertices();
       
       // MidPoint Displacement options 
+      theDataGenModel.theGenerateMidpointDisplacementsFlag = theMidPointDisplacementGeneratorView.getGenerateFlag();
+      theDataGenModel.theNumberofMidpointDisplacements = theMidPointDisplacementGeneratorView.getNumberOfMidPointDisplacement();
+      theDataGenModel.theRecursionDepth = theMidPointDisplacementGeneratorView.getRecursionDepth();
+      theDataGenModel.theDisplacementBound = theMidPointDisplacementGeneratorView.getDisplacementBound();
+      theDataGenModel.theDisplacementBoundReduction = theMidPointDisplacementGeneratorView.getDisplacementBoundReduction();
+      
       //Update Model
       
    }
@@ -353,9 +361,10 @@ public class DataGenerator implements ActionListener {
        
        //Midpoint Displacement options 
        theMidPointDisplacementGeneratorView.setGenerateFlag(true);
-       theMidPointDisplacementGeneratorView.setNumberOfMidPointDisplacements(5);
-       theMidPointDisplacementGeneratorView.setMinimumNumberOfSteps(1);
-       theMidPointDisplacementGeneratorView.setMaximumNumberOfSteps(2);
+       theMidPointDisplacementGeneratorView.setNumberOfMidPointDisplacements(theDataGenModel.theNumberofMidpointDisplacements);
+       theMidPointDisplacementGeneratorView.setRecursionDepth(theDataGenModel.theRecursionDepth);
+       theMidPointDisplacementGeneratorView.setDisplacementBound(theDataGenModel.theDisplacementBound);
+       theMidPointDisplacementGeneratorView.setDisplacementBoundReduction(theDataGenModel.theDisplacementBoundReduction);
        
    }
 
@@ -392,11 +401,15 @@ public class DataGenerator implements ActionListener {
          //new
          theRandomWalkGenerator.generate(theDataGenModel);
          theConicSpiralGenerator.generate(theDataGenModel);
+         theMidPointDisplacementGenerator.generate(theDataGenModel);
          
          System.out.println("  finished data generation");
       }
+      
       catch (IOException e)
       {
       }
+
    }
+
 }

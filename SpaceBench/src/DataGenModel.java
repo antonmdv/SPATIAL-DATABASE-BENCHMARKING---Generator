@@ -75,6 +75,13 @@ public class DataGenModel {
    public double theMaximumRadiusLength;
    public int theNumberOfVertices;
    
+   //Midpoint Displacement values
+   public boolean theGenerateMidpointDisplacementsFlag;
+   public int theNumberofMidpointDisplacements;
+   public int theRecursionDepth;
+   public double theDisplacementBound;
+   public double theDisplacementBoundReduction;
+   
    /**
     * DataGenModel()
     * 
@@ -554,6 +561,18 @@ public class DataGenModel {
        if (aKey.equals("NumberOfVertices"))
         	theNumberOfVertices = Integer.valueOf(aValue);
        
+       // Midpoint Displacement options
+       if (aKey.equalsIgnoreCase("GenerateMidPointDisplacemntFlag"))
+    	   theGenerateMidpointDisplacementsFlag = Boolean.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("MidPointDisplacemnts"))
+    	   theNumberofMidpointDisplacements = Integer.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("RecursionDepth"))
+    	   theRecursionDepth = Integer.valueOf(aValue);
+       if (aKey.equals("DisplacementBound"))
+    	   theDisplacementBound = Double.valueOf(aValue);
+       if(aKey.equals("DisplacementBoundReduction"))
+    	   theDisplacementBoundReduction = Double.valueOf(aValue);
+       
        
    }
 
@@ -615,5 +634,12 @@ public class DataGenModel {
       bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
       bufWtr.write("MaximumRadiusLength," + Double.toString(theMaximumRadiusLength) + "\n");
       bufWtr.write("NumberOfVertices," + Integer.toString(theNumberOfVertices) + "\n");
+      
+      // Midpoint Displacement options
+      bufWtr.write("midpointDisplacementFlag," + Boolean.toString(theGenerateMidpointDisplacementsFlag) + "\n");
+      bufWtr.write("NumberOfMidpointDisplacements," + Integer.toString(theNumberofMidpointDisplacements) + "\n");
+      bufWtr.write("RecursionDepth," + Integer.toString(theRecursionDepth) + "\n");
+      bufWtr.write("DisplacementBound," + Double.toString(theDisplacementBound) + "\n");
+      bufWtr.write("DisplacementBoundReduction," + Double.toString(theDisplacementBoundReduction) + "\n");
    }
 }

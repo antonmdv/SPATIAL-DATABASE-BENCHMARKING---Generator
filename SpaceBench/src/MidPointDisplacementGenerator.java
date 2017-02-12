@@ -6,7 +6,8 @@ import java.util.*;
 
 public class MidPointDisplacementGenerator {
 	
-	MidPointDisplacementGenerator(){
+	MidPointDisplacementGenerator()
+	{
 				
 	}
 	
@@ -17,32 +18,26 @@ public class MidPointDisplacementGenerator {
 		FileWriter f = null;
 		PrintWriter out = null;
 		Random rnd = new Random();
-				
-		//Points
-		double x,y;
-			    
-		// Input from User (grabbing from data model)
-		int desiredNumberOfAlgorithms = 5;
-		double displacementBound = 2.4;
-		double displacementBoundReduction = 0.7;
-		int numOfIt = 10;
-			    
+		
 		//generate output file
 		outFilename = aModel.theFilenamePrefix + "midPointDisplacement.txt";
 		f = new FileWriter(outFilename);
 		out = new PrintWriter(f);        
-		System.out.println("  creating randomWalk datafile [" + outFilename + "]");
+		System.out.println("  creating midPointDisplacement datafile [" + outFilename + "]");
 		
-		int amountProduced = 0;
+		// Input from User (grabbing from data model)
+		int desiredNumberOfAlgorithms = aModel.theNumberofMidpointDisplacements;
+		int  count = 0;
 		
-		while(amountProduced<desiredNumberOfAlgorithms){
+		//Points
+		double x,y;
+		
+		while(count < desiredNumberOfAlgorithms){
 			
-			//prepare
-			LinkedList<Point2D> midPointDisp = new LinkedList<Point2D>();
-			midPointDisp.clear();
+			double displacementBound = aModel.theDisplacementBound;
+			double displacementBoundReduction = aModel.theDisplacementBoundReduction;
 			int it = 0;
-			x=0;
-			y=0;
+			int numOfIt = aModel.theRecursionDepth;
 			
 			//produce starting points
 			Point2D StartPoint = new Point2D.Double((Math.random()*aModel.theSceneLength)+1,
@@ -50,28 +45,25 @@ public class MidPointDisplacementGenerator {
 			Point2D EndPoint = new Point2D.Double(Math.random()*aModel.theSceneLength,
 					Math.random()*aModel.theSceneLength);
 			
-			//add to list
+			LinkedList<Point2D> midPointDisp = new LinkedList<Point2D>();
 			midPointDisp.add(StartPoint);
 			midPointDisp.add(EndPoint);
 			
-			//produce linestring 
 			while(it<numOfIt){
 				
 				int currentSize = midPointDisp.size()-1;
-				
 				for(int i = 0; i < currentSize; i++){
 					
-	
-					double X = ((midPointDisp.get(i).getX() + midPointDisp.get(i+1).getX())/2);
-					double Y = ((midPointDisp.get(i).getY() + midPointDisp.get(i+1).getY())/2);
+					int X = (int) ((midPointDisp.get(i).getX() + midPointDisp.get(i+1).getX())/2);
+					int Y =  (int) ((midPointDisp.get(i).getY() + midPointDisp.get(i+1).getY())/2);
 					
-					Y *= displacementBound;
+					Y += displacementBound;
 					
 					Point2D dispPoint = new Point2D.Double(X,Y);
 					midPointDisp.add(i+1, dispPoint);
 					
+					
 				}
-				
 				displacementBound *= displacementBoundReduction;
 				it++;
 			}
@@ -80,20 +72,22 @@ public class MidPointDisplacementGenerator {
 			//output algorithm to text file 
 		   	out.print("LINESTRING (");
 			 
-		            for (int i = 0; i < midPointDisp.size()-1; i++)
-		            {
-		               x = midPointDisp.get(i).getX();
-		               y = midPointDisp.get(i).getY();
+		    for (int i = 0; i < midPointDisp.size()-1; i++)
+		    {
+		    	x = midPointDisp.get(i).getX();
+		        y = midPointDisp.get(i).getY();
 		               
-		               out.print(x+" "+y+", ");
-		            }
+		        out.print(x+" "+y+", ");
+		    }
 		            
-		            x = midPointDisp.get(midPointDisp.size()-1).getX();
-		            y = midPointDisp.get(midPointDisp.size()-1).getY();
-		            out.println(x+" "+y+")");   
-			
+		     x = midPointDisp.get(midPointDisp.size()-1).getX();
+		     y = midPointDisp.get(midPointDisp.size()-1).getY();
+		     out.println(x+" "+y+")");
+		
+		     count++;
 		}
 		out.close();
+		f.close();
 		
 		System.out.println("    " + desiredNumberOfAlgorithms + " line strings (MPD) were generated.");
 					    

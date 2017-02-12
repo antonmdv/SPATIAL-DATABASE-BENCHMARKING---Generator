@@ -16,9 +16,12 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   private static final String TAB_TOOLTIP = "Midpoint Displacement generator options";
 	   private static final String GENERATE_CHECKBOX_TITLE = "Generate data file?";
 	   private static final boolean DEFAULT_GENERATE_FLAG = true;
-	   private static final int DEFAULT_RW_COUNT = 20;
-	   private static final int DEFAULT_STEP_LENGTH = 10;
-	   private static final int DEFAULT_NS_COUNT = 10;
+
+	   //Default displays
+	   private static final int DEFAULT_COUNT = 20;
+	   private static final int DEFAULT_REC_DEPTH = 10;
+	   private static final double DEFAULT_DISP_BOUND = 5.8;
+	   private static final double	DEFAULT_DISP_BOUND_REDUCTION = 0.7;
 	   
 	   //***
 	   // instance variables
@@ -31,32 +34,44 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   private JCheckBox theGenerateCheckbox;
 	   private JPanel theGeneratePanel;
 
-	   //Number of elements
-	   // elements for 'Midpoint Displacement'
-	   private NumberFormat theNumberOfMidpointDisplacementFormat; 		//theNumberOfSquaresFormat
-	   private JPanel theNumberOfMidpointDisplacementPanel;				//theNumberOfSquaresPanel
-	   private JLabel theNumberOfMidpointDisplacementLabel;				//theNumberOfSquaresLabel
-	   private JFormattedTextField theNumberOfMidpointDisplacementsField;	//theNumberOfSquaresField
+	  
+	   //theNumberOfMidPointDisplacement
+	   // elements for Number of Line Strings produced
+	   private NumberFormat theNumberOfMidpointDisplacementFormat; 		
+	   private JPanel theNumberOfMidpointDisplacementPanel;				
+	   private JLabel theNumberOfMidpointDisplacementLabel;				
+	   private JFormattedTextField theNumberOfMidpointDisplacementsField;	
 
-	   //MinimumNumber
-	   // elements for 'Min # of vert'
-	   private NumberFormat theMinimumNumberOfStepsFormat;
-	   private JPanel theMinimumNumberOfStepsPanel;
-	   private JLabel theMinimumNumberOfStepsLabel;
-	   private JFormattedTextField theMinimumNumberOfStepsField;
 	   
-	   //MaximumNumber
-	   // elements for 'max # of vert'
-	   private NumberFormat theMaximumNumberOfStepsFormat;
-	   private JPanel theMaximumNumberOfStepsPanel;
-	   private JLabel theMaximumNumberOfStepsLabel;
-	   private JFormattedTextField theMaximumNumberOfStepsField;
+	   //theRecursionDepth
+	   // elements for Number of Line Strings produced
+	   private NumberFormat theRecursionDepthFormat;
+	   private JPanel theRecursionDepthPanel;
+	   private JLabel theRecursionDepthLabel;
+	   private JFormattedTextField theRecursionDepthField;
+	   
+	   
+	   //theDisplacementBound
+	   // elements for Y displacement bound
+	   private NumberFormat theDisplacementBoundFormat;
+	   private JPanel theDisplacementBoundPanel;
+	   private JLabel theDisplacementBoundLabel;
+	   private JFormattedTextField theDisplacementBoundField;
 
+	   //theDisplacementBoundReduction
+	   // elements for displacement bound reduction value
+	   private NumberFormat theDisplacementBoundReductionFormat;
+	   private JPanel theDisplacementBoundReductionPanel;
+	   private JLabel theDisplacementBoundReductionLabel;
+	   private JFormattedTextField theDisplacementBoundReductionField;
+	   
 	   // property values
 	   private boolean theGenerateFlag;
 	   private int theNumberOfMidPointDisplacement;
-	   private int theMinimumNumberOfSteps;
-	   private int theMaximumNumberOfSteps;
+	   private int theRecursionDepth;
+	   private double theDisplacementBound;
+	   private double theDisplacementBoundReduction;
+	
 	   
 	   /**
 	    * MidpointDisplacementView
@@ -67,9 +82,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   MidPointDisplacementGeneratorView()
 	   {
 	      theGenerateFlag = DEFAULT_GENERATE_FLAG;
-	      theNumberOfMidPointDisplacement = DEFAULT_RW_COUNT;
-	      theMinimumNumberOfSteps = DEFAULT_STEP_LENGTH;
-	      theMaximumNumberOfSteps = DEFAULT_NS_COUNT;
+	      theNumberOfMidPointDisplacement = DEFAULT_COUNT;
+	      theRecursionDepth = DEFAULT_REC_DEPTH;
+	      theDisplacementBound = DEFAULT_DISP_BOUND;
+	      theDisplacementBoundReduction = DEFAULT_DISP_BOUND_REDUCTION;
 	   }
 
 	   /**
@@ -107,36 +123,53 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   }
 
 	   /**
-	    * setMinimumStep Length
+	    * setRecursionDepth 
 	    * 
-	    * This method sets the current maximum side length
+	    * This method sets the how many times each line string will be broken down
 	    */
 	   
-	   public void setMinimumNumberOfSteps(int aLength)
+	   public void setRecursionDepth(int aLength)
 	   {
-		   theMinimumNumberOfSteps = aLength;
-	      if (theMinimumNumberOfStepsField != null)
+		   theRecursionDepth = aLength;
+	      if (theRecursionDepthField != null)
 	      {
-	    	  theMinimumNumberOfStepsField.setValue(theMinimumNumberOfStepsField);
-	    	  theMinimumNumberOfStepsField.updateUI();
+	    	  theRecursionDepthField.setValue(theRecursionDepthField);
+	    	  theRecursionDepthField.updateUI();
 	      }
 	   }
 	   
 	   /**
-	    * setMaximumNumber of Steps 
+	    * setDisplacementBound 
 	    * 
-	    * This method sets the current number of steps
+	    * This method sets displacement bound value
 	    */
 	   
-	   public void setMaximumNumberOfSteps(int aLength)
+	   public void setDisplacementBound(double aLength)
 	   {
-		   theMaximumNumberOfSteps = aLength;
-	      if (theMaximumNumberOfStepsField != null)
+		   theDisplacementBound = aLength;
+	      if (theDisplacementBoundField != null)
 	      {
-	    	  theMaximumNumberOfStepsField.setValue(theMaximumNumberOfStepsField);
-	    	  theMaximumNumberOfStepsField.updateUI();
+	    	  theDisplacementBoundField.setValue(theDisplacementBoundField);
+	    	  theDisplacementBoundField.updateUI();
 	      }
 	   }
+	   
+	   /**
+	    * theDisplacementBoundReduction 
+	    * 
+	    * This method sets displacement bound reduction value
+	    */
+	   
+	   public void setDisplacementBoundReduction(double aLength)
+	   {
+		   theDisplacementBoundReduction = aLength;
+	      if (theDisplacementBoundReductionField != null)
+	      {
+	    	  theDisplacementBoundReductionField.setValue(theDisplacementBoundReductionField);
+	    	  theDisplacementBoundReductionField.updateUI();
+	      }
+	   }
+	   
 
 	  /**
 	   * getGenerateFlag
@@ -159,23 +192,33 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   }
 
 	   /**
-	    * getMaximumStepLength
+	    * getRecursionDepth
 	    * 
-	    * This method returns the current step length
+	    * This method returns depth of the recursion
 	    */
-	   public int getMinimumStepLength()
+	   public int getRecursionDepth()
 	   {
-	      return theMinimumNumberOfSteps;
+	      return theRecursionDepth;
 	   }
 	   
 	   /**
-	    * getNumberOfSteps
+	    * getDisplacementBound
 	    * 
-	    * This method returns the current number of steps
+	    * This method returns the current displacement bound value
 	    */
-	   public int getMaximumStepLength()
+	   public double getDisplacementBound()
 	   {
-	      return theMaximumNumberOfSteps;
+	      return theDisplacementBound;
+	   }
+	   
+	   /**
+	    * getDisplacementBoundReduction
+	    * 
+	    * This method returns the current displacement bound reduction value
+	    */
+	   public double getDisplacementBoundReduction()
+	   {
+	      return theDisplacementBoundReduction;
 	   }
 	   
 	   /**
@@ -221,45 +264,65 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      theNumberOfMidpointDisplacementPanel.add(theNumberOfMidpointDisplacementsField);
 	      
 	      //***
-	      // minimum # of vert
+	      // Recursion Depth
 	      //***
 	      
 	      //build format argument
-	      theMinimumNumberOfStepsFormat = NumberFormat.getIntegerInstance();
+	      theRecursionDepthFormat = NumberFormat.getIntegerInstance();
 	      
 	      //create number of point elements [label, field]
-	      theMinimumNumberOfStepsLabel = new JLabel("Minimum number of vert: ");
-	      theMinimumNumberOfStepsLabel.setHorizontalAlignment(JLabel.LEFT);
-	      theMinimumNumberOfStepsField = new JFormattedTextField(theMinimumNumberOfStepsFormat);
+	      theRecursionDepthLabel = new JLabel("Recursion Depth: ");
+	      theRecursionDepthLabel.setHorizontalAlignment(JLabel.LEFT);
+	      theRecursionDepthField = new JFormattedTextField(theRecursionDepthFormat);
 	      
-	      theMinimumNumberOfStepsField.setValue(new Double(theMinimumNumberOfSteps));
-	      theMinimumNumberOfStepsField.setColumns(10);
-	      theMinimumNumberOfStepsField.addPropertyChangeListener("value", this);
+	      theRecursionDepthField.setValue(new Double(theRecursionDepth));
+	      theRecursionDepthField.setColumns(10);
+	      theRecursionDepthField.addPropertyChangeListener("value", this);
 
-	      theMinimumNumberOfStepsPanel = new JPanel();
-	      theMinimumNumberOfStepsPanel.add(theMinimumNumberOfStepsLabel);
-	      theMinimumNumberOfStepsPanel.add(theMinimumNumberOfStepsField);
+	      theRecursionDepthPanel = new JPanel();
+	      theRecursionDepthPanel.add(theRecursionDepthLabel);
+	      theRecursionDepthPanel.add(theRecursionDepthField);
 	      
 	      
 	      //***
-	      // max # of vert
+	      // Displacement Bound
 	      //***
 
 	      //build format argument
-	      theMaximumNumberOfStepsFormat = NumberFormat.getIntegerInstance();
+	      theDisplacementBoundFormat = NumberFormat.getIntegerInstance();
 	      
 	      //create number of point elements [label, field]
-	      theMaximumNumberOfStepsLabel = new JLabel("Maximum number of vert: ");
-	      theMaximumNumberOfStepsLabel.setHorizontalAlignment(JLabel.LEFT);
-	      theMaximumNumberOfStepsField = new JFormattedTextField(theMaximumNumberOfStepsFormat);
+	      theDisplacementBoundLabel = new JLabel("Displacement Bound: ");
+	      theDisplacementBoundLabel.setHorizontalAlignment(JLabel.LEFT);
+	      theDisplacementBoundField = new JFormattedTextField(theDisplacementBoundFormat);
 	      
-	      theMaximumNumberOfStepsField.setValue(new Double(theMaximumNumberOfSteps));
-	      theMaximumNumberOfStepsField.setColumns(10);
-	      theMaximumNumberOfStepsField.addPropertyChangeListener("value", this);
+	      theDisplacementBoundField.setValue(new Double(theDisplacementBound));
+	      theDisplacementBoundField.setColumns(10);
+	      theDisplacementBoundField.addPropertyChangeListener("value", this);
 
-	      theMaximumNumberOfStepsPanel = new JPanel();
-	      theMaximumNumberOfStepsPanel.add(theMaximumNumberOfStepsLabel);
-	      theMaximumNumberOfStepsPanel.add(theMaximumNumberOfStepsField);
+	      theDisplacementBoundPanel = new JPanel();
+	      theDisplacementBoundPanel.add(theDisplacementBoundLabel);
+	      theDisplacementBoundPanel.add(theDisplacementBoundField);
+	      
+	      //***
+	      // Displacement Bound Reduction
+	      //***
+	      
+	      //build format argument
+	      theDisplacementBoundReductionFormat = NumberFormat.getIntegerInstance();
+	      
+	      //create number of point elements [label, field]
+	      theDisplacementBoundReductionLabel = new JLabel("Displacement Bound Reduction: ");
+	      theDisplacementBoundReductionLabel.setHorizontalAlignment(JLabel.LEFT);
+	      theDisplacementBoundReductionField = new JFormattedTextField(theDisplacementBoundReductionFormat);
+	      
+	      theDisplacementBoundReductionField.setValue(new Double(theDisplacementBoundReduction));
+	      theDisplacementBoundReductionField.setColumns(10);
+	      theDisplacementBoundReductionField.addPropertyChangeListener("value", this);
+
+	      theDisplacementBoundReductionPanel = new JPanel();
+	      theDisplacementBoundReductionPanel.add(theDisplacementBoundReductionLabel);
+	      theDisplacementBoundReductionPanel.add(theDisplacementBoundReductionField);
 	      
 	      
 	      // build tab
@@ -267,8 +330,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      theTabbedPanePanel.setLayout(new BoxLayout(theTabbedPanePanel, BoxLayout.PAGE_AXIS));
 	      theTabbedPanePanel.add(theGeneratePanel);
 	      theTabbedPanePanel.add(theNumberOfMidpointDisplacementPanel);
-	      theTabbedPanePanel.add(theMinimumNumberOfStepsPanel);
-	      theTabbedPanePanel.add(theMaximumNumberOfStepsPanel);
+	      theTabbedPanePanel.add(theRecursionDepthPanel);
+	      theTabbedPanePanel.add(theDisplacementBoundPanel);
+	      theTabbedPanePanel.add(theDisplacementBoundReductionPanel);
+	      
 	      
 	      
 	      // add new tab to tabbed pane
@@ -284,23 +349,33 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   public void propertyChange(PropertyChangeEvent e)
 	   {
 	      Object source = e.getSource();
+	      
 	      if (source == theNumberOfMidpointDisplacementsField)
 	      {
 	    	  theNumberOfMidPointDisplacement = ((Number)theNumberOfMidpointDisplacementsField.getValue()).intValue();
 	         if (TRACE)
 	            System.out.println("MidPoint Displacement: number of algorithms = " + theNumberOfMidPointDisplacement);
 	      }
-	      else if (source == theMinimumNumberOfStepsField)
+	      
+	      else if (source == theRecursionDepthField)
 	      {
-	    	  theMinimumNumberOfSteps = ((Number)theMinimumNumberOfStepsField.getValue()).intValue();
+	    	  theRecursionDepth = ((Number)theRecursionDepthField.getValue()).intValue();
 	         if (TRACE)
-	            System.out.println("Random Walk: maximum step length = " + theMinimumNumberOfSteps);
+	            System.out.println("MidPoint Displacement: the recursion depth = " + theRecursionDepth);
 	      }
-	      else if (source == theMaximumNumberOfStepsField)
+	      
+	      else if (source == theDisplacementBoundField)
 	      {
-	    	  theMaximumNumberOfSteps = ((Number)theMaximumNumberOfStepsField.getValue()).intValue();
+	    	  theDisplacementBound = ((Number)theDisplacementBoundField.getValue()).intValue();
 	    	  if (TRACE)
-	    		  System.out.println("Random Walk: number of steps = " + theMaximumNumberOfSteps);
+	    		  System.out.println("Random Walk: the displacement bound = " + theDisplacementBound);
+	      }
+	      
+	      else if(source == theDisplacementBoundReductionField)
+	      {
+	    	  theDisplacementBoundReduction = ((Number)theDisplacementBoundReductionField.getValue()).intValue();
+	    	  if (TRACE)
+	    		  System.out.println("Random Walk: the displacement bound reduction = " + theDisplacementBoundReduction);  
 	      }
 	   }
 	   
@@ -318,14 +393,16 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	         if (theGenerateFlag)
 	         {
 	        	 theNumberOfMidpointDisplacementsField.setEnabled(true);
-	        	 theMinimumNumberOfStepsField.setEnabled(true);
-	        	 theMaximumNumberOfStepsField.setEnabled(true);
+	        	 theRecursionDepthField.setEnabled(true);
+	        	 theDisplacementBoundField.setEnabled(true);
+	        	 theDisplacementBoundReductionField.setEnabled(true);
 	         }
 	         else
 	         {
 	        	 theNumberOfMidpointDisplacementsField.setEnabled(false);
-	        	 theMinimumNumberOfStepsField.setEnabled(false);
-	        	 theMaximumNumberOfStepsField.setEnabled(false);
+	        	 theRecursionDepthField.setEnabled(false);
+	        	 theDisplacementBoundField.setEnabled(false);
+	        	 theDisplacementBoundReductionField.setEnabled(false);
 	         }
 	         if (TRACE)
 	            System.out.println("Midpoint Displacement: generate = " + theGenerateFlag);
