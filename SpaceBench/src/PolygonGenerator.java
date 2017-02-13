@@ -35,9 +35,10 @@ public class PolygonGenerator {
     * generate
     *
     * This method places random polygons, on integer bounds, within the grid,
-    * writting their locations to the output file. Polygons are solid and may
-    * have upto a specified number of verticies (minimum of 3)
+    * writing their locations to the output file. Polygons are solid and may
+    * have up to a specified number of verticies (minimum of 3)
     */
+   
    public void generate(DataGenModel aModel) throws IOException
    {
 
@@ -79,11 +80,11 @@ public class PolygonGenerator {
             leftX  = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
             lowerY = leftX;
 
-         // the vertex 0 of the polygon
-         x = leftX + Math.random() * aModel.thePolygonBBoxLength;
-         y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
-         pointsX[0] = x;
-         pointsY[0] = y;
+            // the vertex 0 of the polygon
+            x = leftX + Math.random() * aModel.thePolygonBBoxLength;
+            y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
+            pointsX[0] = x;
+            pointsY[0] = y;
 
             while(true)
             {

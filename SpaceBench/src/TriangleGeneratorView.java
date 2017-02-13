@@ -1,8 +1,11 @@
-/**
+/*
  * TriangleGeneratorView.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Original Author :  Tim Faulkner
+ * Editing Authors:
+ * Version Date: 
+ * 
+ * This class generates the gui view for the Triangle Generator
  */
 
 import javax.swing.*;
@@ -18,7 +21,7 @@ import javax.swing.text.*;
 public class TriangleGeneratorView implements PropertyChangeListener, ItemListener
 {
    //***
-   // class variables
+   // Class variables
    //***
 
    private static final boolean TRACE = false;
@@ -38,23 +41,23 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
    // parent panel for all elements
    private JPanel theTabbedPanePanel;
 
-   // elements for 'generate' flag
+   // elements for 'Generate' flag
    private JCheckBox theGenerateCheckbox;
    private JPanel theGeneratePanel;
 
-   // elements for 'number of triangles'
+   // elements for 'Number of triangles'
    private NumberFormat theNumberOfTrianglesFormat;
    private JPanel theNumberOfTrianglesPanel;
    private JLabel theNumberOfTrianglesLabel;
    private JFormattedTextField theNumberOfTrianglesField;
 
-   // elements for 'bbox height'
+   // elements for 'bounding box height'
    private NumberFormat theBBoxHeightFormat;
    private JPanel theBBoxHeightPanel;
    private JLabel theBBoxHeightLabel;
    private JFormattedTextField theBBoxHeightField;
 
-   // elements for 'bbox width'
+   // elements for 'bounding box width'
    private NumberFormat theBBoxWidthFormat;
    private JPanel theBBoxWidthPanel;
    private JLabel theBBoxWidthLabel;
@@ -66,12 +69,12 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
    private double theBBoxHeight;
    private double theBBoxWidth;
    
-   /**
+   /*
     * TriangleGeneratorView
-    *
     * This class implements the view for the TriangleGenerator class and
     * handles related user interface events
     */
+   
    TriangleGeneratorView()
    {
       theGenerateFlag = DEFAULT_GENERATE_FLAG;

@@ -29,13 +29,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
    private static final boolean DEFAULT_GENERATE_FLAG = true;
    private static final int DEFAULT_LINESTRING_COUNT = 25;
    private static final int DEFAULT_MAX_SEGMENT_COUNT = 10;
-
-   private static final int DEFAULT_MAX_SEGMENT_LENGTH = 100;
    private static final int DEFAULT_MIN_SEGMENT_COUNT = 1;
-   private static final int DEFAULT_MIN_SEGMENT_LENGTH = 1;
-
-   //private static final double DEFAULT_MAX_SEGMENT_LENGTH = 100;
-//branch 'master' of ssh://git@github.fit.edu/haltammami2013/SpaceBench.git
    
    //***
    // instance variables
@@ -54,29 +48,17 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
    private JLabel theNumberOfLineStringsLabel;
    private JFormattedTextField theNumberOfLineStringsField;
 
-   // elements for 'max segmeng count'
+   // elements for 'max segment count'
    private NumberFormat theMaximumSegmentCountFormat;
    private JPanel theMaximumSegmentCountPanel;
    private JLabel theMaximumSegmentCountLabel;
    private JFormattedTextField theMaximumSegmentCountField;
 
-   // elements for 'max segment length'
-   private NumberFormat theMinimumSegmentLengthFormat;
-   private JPanel theMinimumSegmentLengthPanel;
-   private JLabel theMinimumSegmentLengthLabel;
-   private JFormattedTextField theMinimumSegmentLengthField;
-   
-   // elements for 'min segmeng count'
+   // elements for 'min segment count'
    private NumberFormat theMinimumSegmentCountFormat;
    private JPanel theMinimumSegmentCountPanel;
    private JLabel theMinimumSegmentCountLabel;
    private JFormattedTextField theMinimumSegmentCountField;
-
-   // elements for 'min segment length'
-   private NumberFormat theMaximumSegmentLengthFormat;
-   private JPanel theMaximumSegmentLengthPanel;
-   private JLabel theMaximumSegmentLengthLabel;
-   private JFormattedTextField theMaximumSegmentLengthField;
 
    // property values
    private boolean theGenerateFlag;
@@ -101,10 +83,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       theGenerateFlag = DEFAULT_GENERATE_FLAG;
       theNumberOfLineStrings = DEFAULT_LINESTRING_COUNT;
       theMaximumSegmentCount = DEFAULT_MAX_SEGMENT_COUNT;
-      theMaximumSegmentLength = DEFAULT_MAX_SEGMENT_LENGTH;
       theMinimumSegmentCount = DEFAULT_MIN_SEGMENT_COUNT;
-      theMinimumSegmentLength = DEFAULT_MIN_SEGMENT_LENGTH;
-
    }
 
    /**
@@ -155,20 +134,6 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
    }
 
    /**
-    * setMaximumSegmentLength
-    * 
-    * This method sets the current maximum bbox length
-    */
-   public void setMaximumSegmentLength(double aLength)
-   {
-      theMaximumSegmentLength = aLength;
-      if (theMaximumSegmentLengthField != null)
-      {
-         theMaximumSegmentLengthField.setValue(theMaximumSegmentLength);
-         theMaximumSegmentLengthField.updateUI();
-      }
-   }
-   /**
     * setMinimumSegmentCount
     *
     * This method sets the current Minimum segment count
@@ -180,21 +145,6 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       {
          theMinimumSegmentCountField.setValue(theMinimumSegmentCount);
          theMinimumSegmentCountField.updateUI();
-      }
-   }
-
-   /**
-    * setMinimumSegmentLength
-    * 
-    * This method sets the current Minimum bbox length
-    */
-   public void setMinimumSegmentLength(int aLength)
-   {
-      theMinimumSegmentLength = aLength;
-      if (theMinimumSegmentLengthField != null)
-      {
-         theMinimumSegmentLengthField.setValue(theMinimumSegmentLength);
-         theMinimumSegmentLengthField.updateUI();
       }
    }
 
@@ -317,26 +267,6 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       theMaximumSegmentCountPanel = new JPanel();
       theMaximumSegmentCountPanel.add(theMaximumSegmentCountLabel);
       theMaximumSegmentCountPanel.add(theMaximumSegmentCountField);
-
-      //***
-      // bbox length
-      //***
-
-      // build format arguments
-      theMaximumSegmentLengthFormat = NumberFormat.getIntegerInstance();
-
-      // create number of point elements [label, field]
-      theMaximumSegmentLengthLabel = new JLabel("Maximum segment length:");
-      theMaximumSegmentLengthLabel.setHorizontalAlignment(JLabel.LEFT);
-      theMaximumSegmentLengthField = new JFormattedTextField(theMaximumSegmentLengthFormat);
-      theMaximumSegmentLengthField.setValue(new Double(theMaximumSegmentLength));
-      theMaximumSegmentLengthField.setColumns(10);
-      theMaximumSegmentLengthField.addPropertyChangeListener("value", this);
-
-      // add to containing panel
-      theMaximumSegmentLengthPanel = new JPanel();
-      theMaximumSegmentLengthPanel.add(theMaximumSegmentLengthLabel);
-      theMaximumSegmentLengthPanel.add(theMaximumSegmentLengthField);
       
       //***
       // minimum segment count
@@ -359,26 +289,6 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       theMinimumSegmentCountPanel.add(theMinimumSegmentCountField);
 
       //***
-      // minimum segment length
-      //***
-
-      // build format arguments
-      theMinimumSegmentLengthFormat = NumberFormat.getIntegerInstance();
-
-      // create number of point elements [label, field]
-      theMinimumSegmentLengthLabel = new JLabel("Minimum segment length:");
-      theMinimumSegmentLengthLabel.setHorizontalAlignment(JLabel.LEFT);
-      theMinimumSegmentLengthField = new JFormattedTextField(theMinimumSegmentLengthFormat);
-      theMinimumSegmentLengthField.setValue(new Double(theMinimumSegmentLength));
-      theMinimumSegmentLengthField.setColumns(10);
-      theMinimumSegmentLengthField.addPropertyChangeListener("value", this);
-
-      // add to containing panel
-      theMinimumSegmentLengthPanel = new JPanel();
-      theMinimumSegmentLengthPanel.add(theMinimumSegmentLengthLabel);
-      theMinimumSegmentLengthPanel.add(theMinimumSegmentLengthField);
-
-      //***
       // update tabbed pane
       //***
 
@@ -388,9 +298,7 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       theTabbedPanePanel.add(theGeneratePanel);
       theTabbedPanePanel.add(theNumberOfLineStringsPanel);
       theTabbedPanePanel.add(theMaximumSegmentCountPanel);
-      theTabbedPanePanel.add(theMaximumSegmentLengthPanel);
       theTabbedPanePanel.add(theMinimumSegmentCountPanel);
-      theTabbedPanePanel.add(theMinimumSegmentLengthPanel);
       
       // add new tab to tabbed pane
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
@@ -416,23 +324,11 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
          if (TRACE)
             System.out.println("LineStrings: maximum segment count = " + theMaximumSegmentCount);
       }
-      else if (source == theMaximumSegmentLengthField)
-      {
-         theMaximumSegmentLength = ((Number)theMaximumSegmentLengthField.getValue()).doubleValue();
-         if (TRACE)
-            System.out.println("LineStrings: maximum segment length = " + theMaximumSegmentLength);
-      }
       else if (source == theMinimumSegmentCountField)
       {
          theMinimumSegmentCount = ((Number)theMinimumSegmentCountField.getValue()).intValue();
          if (TRACE)
             System.out.println("LineStrings: Minimum segment count = " + theMinimumSegmentCount);
-      }
-      else if (source == theMinimumSegmentLengthField)
-      {
-         theMinimumSegmentLength = ((Number)theMinimumSegmentLengthField.getValue()).intValue();
-         if (TRACE)
-            System.out.println("LineStrings: Minimum segment length = " + theMinimumSegmentLength);
       }
    }
    
@@ -451,17 +347,13 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
          {
            theNumberOfLineStringsField.setEnabled(true);
            theMaximumSegmentCountField.setEnabled(true);
-           theMaximumSegmentLengthField.setEnabled(true);
            theMinimumSegmentCountField.setEnabled(true);
-           theMinimumSegmentLengthField.setEnabled(true);
          }
          else
          {
            theNumberOfLineStringsField.setEnabled(false);
            theMaximumSegmentCountField.setEnabled(false);
-           theMaximumSegmentLengthField.setEnabled(false);
            theMinimumSegmentCountField.setEnabled(false);
-           theMinimumSegmentLengthField.setEnabled(false);
          }
          if (TRACE)
             System.out.println("LineStrings: generate = " + theGenerateFlag);

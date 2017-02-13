@@ -1,3 +1,11 @@
+/*
+ * ConicSpiralGeneratorView
+ * 
+ * Authors: 
+ * Version Date:
+ * 
+ * This file is for the GUI of the conic spiral generator
+ */
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
@@ -9,13 +17,14 @@ import java.text.NumberFormat;
 import javax.swing.text.*;
 
 /*
- * 	- number of algos
-	- Radi const 
-	- number of vertices
+ * 	- number of spirals
+ *	- Radius const
+ *	- number of vertices
  */
+
 public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemListener{
 	
-		private static final boolean TRACE = false;
+	   private static final boolean TRACE = false;
 	  
 	   private static final String TAB_TITLE = "Conic Spiral";
 	   private static final String TAB_TOOLTIP = "Conic Spiral generator options";
@@ -29,32 +38,32 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   // instance variables
 	   //***
 
-	   // parent panel for all elements
+	   // Parent panel for all elements
 	   private JPanel theTabbedPanePanel;
 
-	   // elements for 'generate' flag
+	   // Elements for 'generate' flag
 	   private JCheckBox theGenerateCheckbox;
 	   private JPanel theGeneratePanel;
 
-	   // elements for 'number of Conic Spiral algorithms'
+	   // Elements for 'number of Conic Spiral algorithms'
 	   private NumberFormat theNumberOfConicSpiralFormat; 		//theNumberOfConicSpiralFormat
 	   private JPanel theNumberOfConicSpiralPanel;				//theNumberOfConicSpiralPanel
 	   private JLabel theNumberOfConicSpiralLabel;				//theNumberOfConicSpiralLabel
 	   private JFormattedTextField theNumberOfConicSpiralField;	//theNumberOfConicSpiralField
 
-	   // elements for 'radius length'
+	   // Elements for 'radius length'
 	   private NumberFormat theMaximumRadiusFormat;
 	   private JPanel theMaximumRadiusPanel;
 	   private JLabel theMaximumRadiusLabel;
 	   private JFormattedTextField theMaximumRadiusField;
 	   
-	   //elements for 'number of vertices'
+	   // Elements for 'number of vertices'
 	   private NumberFormat theNumberOfVerticesFormat;
 	   private JPanel theNumberOfVerticesPanel;
 	   private JLabel theNumberOfVerticesLabel;
 	   private JFormattedTextField theNumberOfVerticesField;
 
-	   // property values
+	   // Property values
 	   private boolean theGenerateFlag;
 	   private int theNumberOfConicSpirals;
 	   private double theMaximumRadius;
@@ -75,9 +84,8 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	      theNumberOfVertices = DEFAULT_NV_COUNT;
 	   }
 
-	   /**
+	   /*
 	    * setGenerateFlag
-	    *
 	    * This method sets the generate datfile property
 	    */
 	   
@@ -92,10 +100,10 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	         }
 	      }
 	   }
-	   /**
+	   
+	   /*
 	    * setNumberOfAlgorithms
-	    * 
-	    * This method sets the current number of algorithms produced
+	    * This method sets the current number of spirals produced
 	    */
 	   
 	   public void setNumberOfConicSpirals(int aCount)
@@ -107,9 +115,9 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	    	  theNumberOfConicSpiralField.updateUI();
 	      }
 	   }
-	   /**
+	   
+	   /*
 	    * setRadius Length
-	    * 
 	    * This method sets the current maximum radius length
 	    */
 	   
@@ -123,10 +131,9 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	      }
 	   }
 	   
-	   /**
+	   /*
 	    * setNumber of vertices 
-	    * 
-	    * This method sets the current number of vertices
+	    * This method sets the current number of vertices to generate
 	    */
 	   
 	   public void setNumberOfVertices(int aLength)
@@ -139,37 +146,38 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	      }
 	   }
 	   
-	   /**
+	   /*
 	    * getGenerateFlag
-		*
 		* This method returns the generate datfile property
 		*/
+	   
 		public boolean getGenerateFlag()
 		{
 			return theGenerateFlag;
 		}
 		
-		/**
-		   * getNumberOfAlgorithms
-		   *
-		   * This method returns the current number of algorithms generated
-		   */
+		/*
+		 * getNumberOfAlgorithms
+		 * This method returns the current number of spirals to be generated
+		 */
+		
 		   public int getNumberOfConicSpirals()
 		   {
 		      return theNumberOfConicSpirals;
 		   }
-		   /**
+		   
+		   /*
 		    * getMaximumRadiusLength
-		    * 
 		    * This method returns the current Radius length
 		    */
+		   
 		   public double getMaximumRadiusLength()
 		   {
 		      return theMaximumRadius;
 		   }
-		   /**
+		   
+		   /*
 		    * getNumberOfVertices
-		    * 
 		    * This method returns the current number of steps
 		    */
 		   
@@ -177,36 +185,36 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		   {
 			   return theNumberOfVertices;
 		   }
-		   /**
+		   /*
 		    * build
-		    * 
 		    * This method builds the user interface and ties in any
 		    * event listeners
 		    */
+		   
 		   public void build(JTabbedPane aTabbedPane)
 		   {
 			
 			 //***
-			 // generate flag
+			 // Generate flag
 			 //***
 			   
-			// create generate flag [checkbox]
+			// Create generate flag [checkbox]
 			theGenerateCheckbox = new JCheckBox(GENERATE_CHECKBOX_TITLE);
 			theGenerateCheckbox.setSelected(theGenerateFlag);
 			theGenerateCheckbox.addItemListener(this);
 
-			// add to containing panel
+			// Add to containing panel
 			theGeneratePanel = new JPanel();
 			theGeneratePanel.add(theGenerateCheckbox);
 			
 			  //***
-		      // number of conic spirals
+		      // Number of conic spirals
 		      //***
 
-		      // build format arguments
+		      // Build format arguments
 			  theNumberOfConicSpiralFormat = NumberFormat.getIntegerInstance();
 
-		      // create number of point elements [label, field]
+		      // Create number of point elements [label, field]
 			  theNumberOfConicSpiralLabel = new JLabel("Number of Conic Spirals:");
 			  theNumberOfConicSpiralLabel.setHorizontalAlignment(JLabel.LEFT);
 		      theNumberOfConicSpiralField = new JFormattedTextField(theNumberOfConicSpiralFormat);
@@ -216,20 +224,20 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		      theNumberOfConicSpiralField.addPropertyChangeListener("value", this);
 		      
 
-		      // add to containing panel
+		      // Add to containing panel
 		      theNumberOfConicSpiralPanel = new JPanel();
 		      theNumberOfConicSpiralPanel.add(theNumberOfConicSpiralLabel);
 		      theNumberOfConicSpiralPanel.add(theNumberOfConicSpiralField);
 			  
 		      
 		      //***
-		      // radius length
+		      // Radius length
 		      //***
 		      
-		      // build format arguments
+		      // Build format arguments
 		      theMaximumRadiusFormat = NumberFormat.getNumberInstance();
 
-		      // create number of point elements [label, field]
+		      // Create number of point elements [label, field]
 		      theMaximumRadiusLabel = new JLabel("Radius Length:");
 		      theMaximumRadiusLabel.setHorizontalAlignment(JLabel.LEFT);
 		      theMaximumRadiusField = new JFormattedTextField(theMaximumRadiusFormat);
@@ -239,19 +247,19 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		      theMaximumRadiusField.addPropertyChangeListener("value", this);
 		      
 
-		      // add to containing panel
+		      // Add to containing panel
 		      theMaximumRadiusPanel = new JPanel();
 		      theMaximumRadiusPanel.add(theMaximumRadiusLabel);
 		      theMaximumRadiusPanel.add(theMaximumRadiusField);
 		      
 		      //***
-		      // number of vertices
+		      // Number of vertices
 		      //***
 		      
-		      // build format arguments
+		      // Build format arguments
 		      theNumberOfVerticesFormat = NumberFormat.getIntegerInstance();
 
-		      // create number of point elements [label, field]
+		      // Create number of point elements [label, field]
 		      theNumberOfVerticesLabel = new JLabel("Number of Vertices:");
 		      theNumberOfVerticesLabel.setHorizontalAlignment(JLabel.LEFT);
 		      theNumberOfVerticesField = new JFormattedTextField(theNumberOfVerticesFormat);
@@ -260,12 +268,12 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		      theNumberOfVerticesField.setColumns(10);
 		      theNumberOfVerticesField.addPropertyChangeListener("value", this);
 		      
-		      // add to containing panel
+		      // Add to containing panel
 		      theNumberOfVerticesPanel = new JPanel();
 		      theNumberOfVerticesPanel.add(theNumberOfVerticesLabel);
 		      theNumberOfVerticesPanel.add(theNumberOfVerticesField);
 		      
-		      // build tab
+		      // Build tab
 		      theTabbedPanePanel = new JPanel();
 		      theTabbedPanePanel.setLayout(new BoxLayout(theTabbedPanePanel, BoxLayout.PAGE_AXIS));
 		      theTabbedPanePanel.add(theGeneratePanel);
@@ -274,14 +282,13 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		      theTabbedPanePanel.add(theNumberOfVerticesPanel);
 		      
 		      
-		      // add new tab to tabbed pane
+		      // Add new tab to tabbed pane
 		      aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
 			   
 		   }
 		   
-		   /** 
+		   /*
 		    * propertyChange
-		    * 
 		    * Called when a field's "value" property changes
 		    */
 		   
@@ -307,11 +314,12 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		    		  System.out.println("Conic Spiral: number of steps = " + theNumberOfVertices);
 		      }
 		   }
-		   /**
+		   
+		   /*
 		    * itemStateChanged
-		    *
 		    * Called when a checkbox's state changes
 		    */
+		   
 		   public void itemStateChanged(ItemEvent e)
 		   {
 		      Object source = e.getItemSelectable();

@@ -1,3 +1,11 @@
+/*
+ * ConicSpiralGenerator
+ * 
+ * Authors:
+ * Version Date:
+ * 
+ * This file is used for generating spiral line strings
+ */
 import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
@@ -10,27 +18,27 @@ public class ConicSpiralGenerator {
 	{
 	}
 	
-	
+	// Class used for generation
 	public void generate(DataGenModel aModel) throws IOException
 	{
 	
-		// set up file output 
+		// File output setup
 		String outFilename;
 	    FileWriter f = null;
 	    PrintWriter out = null;
 	    
 	    
-	    // do we wish spirals generated?
+	    // Checks if the checkbox for spirals is checked
 	    if (aModel.theGenerateConicSpiralsFlag == false)
 	    	return;
 	    
-	    // generate output file
+	    // Generates output file
 	    outFilename = aModel.theFilenamePrefix + "conicSpiral.txt";
 		f = new FileWriter(outFilename);
 		out = new PrintWriter(f);        
 		System.out.println("  creating conicSprial datafile [" + outFilename + "]");
 
-		// input from user
+		// User input
 		int numOfConicSpirals = aModel.theNumberOfConicSpirals;
 		double radius = aModel.theMaximumRadiusLength;
 		//int vertices = aModel.theNumberOfVertices;
@@ -40,7 +48,7 @@ public class ConicSpiralGenerator {
 		
 		
 		Random r = new Random();
-		// variables needed for generating conic spirals
+		// Variables needed for generating spirals
 		double x;
 		double y;
 		double centerX;
@@ -55,14 +63,15 @@ public class ConicSpiralGenerator {
         {
 			out.print("LINESTRING (");
 			
-			// generating random center within scene bounds
+			// Generates random center within scene bounds
 			centerX = r.nextDouble() * aModel.theSceneLength + 1;
 			centerY = r.nextDouble() * aModel.theSceneLength + 1;
 			
 			t = 0;
 			
+			// Loops generate new points for line strings
 			do {
-				// generating new vertex
+				// Generates new vertex
 				x = centerX + t*Math.cos(2*Math.PI*t);
 				y = centerY + t*Math.sin(2*Math.PI*t);
 				
