@@ -1,8 +1,11 @@
-/**
+/*
  * LineStringGeneratorView.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Original Author: Tim Faulkner
+ * Editing Authors:
+ * Version Date: 
+ * 
+ * This file has to do with creating a tab for the line string generator
  */
 
 import javax.swing.*;
@@ -64,20 +67,15 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
    private boolean theGenerateFlag;
    private int theNumberOfLineStrings;
    private int theMaximumSegmentCount;
-
-   //private int theMaximumSegmentLength;
    private int theMinimumSegmentCount;
-   private int theMinimumSegmentLength;
 
-   private double theMaximumSegmentLength;
-//branch 'master' of ssh://git@github.fit.edu/haltammami2013/SpaceBench.git
-
-   /**
+   /*
     * LineStringGeneratorView
     *
     * This class implements the view for the PolygonGenerator class and
     * handles related user interface events
     */
+   
    LineStringGeneratorView()
    {
       theGenerateFlag = DEFAULT_GENERATE_FLAG;
@@ -86,11 +84,12 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       theMinimumSegmentCount = DEFAULT_MIN_SEGMENT_COUNT;
    }
 
-   /**
+   /*
     * setGenerateFlag
     *
     * This method sets the generate datfile property
     */
+   
    public void setGenerateFlag(boolean aFlag)
    {
       if (theGenerateCheckbox != null)
@@ -103,11 +102,12 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       }
    }
 
-   /**
+   /*
     * setNumberOfLineStrings
     * 
     * This method sets the current number of squares
     */
+   
    public void setNumberOfLineStrings(int aCount)
    {
       theNumberOfLineStrings = aCount;
@@ -118,11 +118,12 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       }
    }
 
-   /**
+   /*
     * setMaximumSegmentCount
     *
     * This method sets the current maximum segment count
     */
+   
    public void setMaximumSegmentCount(int aCount)
    {
       theMaximumSegmentCount = aCount;
@@ -133,11 +134,12 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       }
    }
 
-   /**
+   /*
     * setMinimumSegmentCount
     *
     * This method sets the current Minimum segment count
     */
+   
    public void setMinimumSegmentCount(int aCount)
    {
       theMinimumSegmentCount = aCount;
@@ -148,71 +150,57 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       }
    }
 
-  /**
+  /*
    * getGenerateFlag
    *
    * This method returns the generate datfile property
    */
+   
    public boolean getGenerateFlag()
    {
       return theGenerateFlag;
    }
 
- /**
+  /*
    * getNumberOfLineStrings
    *
    * This method returns the current number of line strings
    */
+   
    public int getNumberOfLineStrings()
    {
       return theNumberOfLineStrings;
    }
 
-   /**
+   /*
     * getMaximumSegmentCount
     *
     * This method returns the maximum segment count
     */
+   
    public int getMaximumSegmentCount()
    {
       return theMaximumSegmentCount;
    }
 
-   /**
-    * getMaximumSegmentLength
-    * 
-    * This method returns the maximum segment length
-    */
-   public double getMaximumSegmentLength()
-   {
-      return theMaximumSegmentLength;
-   }
-   /**
+   /*
     * getMinimumSegmentCount
     *
-    * This method returns the maximum segment count
+    * This method returns the minimum segment count
     */
+   
    public int getMinimumSegmentCount()
    {
       return theMinimumSegmentCount;
    }
 
-   /**
-    * getMinimumSegmentLength
-    * 
-    * This method returns the maximum segment length
-    */
-   public int getMinimumSegmentLength()
-   {
-      return theMinimumSegmentLength;
-   }
-
-   /**
+   /*
     * build
     * 
     * This method builds the user interface and ties in any
     * evenet listeners
     */
+   
    public void build(JTabbedPane aTabbedPane)
    {
       //***
@@ -304,11 +292,12 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
    }
 
-   /** 
+   /*
     * propertyChange
     * 
     * Called when a field's "value" property changes
     */
+   
    public void propertyChange(PropertyChangeEvent e)
    {
       Object source = e.getSource();
@@ -332,11 +321,12 @@ public class LineStringGeneratorView implements PropertyChangeListener, ItemList
       }
    }
    
-   /**
+   /*
     * itemStateChanged
     *
     * Called when a checkbox's state changes
     */
+   
    public void itemStateChanged(ItemEvent e)
    {
       Object source = e.getItemSelectable();

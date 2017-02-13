@@ -1,8 +1,11 @@
-/**
+/*
  * SquareGeneratorView.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Original Author: Tim Faulkner
+ * Editing Authors: 
+ * Version Date: 
+ * 
+ * This class has to do with the creation of the panel for generating squares
  */
 
 import javax.swing.*;
@@ -58,12 +61,13 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
    private int theNumberOfSquares;
    private double theMaximumSideLength;
 
-   /**
+   /*
     * SquareGeneratorView
     *
     * This class implements the view for the SquareGenerator class and
     * handles related user interface events
     */
+   
    SquareGeneratorView()
    {
       theGenerateFlag = DEFAULT_GENERATE_FLAG;
@@ -71,11 +75,12 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       theMaximumSideLength = DEFAULT_MAX_SIDE_LENGTH;
    }
 
-   /**
+   /*
     * setGenerateFlag
     *
-    * This method sets the generate datfile property
+    * This method sets the generate datafile property
     */
+   
    public void setGenerateFlag(boolean aFlag)
    {
       if (theGenerateCheckbox != null)
@@ -88,11 +93,12 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
 
-   /**
+   /*
     * setNumberOfSquares
     * 
     * This method sets the current number of squares
     */
+   
    public void setNumberOfSquares(int aCount)
    {
       theNumberOfSquares = aCount;
@@ -103,11 +109,12 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
 
-   /**
+   /*
     * setMaximumSideLength
     * 
     * This method sets the current maximum side length
     */
+   
    public void setMaximumSideLength(double aLength)
    {
       theMaximumSideLength = aLength;
@@ -118,42 +125,46 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
 
-  /**
+  /*
    * getGenerateFlag
    *
    * This method returns the generate datfile property
    */
+   
    public boolean getGenerateFlag()
    {
       return theGenerateFlag;
    }
 
- /**
+  /*
    * getNumberOfSquares
    *
    * This method returns the current number of squares
    */
+   
    public int getNumberOfSquares()
    {
       return theNumberOfSquares;
    }
 
-   /**
+   /*
     * getMaximumSideLength
     * 
     * This method returns the current maximum side length
     */
+   
    public double getMaximumSideLength()
    {
       return theMaximumSideLength;
    }
 
-   /**
+   /*
     * build
     * 
     * This method builds the user interface and ties in any
-    * evenet listeners
+    * event listeners
     */
+   
    public void build(JTabbedPane aTabbedPane)
    {
       //***
@@ -210,7 +221,7 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       theMaximumSideLengthPanel.add(theMaximumSideLengthField);
 
       //***
-      // update tabbed pane
+      // update tabbed panel
       //***
 
       // build tab
@@ -220,15 +231,16 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       theTabbedPanePanel.add(theNumberOfSquaresPanel);
       theTabbedPanePanel.add(theMaximumSideLengthPanel);
 
-      // add new tab to tabbed pane
+      // add new tab to tabbed panel
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
    }
 
-   /** 
+   /*
     * propertyChange
     * 
     * Called when a field's "value" property changes
     */
+   
    public void propertyChange(PropertyChangeEvent e)
    {
       Object source = e.getSource();
@@ -246,11 +258,12 @@ public class SquareGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
    
-   /**
+   /*
     * itemStateChanged
     *
     * Called when a checkbox's state changes
     */
+   
    public void itemStateChanged(ItemEvent e)
    {
       Object source = e.getItemSelectable();

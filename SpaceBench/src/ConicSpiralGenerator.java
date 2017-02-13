@@ -4,7 +4,7 @@
  * Authors:
  * Version Date:
  * 
- * This file is used for generating spiral line strings
+ * This file is used for generating line strings using the conic spiral generator
  */
 import javax.swing.*;
 import java.lang.Math;

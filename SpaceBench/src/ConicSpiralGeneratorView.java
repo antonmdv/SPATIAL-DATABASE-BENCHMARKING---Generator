@@ -69,7 +69,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   private double theMaximumRadius;
 	   private int theNumberOfVertices;
 	   
-	   /**
+	   /*
 	    * ConicSpiralGeneratorView
 	    *
 	    * This class implements the view for the Conic Spiral class and

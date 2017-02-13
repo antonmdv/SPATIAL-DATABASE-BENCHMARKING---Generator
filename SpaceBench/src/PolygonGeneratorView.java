@@ -1,8 +1,11 @@
-/**
+/*
  * PolygonGeneratorView.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Original Author: Tim Faulkner
+ * Editing Authors: 
+ * Version Date: 
+ * 
+ * This file has to do with creating the panel for the polygon generator
  */
 
 import javax.swing.*;
@@ -74,12 +77,13 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
    private int theBBoxLength;
    private int theMinimumVertexCount;
 
-   /**
+   /*
     * PolygonGeneratorView
     *
     * This class implements the view for the PolygonGenerator class and
     * handles related user interface events
     */
+   
    PolygonGeneratorView()
    {
       theGenerateFlag = DEFAULT_GENERATE_FLAG;
@@ -90,11 +94,12 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       
    }
 
-   /**
+   /*
     * setGenerateFlag
     *
-    * This method sets the generate datfile property
+    * This method sets the generate datafile property
     */
+   
    public void setGenerateFlag(boolean aFlag)
    {
       if (theGenerateCheckbox != null)
@@ -107,11 +112,12 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       }
    }
 
-   /**
+   /*
     * setNumberOfPolygons
     * 
-    * This method sets the current number of squares
+    * This method sets the current number of polygons
     */
+   
    public void setNumberOfPolygons(int aCount)
    {
       theNumberOfPolygons = aCount;
@@ -122,11 +128,12 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       }
    }
 
-   /**
+   /*
     * setMaximumVertexCount
     *
-    * This method sets the current maximum side length
+    * This method sets the current maximum vertex count
     */
+   
    public void setMaximumVertexCount(int aCount)
    {
       theMaximumVertexCount = aCount;
@@ -137,11 +144,12 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       }
    }
 
-   /**
+   /*
     * setBBoxLength
     * 
-    * This method sets the current maximum bbox length
+    * This method sets the current maximum bounding box length
     */
+   
    public void setBBoxLength(int aLength)
    {
       theBBoxLength = aLength;
@@ -151,6 +159,12 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
          theBBoxLengthField.updateUI();
       }
    }
+   
+   /*
+    * setMinimumVertexCount
+    *
+    * This method sets the current minimum vertex count
+    */
    
    public void setMinimumVertexCount(int aCount)
    {
@@ -162,56 +176,67 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       }
    }
 
-  /**
+  /*
    * getGenerateFlag
    *
-   * This method returns the generate datfile property
+   * This method returns the generate datafile property
    */
    public boolean getGenerateFlag()
    {
       return theGenerateFlag;
    }
 
- /**
+  /*
    * getNumberOfPolygons
    *
-   * This method returns the current number of squares
+   * This method returns the current number of polygons
    */
+   
    public int getNumberOfPolygons()
    {
       return theNumberOfPolygons;
    }
 
-   /**
+   /*
     * getMaximumVertexCount
     *
     * This method returns the current maximum vertex count
     */
+   
    public int getMaximumVertexCount()
    {
       return theMaximumVertexCount;
    }
 
-   /**
+   /*
     * getBBoxLength
     * 
-    * This method returns the current bbox side length
+    * This method returns the current bounding box length
     */
+   
    public int getBBoxLength()
    {
       return theBBoxLength;
    }
+   
+   /*
+    * getMinimumVertexCount
+    *
+    * This method returns the current minimum vertex count
+    */
+   
    public int getMinimumVertexCount()
    {
       return theMinimumVertexCount;
    }
 
-   /**
+   /*
     * build
     * 
     * This method builds the user interface and ties in any
-    * evenet listeners
+    * event listeners
     */
+   
    public void build(JTabbedPane aTabbedPane)
    {
       //***
@@ -308,7 +333,7 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       theBBoxLengthPanel.add(theBBoxLengthField);
 
       //***
-      // update tabbed pane
+      // update tabbed panel
       //***
 
       // build tab
@@ -321,15 +346,16 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       theTabbedPanePanel.add(theBBoxLengthPanel);
 
 
-      // add new tab to tabbed pane
+      // add new tab to tabbed panel
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
    }
 
-   /** 
+   /*
     * propertyChange
     * 
     * Called when a field's "value" property changes
     */
+   
    public void propertyChange(PropertyChangeEvent e)
    {
       Object source = e.getSource();
@@ -358,11 +384,12 @@ public class PolygonGeneratorView implements PropertyChangeListener, ItemListene
       }
    }
    
-   /**
+   /*
     * itemStateChanged
     *
     * Called when a checkbox's state changes
     */
+   
    public void itemStateChanged(ItemEvent e)
    {
       Object source = e.getItemSelectable();

@@ -1,7 +1,12 @@
-/**
+/*
  *
- * @author :  Tim Faulkner
- * @version : 12/28/2011
+ * Original Author: Tim Faulkner
+ * Editing Authors:
+ * Version Date:
+ * 
+ * This file has to do with the mechanics behind the main application window.
+ * It also validates options entered 
+ * and reads / writes to CSV files for options loading / saving
  */
 
 import java.util.Scanner;
@@ -74,26 +79,28 @@ public class DataGenModel {
    public double theDisplacementBound;
    public double theDisplacementBoundReduction;
    
-   // Quick-Star Polygons
+   // Quick-Star Polygon values
    public boolean theGenerateQSPolygonsFlag;
    public int theNumberOfQSPolygons;
    public int theNumberOfQSVertices;
    public double theStarRadius;
    
-   /**
+   /*
     * DataGenModel()
     * 
     * This method create the main application window
     */
+   
    DataGenModel()
    {
    }
 
-   /**
+   /*
     * validate()
     *
     * This method validates the model
     */
+   
    public boolean validate(JFrame aFrame)
    {
       boolean isValid = true;
@@ -297,11 +304,12 @@ public class DataGenModel {
       return isValid;
    }
 
-   /**
+   /*
     * save()
     *
     * This method saves the model content to disk
     */
+   
    public void save(JFrame anAppFrame)
    {
       if (TRACE)
@@ -378,11 +386,12 @@ public class DataGenModel {
       return fn;
    }
 
-   /**
+   /*
     * getOutputFilename()
     *
     * This method returns the output filename
     */
+   
    private String getOutputFilename(JFrame anAppFrame)
    {
       String fn = "";
@@ -431,11 +440,12 @@ public class DataGenModel {
       }
    }
 
-   /**
+   /*
     * readData()
     *
     * This method read the data from the given CSV file
     */
+   
    private boolean readData(String aCSVFilename)
    {
       try
@@ -466,11 +476,12 @@ public class DataGenModel {
       }
    }
 
-   /**
+   /*
     * processKeyValuePair()
     *
     * This method converts the key/value pair into appropriate option
     */
+   
    private void processKeyValuePair(String aKey, String aValue)
    {
       if (TRACE)
@@ -575,11 +586,12 @@ public class DataGenModel {
        
    }
 
-   /**
+   /*
     * writeKeyValuePair()
     *
     * This method converts the key/value pair into appropriate option
     */
+   
    private void writeKeyValuePairs(BufferedWriter bufWtr) throws IOException
    {
       // scene options
@@ -622,7 +634,7 @@ public class DataGenModel {
       bufWtr.write("MaximumStepLength," + Double.toString(theMaximumStepLength) + "\n");
       bufWtr.write("NumberOfSteps," + Integer.toString(theNumberOfSteps) + "\n");
       
-      // conic spirals options
+      // conic spiral options
       bufWtr.write("GenerateConicSpiralFlag," + Boolean.toString(theGenerateConicSpiralsFlag) + "\n");
       bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
       bufWtr.write("MaximumRadiusLength," + Double.toString(theMaximumRadiusLength) + "\n");

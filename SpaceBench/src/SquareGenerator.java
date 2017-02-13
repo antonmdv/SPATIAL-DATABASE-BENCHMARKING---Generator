@@ -1,8 +1,11 @@
-/**
+/*
  * SquareGenerator.java
  *
- * @author :  Weijun Huang, Tim Faulkner
- * @version : 12/19/2011
+ * Original Author: Weijun Huang, Tim Faulkner
+ * Editing Authors: 
+ * Version Date: 
+ * 
+ * This file has to do with the mechanics of generating a square
  */
 
 import javax.swing.*;
@@ -13,22 +16,24 @@ import java.awt.event.*;
 
 public class SquareGenerator {
 
-   /**
+   /*
     * SquareGenerator
     *
     * This class generates squares randomly within a (N by N) space.  The
     * squares are writen to a ASCII text file.
     */
+	
    SquareGenerator()
    {
    }
    
-   /**
+   /*
     * generate
     *
     * This method places random squares, on integer bounds, within the grid,
-    * writting their locations to the output file.
+    * writing their locations to the output file.
     */
+   
    public void generate(DataGenModel aModel) throws IOException
    {
       String outFilename;
@@ -43,7 +48,7 @@ public class SquareGenerator {
       double[] pointsX = new double[4];
       double[] pointsY = new double[4];
 
-      // do we wish squares generated?
+      // Is the generate flag checked?
       if (aModel.theGenerateSquaresFlag == false)
          return;
 
@@ -62,7 +67,7 @@ public class SquareGenerator {
          leftX = (Math.random() * (aModel.theSceneLength - aModel.theMaximumSquareSideLength));
          lowerY = (Math.random() * (aModel.theSceneLength - aModel.theMaximumSquareSideLength));
 
-         // the x intervel locating the square in the max bounding square
+         // the x interval locating the square in the max bounding square
          x1 = leftX + (Math.random() * aModel.theMaximumSquareSideLength);
          x2 = leftX + (Math.random() * aModel.theMaximumSquareSideLength);
          while (x1 == x2)
@@ -79,7 +84,7 @@ public class SquareGenerator {
          y1 = lowerY + (Math.random() * (aModel.theMaximumSquareSideLength - d));
          y2 = y1 + d;
 
-         // the coordinates of the left bottom vertice of the square
+         // the coordinates of the left bottom vertex of the square
          s = (Math.random() * d);
 
          pointsX[0] = x1 + s;
@@ -91,8 +96,8 @@ public class SquareGenerator {
          pointsX[3] = x1;
          pointsY[3] = y2 - s;
 
-         //Old SQUARE ((926 918) (941 903) (913 954) (882 881))
-         //New POLYGON ((926 918, 941 903, 913 954, 882 881))
+         //Old output: SQUARE ((926 918) (941 903) (913 954) (882 881))
+         //New output: POLYGON ((926 918, 941 903, 913 954, 882 881))
          out.print("POLYGON ((");
          out.print(pointsX[0] +" " + pointsY[0] + ", ");
          out.print(pointsX[1] +" " + pointsY[1] + ", ");

@@ -1,8 +1,11 @@
-/**
+/*
  * DataGenerator.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Original Author: Tim Faulkner
+ * Editing Authors:
+ * Version Date: 
+ * 
+ * This file has to do with creation of the main program window
  */
 
 import java.util.Scanner;
@@ -71,7 +74,7 @@ public class DataGenerator implements ActionListener {
    MidPointDisplacementGeneratorView theMidPointDisplacementGeneratorView;
    QuickStarPolygonGeneratorView theQuickStarPolygonGeneratorView;
 
-   /**
+   /*
     * DataGenerator()
     * 
     * This method create the main application window
@@ -89,12 +92,13 @@ public class DataGenerator implements ActionListener {
       });
    }
 
-   /**
+   /*
     * run()
     *
     * This method sets up the various generators and builds datafiles
     * based upon current parameters
     */
+   
    public void run()
    {
       if (TRACE)
@@ -105,12 +109,13 @@ public class DataGenerator implements ActionListener {
       theDataGenModel = new DataGenModel();
    }
 
-   /**
+   /*
     * buildGenerators
     *
     * This method builds the generators which create the various
     * data files
     */
+   
    private void buildGeneratorsAndViews()
    {
       if (TRACE)
@@ -145,8 +150,8 @@ public class DataGenerator implements ActionListener {
       theQuickStarPolygonGeneratorView = new QuickStarPolygonGeneratorView();
   }
 
-   /**
-    * buildGenerators
+   /*
+    * buildOptionsDialog
     *
     * This method buids the user interface, each generator is asked
     * for its corresponding UI which is placed within a tab
@@ -206,11 +211,12 @@ public class DataGenerator implements ActionListener {
       theAppFrame.setVisible(true);
    }
 
-   /** 
+   /*
     * actionPerformed
     * 
     * Called when a text field's "value" changes
     */
+   
    public void actionPerformed(ActionEvent ae)
    {
       if (TRACE)
@@ -233,11 +239,12 @@ public class DataGenerator implements ActionListener {
       }
    }
 
-   /**
+   /*
     * updateModel
     *
     * This method updates the model with current view settings
     */
+   
    private void updateModel()
    {
       if (TRACE)
@@ -288,7 +295,6 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theLineStringMaxSegmentCount = theLineStringGeneratorView.getMaximumSegmentCount();
       theDataGenModel.theLineStringMinSegmentCount = theLineStringGeneratorView.getMinimumSegmentCount();
       
-      //**************************************************************************************
       // the Random walk options
       theDataGenModel.theGenerateRandomWalksFlag = theRandomWalkGeneratorView.getGenerateFlag();
       theDataGenModel.theNumberOfRandomWalks = theRandomWalkGeneratorView.getNumberOfRandomWalks();
@@ -308,8 +314,6 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theDisplacementBound = theMidPointDisplacementGeneratorView.getDisplacementBound();
       theDataGenModel.theDisplacementBoundReduction = theMidPointDisplacementGeneratorView.getDisplacementBoundReduction();
       
-      //Update Model
-
       // Quick-Star Polygon options
       theDataGenModel.theGenerateQSPolygonsFlag = theQuickStarPolygonGeneratorView.getGenerateFlag();
       theDataGenModel.theNumberOfQSPolygons = theQuickStarPolygonGeneratorView.getNumberOfQSPolygons();
@@ -317,11 +321,12 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theStarRadius = theQuickStarPolygonGeneratorView.getStarRadius();
    }
 
-   /**
+   /*
     * updateView
     *
     * This method updates the view with current model settings
     */
+   
    private void updateView()
    {
       // scene options
@@ -384,11 +389,12 @@ public class DataGenerator implements ActionListener {
        
    }
 
-   /**
+   /*
     * generateData
     *
     * This method runs each data generator
     */
+   
    private void generateData()
    {
       if (TRACE)

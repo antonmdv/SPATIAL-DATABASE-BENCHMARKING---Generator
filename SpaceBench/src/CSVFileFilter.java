@@ -1,8 +1,11 @@
-/**
+/*
  * CSVFileFilter.java
  *
- * @author :  Tim Faulkner
- * @version : 12/28/2011
+ * Original Author:  Tim Faulkner
+ * Editing Authors: 
+ * Version Date: 12/28/2011
+ * 
+ * This file does as it says, filters out CSV files
  */
 import java.io.*;
 

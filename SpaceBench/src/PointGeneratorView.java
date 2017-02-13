@@ -1,8 +1,11 @@
-/**
+/*
  * PointGeneratorView.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Original Author: Tim Faulkner
+ * Editing Authors:
+ * Version Date: 
+ * 
+ * This file relates to creating a tab for the single point generator
  */
 
 import javax.swing.*;
@@ -57,12 +60,13 @@ public class PointGeneratorView implements PropertyChangeListener, ItemListener
    private int theNumberOfPoints;
    private boolean theUniquePointsFlag;
 
-   /**
+   /*
     * PointGeneratorView
     *
     * This class implements the view for the PointGenerator class and
     * handles related user interface events
     */
+   
    PointGeneratorView()
    {
       theGenerateFlag = DEFAULT_GENERATE_FLAG;
@@ -70,11 +74,12 @@ public class PointGeneratorView implements PropertyChangeListener, ItemListener
       theUniquePointsFlag = DEFAULT_UNIQUE_POINTS_FLAG;
    }
 
-   /**
+   /*
     * setGenerateFlag
     *
     * This method sets the generate datfile property
     */
+   
    public void setGenerateFlag(boolean aFlag)
    {
       if (theGenerateCheckbox != null)
@@ -87,12 +92,13 @@ public class PointGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
 
-   /**
+   /*
     * setNumberOfPoints
     * 
     * This method sets the current number of points property that
     * controls the number of points generated in the scene
     */
+   
    public void setNumberOfPoints(int aCount)
    {
       theNumberOfPoints = aCount;
@@ -103,13 +109,14 @@ public class PointGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
 
-   /**
+   /*
     * setUniquePointsFlag
     * 
     * This method sets the unique points property, if true duplicate
     * points are ignored.  Setting this flag requires the allocation
     * of a boolean matrix.
     */
+   
    public void setUniquePointsFlag(boolean aFlag)
    {
       if (theUniquePointsCheckbox != null)
@@ -122,42 +129,46 @@ public class PointGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
    
-  /**
+  /*
    * getGenerateFlag
    *
    * This method returns the generate datfile property
    */
+   
    public boolean getGenerateFlag()
    {
       return theGenerateFlag;
    }
 
-  /**
+   /*
     * getNumberOfPoints
     * 
     * This method returns the current number of points property
     */
+   
    public int getNumberOfPoints()
    {
       return theNumberOfPoints;
    }
 
-   /**
+  /*
    * getUniquePointsFlag
    * 
    * This method returns the unique points property
    */
+   
    public boolean getUniquePointsFlag()
    {
       return theUniquePointsFlag;
    }  
 
-   /**
+   /*
     * build
     * 
     * This method builds the user interface and ties in any
     * event listeners
     */
+   
    public void build(JTabbedPane aTabbedPane)
    {
       //***
@@ -221,11 +232,12 @@ public class PointGeneratorView implements PropertyChangeListener, ItemListener
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
    }
 
-   /** 
+   /*
     * propertyChange
     * 
     * Called when a textbox's "value" changes
     */
+   
    public void propertyChange(PropertyChangeEvent e)
    {
       Object source = e.getSource();
@@ -237,11 +249,12 @@ public class PointGeneratorView implements PropertyChangeListener, ItemListener
       }
    }
 
-   /** 
+   /*
     * itemStateChanged
     * 
     * Called when a checkbox's state changes
     */
+   
    public void itemStateChanged(ItemEvent e)
    {
       Object source = e.getItemSelectable();

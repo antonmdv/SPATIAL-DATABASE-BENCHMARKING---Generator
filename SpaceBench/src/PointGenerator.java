@@ -1,10 +1,13 @@
-/**
+/*
  * PointGenerator.java
  *
- * @author :  Weijun Huang, Tim Faulkner
- * @version : 12/19/2011
+ * Authors:  Weijun Huang, Tim Faulkner
+ * Editing Authors:
+ * Version Date: 
+ * 
+ * This file relates to the generation mechanics for the point generator
  */
-// Test Comment
+
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
@@ -12,28 +15,29 @@ import java.awt.event.*;
 
 public class PointGenerator
 {
-   /**
+   /*
     * PointGenerator
     *
     * This class generates points randomly within a (N by N) space, optionally
     * checking for duplicate points.  The points are writen to a ASCII text
     * file.
     */
+	
    PointGenerator()
    {
    }
    
-   /**
+   /*
     * generate
     *
     * This method places random points, on integer bounds, within the grid,
     * writting their locations to the output file. It optionally checks for
     * duplicate points.
     *
-    * Duplicates are check by allocating a boolean grid, and marking points
-    * as they are created. Large sized datasets may require large amounts of
-    * memory
+    * Duplicates are checked by checking against the list of points. This is 
+    * very time inefficient for large numbers of points. 
     */
+   
    public void generate(DataGenModel aModel) throws IOException
    {
       double x,y,i,j;

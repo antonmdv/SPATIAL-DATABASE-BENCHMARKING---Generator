@@ -1,8 +1,11 @@
-/**
+/*
  * PolygonGenerator.java
  *
- * @author :  Weijun Huang, Tim Faulkner
- * @version : 12/19/2011
+ * Authors: Weijun Huang, Tim Faulkner
+ * Editing Authors:
+ * Version Date:
+ * 
+ * This file relates to the mechanics of generating random polygons
  */
 
 
@@ -21,17 +24,18 @@ import java.io.*;
 
 public class PolygonGenerator {
 
-   /**
+   /*
     * PolygonGenerator
     *
     * This class generates polygons randomly within a (N by N) space.  The
     * polygons are writen to a ASCII text file.
     */
+	
    PolygonGenerator()
    {
    }
 
-   /**
+   /*
     * generate
     *
     * This method places random polygons, on integer bounds, within the grid,
@@ -144,8 +148,8 @@ public class PolygonGenerator {
          }  // while loop: finish the polygon
 
          // print out & draw the polygon
-         //Old - POLYGON ((926 918) (941 903) (913 954) (882 881))
-         //New - POLYGON ((926 918, 941 903, 913 954, 882 881))
+         //Old format - POLYGON ((926 918) (941 903) (913 954) (882 881))
+         //New format - POLYGON ((926 918, 941 903, 913 954, 882 881))
             if (VerCNT >= 3)
             {
                NumVer = VerCNT;

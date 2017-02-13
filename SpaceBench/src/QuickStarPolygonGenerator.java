@@ -1,3 +1,11 @@
+/*
+ * SceneOptionsView.java
+ *
+ * Original Authors: 
+ * Version Date: 
+ * 
+ * This file has to do with the mechanics of generating Quick-star polygons
+ */
 
 import javax.swing.*;
 import java.lang.Math;
@@ -17,7 +25,7 @@ public class QuickStarPolygonGenerator {
 	    FileWriter f = null;
 	    PrintWriter out = null;
 	    
-	    // do we wish polygons generated?
+	    // Is the generate flag checked?
 	    if (aModel.theGenerateQSPolygonsFlag == false)
 	    	return;
 	    
@@ -34,7 +42,7 @@ public class QuickStarPolygonGenerator {
 		
 		
 		int outerCount = 0;	// polygon counter
-		int innerCount = 0;	// vertices counter
+		int innerCount = 0;	// vertex counter
 		double angle = 0;	// angle between two consecutive vertices 
 		double randRadius;	// radius in the range 0-radius
 		
@@ -53,7 +61,7 @@ public class QuickStarPolygonGenerator {
 		
 		while (outerCount < numOfQSPolygons) {
 			
-			out.print("CONIC-SPIRAL (");
+			out.print("Quick-Star (");
 			
 			// generating random center within scene bound
 			centerX = rand.nextDouble() * aModel.theSceneLength + 1;
@@ -63,6 +71,7 @@ public class QuickStarPolygonGenerator {
 			angle = 0;
 			innerCount = 0;
 			
+			// Generates Vertices
 			while (innerCount < numOfQSVertices) {
 				randRadius = rand.nextFloat() * starRadius;
 				x = centerX + randRadius * Math.cos(angle * Math.PI);

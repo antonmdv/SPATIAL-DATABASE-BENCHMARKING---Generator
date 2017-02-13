@@ -1,8 +1,11 @@
-/**
+/*
  * SceneOptionsView.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Original Author: Tim Faulkner
+ * Editing Authors: 
+ * Version Date: 
+ * 
+ * This file has to do with creating the panel for scene options
  */
 
 import javax.swing.*;
@@ -50,23 +53,25 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
    private double theSceneLength;
    private String theFilenamePrefix;
 
-   /**
+   /*
     * SceneOptionsView
     *
     * This class implements the view for the SceneOptions class and
     * handles related user interface events
     */
+   
    SceneOptionsView()
    {
       theSceneLength = DEFAULT_SCENE_LENGTH;
       theFilenamePrefix = DEFAULT_FILENAME_PREFIX;
    }
 
-   /**
+   /*
     * setSceneLength
     * 
     * This method sets the current number of squares
     */
+   
    public void setSceneLength(double aCount)
    {
       theSceneLength = aCount;
@@ -77,11 +82,12 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
       }
    }
 
-   /**
+   /*
     * setFilenamePrefix
     * 
     * This method sets the current maximum side length
     */
+   
    public void setFilenamePrefix(String aPrefix)
    {
       theFilenamePrefix = aPrefix;
@@ -92,32 +98,35 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
       }
    }
 
-   /**
+   /*
     * getSceneLength
     * 
     * This method returns the current number of scene length
     */
+   
    public double getSceneLength()
    {
       return theSceneLength;
    }
 
-   /**
+   /*
     * getFilenamePrefix
     * 
     * This method returns the current filename prefix
     */
+   
    public String getFilenamePrefix()
    {
       return theFilenamePrefix;
    }
 
-   /**
+   /*
     * build
     * 
     * This method builds the user interface and ties in any
     * evenet listeners
     */
+   
    public void build(JTabbedPane aTabbedPane)
    {
       //***
@@ -161,7 +170,7 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
       theFilenamePrefixPanel.add(theFilenamePrefixField);
 
       //***
-      // update tabbed pane
+      // update tabbed panel
       //***
 
       // build tab
@@ -170,15 +179,16 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
       theTabbedPanePanel.add(theSceneLengthPanel);
       theTabbedPanePanel.add(theFilenamePrefixPanel);
 
-      // add new tab to tabbed pane
+      // add new tab to tabbed panel
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
    }
 
-   /** 
+   /*
     * propertyChange
     * 
     * Called when a formatted text field's "value" property changes
     */
+   
    public void propertyChange(PropertyChangeEvent e)
    {
       Object source = e.getSource();
@@ -190,11 +200,12 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
       }
    }
 
-   /** 
+   /*
     * actionPerformed
     * 
     * Called when a text field's "value" changes
     */
+   
    public void actionPerformed(ActionEvent ae)
    {
       if (TRACE)
@@ -203,11 +214,12 @@ public class SceneOptionsView implements PropertyChangeListener, ActionListener
          captureFilenamePrefix();
    }
 
-   /**
+   /*
     * captureFilenamePrefix
     * 
-    * This method captures the currentent filename prefix
+    * This method captures the current filename prefix
     */
+   
    public void captureFilenamePrefix()
    {
       theFilenamePrefix = theFilenamePrefixField.getText();

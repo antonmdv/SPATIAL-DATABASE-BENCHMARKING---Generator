@@ -1,8 +1,12 @@
-/**
+/*
  * LineStringGenerator.java
  *
- * @author :  Weijun Huang, Tim Faulkner
- * @version : 12/19/2011
+ * Original Authors: Weijun Huang, Tim Faulkner
+ * Editing Authors: 
+ * Version Date:
+ * 
+ * This file has to do with the mechanics for generating line strings 
+ * via a simple plane sweep algorithm
  */
 
 import javax.swing.*;
@@ -13,17 +17,25 @@ import java.util.*;
 
 public class LineStringGenerator {
 
-   /**
+   /*
     * LineStringGenerator
     *
     * This class generates line strings randomly within a (N by N) space.  The
     * points that comprise a line string are tested for uniqueness, and the
     * resulting line strings are writen to a ASCII text file.
     */
+	
    LineStringGenerator()
    {
    }
 
+   /*
+    * generate
+    *
+    * This method places a random set of points down, then connects them from 
+    * left to right, prioritizing higher points. 
+    */
+   
    public void generate(DataGenModel aModel) throws IOException
    {
       String outFilename;
@@ -119,8 +131,8 @@ public class LineStringGenerator {
             // write line string to output file
             //***
             
-            //Old - LINESTRING ((30 10) (10 30) (40 40))
-            //New - LINESTRING (30 10, 10 30, 40 40)
+            //Old format - LINESTRING ((30 10) (10 30) (40 40))
+            //New format - LINESTRING (30 10, 10 30, 40 40)
             out.print("LINESTRING (");
             for (int i = 0; i < xyCoords.size()-1; i++)
             {

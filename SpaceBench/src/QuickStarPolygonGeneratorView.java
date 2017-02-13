@@ -1,8 +1,8 @@
-/**
- * PolygonGeneratorView.java
+/*
+ * QuickStarPolygonGeneratorView.java
  *
- * @author :  Tim Faulkner
- * @version : 12/19/2011
+ * Authors:
+ * Version Date:
  */
 
 import javax.swing.*;
@@ -43,7 +43,7 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
    private JCheckBox theGenerateCheckbox;
    private JPanel theGeneratePanel;
 
-   // elements for 'number of squares'
+   // elements for 'number of polygons'
    private NumberFormat theNumberOfPolygonsFormat;
    private JPanel theNumberOfPolygonsPanel;
    private JLabel theNumberOfPolygonsLabel;
@@ -74,12 +74,13 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
    private int theBBoxLength;
    private double theStarRadius;
 
-   /**
+   /*
     * PolygonGeneratorView
     *
-    * This class implements the view for the PolygonGenerator class and
+    * This class implements the view for the QuickStarPolygonGenerator class and
     * handles related user interface events
     */
+   
    QuickStarPolygonGeneratorView()
    {
       theGenerateFlag = DEFAULT_GENERATE_FLAG;
@@ -89,11 +90,12 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
       theStarRadius = DEFAULT_RADIUS_LENGTH;
    }
 
-   /**
+   /*
     * setGenerateFlag
     *
-    * This method sets the generate datfile property
+    * This method sets the generate datafile property
     */
+   
    public void setGenerateFlag(boolean aFlag)
    {
       if (theGenerateCheckbox != null)
@@ -105,11 +107,13 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
          }
       }
    }
-   /**
+   
+   /*
     * setNumberOfPolygons
     * 
-    * This method sets the current number of squares
+    * This method sets the current number of polygons to be generated
     */
+   
    public void setNumberOfQSPolygons(int aCount)
    {
       theNumberOfQSPolygons = aCount;
@@ -119,11 +123,13 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
          theNumberOfPolygonsField.updateUI();
       }
    }
-   /**
+   
+   /*
     * setMaximumVertexCount
     *
-    * This method sets the current maximum side length
+    * This method sets the current maximum vertices to be generated
     */
+   
    public void setVertexCount(int aCount)
    {
 	   theNumberOfQSVertices = aCount;
@@ -133,11 +139,13 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
          theMaximumVertexCountField.updateUI();
       }
    }
-   /**
+   
+   /*
     * setStarRadius
     *
-    * This method sets the Polygon's radius
+    * This method sets the radius vertices can be generated within
     */
+   
    public void setStarRadius(double aCount)
    {
 	   theStarRadius = aCount;
@@ -148,11 +156,12 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
       }
    }
 
-   /**
+   /*
     * setBBoxLength
     * 
-    * This method sets the current maximum bbox length
+    * This method sets the current maximum bounding box length
     */
+   
    public void setBBoxLength(int aLength)
    {
       theBBoxLength = aLength;
@@ -163,59 +172,68 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
       }
    }
 
-  /**
+  /*
    * getGenerateFlag
    *
-   * This method returns the generate datfile property
+   * This method returns the generate datafile property
    */
+   
    public boolean getGenerateFlag()
    {
       return theGenerateFlag;
    }
-   /**
+   
+   /*
     * getNumberOfPolygons
     *
-    * This method returns the current number of squares
+    * This method returns the current number of polygons
     */
+   
     public int getNumberOfQSPolygons()
     {
        return theNumberOfQSPolygons;
     }
 
-    /**
+    /*
      * getMaximumVertexCount
      *
      * This method returns the current maximum vertex count
      */
+    
     public int getVertexCount()
     {
        return theNumberOfQSVertices;
     }
-    /**
+    
+    /*
      * getStarRadius
      *
      * This method returns the quick-star radius 
      */
+    
     public double getStarRadius()
     {
        return theStarRadius;
     }
 
-    /**
+    /*
      * getBBoxLength
      * 
-     * This method returns the current bbox side length
+     * This method returns the current bounding box side length
      */
+    
     public int getBBoxLength()
     {
        return theBBoxLength;
     }
-    /**
+    
+    /*
      * build
      * 
      * This method builds the user interface and ties in any
-     * evenet listeners
+     * event listeners
      */
+    
     public void build(JTabbedPane aTabbedPane)
     {
        //***
@@ -290,8 +308,9 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        theStarRadiusPanel = new JPanel();
        theStarRadiusPanel.add(theStarRadiusLabel);
        theStarRadiusPanel.add(theStarRadiusField);
+       
        //***
-       // bbox length
+       // bounding box length
        //***
 
        // build format arguments
@@ -309,8 +328,6 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        theBBoxLengthPanel = new JPanel();
        theBBoxLengthPanel.add(theBBoxLengthLabel);
        theBBoxLengthPanel.add(theBBoxLengthField);
-       
-       
 
        //***
        // update tabbed pane
@@ -328,11 +345,12 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
     }
     
-    /** 
+    /*
      * propertyChange
      * 
      * Called when a field's "value" property changes
      */
+    
     public void propertyChange(PropertyChangeEvent e)
     {
        Object source = e.getSource();
@@ -362,11 +380,12 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        
     }
     
-    /**
+    /*
      * itemStateChanged
      *
      * Called when a checkbox's state changes
      */
+    
     public void itemStateChanged(ItemEvent e)
     {
        Object source = e.getItemSelectable();

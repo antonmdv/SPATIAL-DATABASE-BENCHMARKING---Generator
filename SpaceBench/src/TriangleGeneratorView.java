@@ -83,11 +83,12 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       theBBoxWidth = DEFAULT_BBOX_WIDTH;
    }
 
-   /**
+   /*
     * setGenerateFlag
     *
-    * This method sets the generate datfile property
+    * This method sets the generate datafile property
     */
+   
    public void setGenerateFlag(boolean aFlag)
    {
       if (theGenerateCheckbox != null)
@@ -100,11 +101,12 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       }
    }
 
-   /**
+   /*
     * setNumberOfTriangles
     * 
     * This method sets the current number of triangles
     */
+   
    public void setNumberOfTriangles(int aCount)
    {
       theNumberOfTriangles = aCount;
@@ -115,11 +117,12 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       }
    }
 
-   /**
+   /*
     * setBBoxHeight
     * 
-    * This method sets the current bbox height
+    * This method sets the current bounding box height
     */
+   
    public void setBBoxHeight(double aLength)
    {
       theBBoxHeight = aLength;
@@ -130,11 +133,12 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       }
    }
    
-   /**
+   /*
     * setBBoxWidth
     *
-    * This method sets the current bbox width
+    * This method sets the current bounding box width
     */
+   
    public void setBBoxWidth(double aLength)
    {
       theBBoxWidth = aLength;
@@ -144,52 +148,58 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
          theBBoxWidthField.updateUI();
       }
    }
-  /**
+   
+  /*
    * getGenerateFlag
    *
    * This method returns the generate datfile property
    */
+   
    public boolean getGenerateFlag()
    {
       return theGenerateFlag;
    }
 
- /**
+  /*
    * getNumberOfTriangles
    *
-   * This method returns the current number of squares
+   * This method returns the current number of triangles to be generated
    */
+   
    public int getNumberOfTriangles()
    {
       return theNumberOfTriangles;
    }
 
-   /**
+   /*
     * getBBoxHeight
     * 
-    * This method returns the current bbox height
+    * This method returns the current bounding box height
     */
+   
    public double getBBoxHeight()
    {
       return theBBoxHeight;
    }
    
-   /**
+   /*
     * getBBoxHeight
     *
-    * This method returns the current bbox width
+    * This method returns the current bounding box width
     */
+   
    public double getBBoxWidth()
    {
       return theBBoxWidth;
    }
    
-   /**
+   /*
     * build
     * 
     * This method builds the user interface and ties in any
-    * evenet listeners
+    * event listeners
     */
+   
    public void build(JTabbedPane aTabbedPane)
    {
       //***
@@ -266,7 +276,7 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       theBBoxWidthPanel.add(theBBoxWidthField);
 
       //***
-      // update tabbed pane
+      // update tabbed panel
       //***
 
       // build tab
@@ -281,11 +291,12 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
    }
 
-   /** 
+   /*
     * propertyChange
     * 
     * Called when a field's "value" property changes
     */
+   
    public void propertyChange(PropertyChangeEvent e)
    {
       Object source = e.getSource();
@@ -309,11 +320,12 @@ public class TriangleGeneratorView implements PropertyChangeListener, ItemListen
       }
    }
    
-   /**
+   /*
     * itemStateChanged
     *
     * Called when a checkbox's state changes
     */
+   
    public void itemStateChanged(ItemEvent e)
    {
       Object source = e.getItemSelectable();

@@ -1,3 +1,12 @@
+/*
+ * MidPointDisplacementGeneratorView.java
+ *
+ * Original Author: 
+ * Version Date: 
+ * 
+ * This file has to do with building a panel for the Midpoint Displacement generator
+ */
+
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
@@ -10,7 +19,11 @@ import javax.swing.text.*;
 
 public class MidPointDisplacementGeneratorView implements PropertyChangeListener, ItemListener {
 	
-	private static final boolean TRACE = false;
+	   //***
+	   // class variables
+	   //***
+	
+	   private static final boolean TRACE = false;
 	  
 	   private static final String TAB_TITLE = "Midpoint Displacement";
 	   private static final String TAB_TOOLTIP = "Midpoint Displacement generator options";
@@ -44,7 +57,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 
 	   
 	   //theRecursionDepth
-	   // elements for Number of Line Strings produced
+	   // elements for recursion depth
 	   private NumberFormat theRecursionDepthFormat;
 	   private JPanel theRecursionDepthPanel;
 	   private JLabel theRecursionDepthLabel;
@@ -73,12 +86,13 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   private double theDisplacementBoundReduction;
 	
 	   
-	   /**
+	   /*
 	    * MidpointDisplacementView
 	    *
 	    * This class implements the view for the Midpoint Displacement class and
 	    * handles related user interface events
 	    */
+	   
 	   MidPointDisplacementGeneratorView()
 	   {
 	      theGenerateFlag = DEFAULT_GENERATE_FLAG;
@@ -88,10 +102,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      theDisplacementBoundReduction = DEFAULT_DISP_BOUND_REDUCTION;
 	   }
 
-	   /**
+	   /*
 	    * setGenerateFlag
 	    *
-	    * This method sets the generate datfile property
+	    * This method sets the generate datafile property
 	    */
 	   
 	   public void setGenerateFlag(boolean aFlag)
@@ -106,10 +120,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      }
 	   }
 
-	   /**
-	    * setNumberOfAlgorithms
+	   /*
+	    * setNumberOfMidPointDisplacements
 	    * 
-	    * This method sets the current number of algorithms produced
+	    * This method sets the current number of line strings produced
 	    */
 	   
 	   public void setNumberOfMidPointDisplacements(int aCount)
@@ -122,10 +136,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      }
 	   }
 
-	   /**
+	   /*
 	    * setRecursionDepth 
 	    * 
-	    * This method sets the how many times each line string will be broken down
+	    * This method sets how many times each line string will be broken down
 	    */
 	   
 	   public void setRecursionDepth(int aLength)
@@ -138,10 +152,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      }
 	   }
 	   
-	   /**
+	   /*
 	    * setDisplacementBound 
 	    * 
-	    * This method sets displacement bound value
+	    * This method sets the displacement bound value
 	    */
 	   
 	   public void setDisplacementBound(double aLength)
@@ -154,10 +168,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      }
 	   }
 	   
-	   /**
+	   /*
 	    * theDisplacementBoundReduction 
 	    * 
-	    * This method sets displacement bound reduction value
+	    * This method sets the displacement bound reduction value
 	    */
 	   
 	   public void setDisplacementBoundReduction(double aLength)
@@ -171,57 +185,62 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   }
 	   
 
-	  /**
+	  /*
 	   * getGenerateFlag
 	   *
-	   * This method returns the generate datfile property
+	   * This method returns the generate datafile property
 	   */
+	   
 	   public boolean getGenerateFlag()
 	   {
 	      return theGenerateFlag;
 	   }
 
-	   /**
-	   * getNumberOfAlgorithms
+	  /*
+	   * getNumberOfMidPointDisplacement
 	   *
-	   * This method returns the current number of paths generated
+	   * This method returns the current number of line strings generated
 	   */
+	   
 	   public int getNumberOfMidPointDisplacement()
 	   {
 	      return theNumberOfMidPointDisplacement;
 	   }
 
-	   /**
+	   /*
 	    * getRecursionDepth
 	    * 
 	    * This method returns depth of the recursion
 	    */
+	   
 	   public int getRecursionDepth()
 	   {
 	      return theRecursionDepth;
 	   }
 	   
-	   /**
+	   /*
 	    * getDisplacementBound
 	    * 
 	    * This method returns the current displacement bound value
 	    */
+	   
 	   public double getDisplacementBound()
 	   {
 	      return theDisplacementBound;
 	   }
 	   
-	   /**
+	   /*
 	    * getDisplacementBoundReduction
 	    * 
 	    * This method returns the current displacement bound reduction value
 	    */
+	   
 	   public double getDisplacementBoundReduction()
 	   {
 	      return theDisplacementBoundReduction;
 	   }
 	   
-	   /**
+	   /*
 	    * build
 	    * 
 	    * This method builds the user interface and ties in any
@@ -244,7 +263,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      theGeneratePanel.add(theGenerateCheckbox);
 
 	      //***
-	      // number of algorithms 
+	      // number of Midpoint Displacements 
 	      //***
 	   
 	      //build format argument
@@ -340,7 +359,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
 	   }
 
-	   /** 
+	   /*
 	    * propertyChange
 	    * 
 	    * Called when a field's "value" property changes
@@ -379,11 +398,12 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      }
 	   }
 	   
-	   /**
+	   /*
 	    * itemStateChanged
 	    *
 	    * Called when a checkbox's state changes
 	    */
+	   
 	   public void itemStateChanged(ItemEvent e)
 	   {
 	      Object source = e.getItemSelectable();

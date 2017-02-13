@@ -1,3 +1,12 @@
+/*
+ * RandomWalkGenerator.java
+ *
+ * Authors: 
+ * Version Date: 
+ * 
+ * This file has to do with the mechanics of generating a string via the Random Walk algorithm
+ */
+
 import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
@@ -6,13 +15,26 @@ import java.util.*;
 
 public class RandomWalkGenerator {
 
+	/*
+	 * RandomWalkGenerator
+	 *
+	 * This class generates the requested number of line strings 
+	 * via the random walk algorithm
+	 */
+	
 	RandomWalkGenerator()
 	{
 	}
 	
+	/*
+	 * generate  edit when we change algorithm
+	 *
+     * This method does the actual generation work, currently generates a random point
+     * then for subsequent points picks a direction, directly north south east or west,
+     * and generates another point.
+	 */
 	public void generate(DataGenModel aModel) throws IOException
 	{
-	
 		//Set up output 
 		String outFilename;
 	    FileWriter f = null;
@@ -118,7 +140,7 @@ public class RandomWalkGenerator {
 		   	//finish algorithmic path 
 		   	amountProduced++;
 		   	
-		   	//output algorithm to text file 
+		   	//output line string to text file 
 		   	out.print("LINESTRING (");
 			 
 		            for (int i = 0; i < xyCoords.size()-1; i++)

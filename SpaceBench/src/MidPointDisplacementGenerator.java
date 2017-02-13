@@ -1,3 +1,12 @@
+/*
+ * MidPointDisplacementGenerator.java
+ *
+ * Original Authors: 
+ * Version Date: 
+ * 
+ * This file has to do with the mechanics of generating line strings with the midpoint displacement algorithm
+ */
+
 import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
@@ -49,6 +58,7 @@ public class MidPointDisplacementGenerator {
 			midPointDisp.add(StartPoint);
 			midPointDisp.add(EndPoint);
 			
+			// Generate points
 			while(it<numOfIt){
 				
 				int currentSize = midPointDisp.size()-1;
@@ -69,7 +79,7 @@ public class MidPointDisplacementGenerator {
 			}
 			
 			//print to txt
-			//output algorithm to text file 
+			//output line string to text file 
 		   	out.print("LINESTRING (");
 			 
 		    for (int i = 0; i < midPointDisp.size()-1; i++)

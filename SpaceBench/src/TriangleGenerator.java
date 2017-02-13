@@ -1,18 +1,21 @@
-/**
+/*
  * TriangleGenerator.java
  *
- * @author :  Weijun Huang, Tim Faulkner
- * @version : 12/19/2011
+ * Original author: Weijun Huang, Tim Faulkner
+ * Editing Authors: 
+ * Version Date: 
+ * 
+ * This file deals with the mechanics of generating a Triangle
  */
 
 
 import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
-// test 2.0
+
 public class TriangleGenerator {
         
-   /**
+   /*
     * TriangleGenerator
     *
     * This class generates triangles randomly within a (N by N) space.  The
@@ -22,7 +25,7 @@ public class TriangleGenerator {
    {
    }
 
-   /**
+   /*
     * generate
     */
    public void generate(DataGenModel aModel) throws IOException
@@ -40,7 +43,7 @@ public class TriangleGenerator {
         double[] pointsX = new double[4];
         double[] pointsY = new double[4];
 
-      // do we wish data generated?
+      // Is the generate flag checked?
       if (aModel.theGenerateTrianglesFlag == false)
          return;
 
@@ -91,8 +94,8 @@ public class TriangleGenerator {
            pointsX[2] = x;
            pointsY[2] = y;
 
-           //Old TRIANGLE ((926 918) (941 903) (913 954))
-           //New TRIANGLE ((926 918, 941 903, 913 954))
+           //Old output: TRIANGLE ((926 918) (941 903) (913 954))
+           //New output: POLYGON ((926 918, 941 903, 913 954))
            out.print("TRIANGLE ((");
            out.print(pointsX[0] +" " + pointsY[0] + ", ");
            out.print(pointsX[1] +" " + pointsY[1] + ", ");
@@ -107,6 +110,7 @@ public class TriangleGenerator {
         System.out.println("    " + aModel.theNumberOfTriangles + " triangles were generated.");
     }
     
+   // Checks to see if a point is in the list of points
     private boolean inList(double[] pointsX, double[] pointsY, int length,
                                   double x, double y)  {
       for (int i = 0; i < length; i ++)

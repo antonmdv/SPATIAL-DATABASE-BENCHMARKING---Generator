@@ -1,3 +1,12 @@
+/*
+ * RandomWalkGeneratorView.java
+ *
+ * Original Authors: 
+ * Version Date:
+ * 
+ * This file has to do with creating a panel for the Random Walk Generator
+ */
+
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
@@ -32,10 +41,10 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	   private JPanel theGeneratePanel;
 
 	   // elements for 'number of squares'
-	   private NumberFormat theNumberOfRandomWalksFormat; 		//theNumberOfSquaresFormat
-	   private JPanel theNumberOfRandomWalksPanel;				//theNumberOfSquaresPanel
-	   private JLabel theNumberOfRandomWalksLabel;				//theNumberOfSquaresLabel
-	   private JFormattedTextField theNumberOfRandomWalksField;	//theNumberOfSquaresField
+	   private NumberFormat theNumberOfRandomWalksFormat;
+	   private JPanel theNumberOfRandomWalksPanel;
+	   private JLabel theNumberOfRandomWalksLabel;
+	   private JFormattedTextField theNumberOfRandomWalksField;
 
 	   // elements for 'max step length'
 	   private NumberFormat theMaximumStepLengthFormat;
@@ -55,12 +64,13 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	   private double theMaximumStepLength;
 	   private int theNumberOfSteps;
 	   
-	   /**
+	   /*
 	    * RandomWalkGeneratorView
 	    *
-	    * This class implements the view for the RandomWAlk class and
+	    * This class implements the view for the RandomWalk class and
 	    * handles related user interface events
 	    */
+	   
 	   RandomWalkGeneratorView()
 	   {
 	      theGenerateFlag = DEFAULT_GENERATE_FLAG;
@@ -69,7 +79,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      theNumberOfSteps = DEFAULT_NS_COUNT;
 	   }
 
-	   /**
+	   /*
 	    * setGenerateFlag
 	    *
 	    * This method sets the generate datfile property
@@ -87,10 +97,10 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      }
 	   }
 
-	   /**
-	    * setNumberOfAlgorithms
+	   /*
+	    * setNumberOfRandomWalks
 	    * 
-	    * This method sets the current number of algorithms produced
+	    * This method sets the current number of line strings produced
 	    */
 	   
 	   public void setNumberOfRandomWalks(int aCount)
@@ -103,10 +113,10 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      }
 	   }
 
-	   /**
+	   /*
 	    * setMaximumStep Length
 	    * 
-	    * This method sets the current maximum side length
+	    * This method sets the current maximum length of a step
 	    */
 	   
 	   public void setMaximumStepLength(double aLength)
@@ -119,7 +129,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      }
 	   }
 	   
-	   /**
+	   /*
 	    * setNumber of Steps 
 	    * 
 	    * This method sets the current number of steps
@@ -136,37 +146,40 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	   }
 	   
 
-	  /**
+	  /*
 	   * getGenerateFlag
 	   *
-	   * This method returns the generate datfile property
+	   * This method returns the generate datafile property
 	   */
+	   
 	   public boolean getGenerateFlag()
 	   {
 	      return theGenerateFlag;
 	   }
 
-	   /**
-	   * getNumberOfAlgorithms
+	   /*
+	   * getNumberOfRandomWalks
 	   *
-	   * This method returns the current number of paths generated
+	   * This method returns the current number of line strings to be generated
 	   */
+	   
 	   public int getNumberOfRandomWalks()
 	   {
 	      return theNumberOfRandomWalks;
 	   }
 
-	   /**
+	   /*
 	    * getMaximumStepLength
 	    * 
-	    * This method returns the current step length
+	    * This method returns the current maximum step length
 	    */
+	   
 	   public double getMaximumStepLength()
 	   {
 	      return theMaximumStepLength;
 	   }
 	   
-	   /**
+	   /*
 	    * getNumberOfSteps
 	    * 
 	    * This method returns the current number of steps
@@ -177,7 +190,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 		   return theNumberOfSteps;
 	   }
 
-	   /**
+	   /*
 	    * build
 	    * 
 	    * This method builds the user interface and ties in any
@@ -304,11 +317,11 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      theTabbedPanePanel.add(theMaximumStepLengthPanel);
 	      
 	      
-	      // add new tab to tabbed pane
+	      // add new tab to tabbed panel
 	      aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
 	   }
 
-	   /** 
+	   /*
 	    * propertyChange
 	    * 
 	    * Called when a field's "value" property changes
@@ -337,11 +350,12 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      }
 	   }
 	   
-	   /**
+	   /*
 	    * itemStateChanged
 	    *
 	    * Called when a checkbox's state changes
 	    */
+	   
 	   public void itemStateChanged(ItemEvent e)
 	   {
 	      Object source = e.getItemSelectable();
