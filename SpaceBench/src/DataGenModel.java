@@ -74,6 +74,12 @@ public class DataGenModel {
    public double theDisplacementBound;
    public double theDisplacementBoundReduction;
    
+   // Quick-Star Polygons
+   public boolean theGenerateQSPolygonsFlag;
+   public int theNumberOfQSPolygons;
+   public int theNumberOfQSVertices;
+   public double theStarRadius;
+   
    /**
     * DataGenModel()
     * 
@@ -246,6 +252,23 @@ public class DataGenModel {
             isValid = false;
          }
          if ((theMaximumRadiusLength <= 0) || (theMaximumRadiusLength >= theSceneLength))
+         {
+            msg = "Maximum radius length has to be < scene length, and > 0";
+            isValid = false;
+         }
+      }
+      //***
+      // validate Quick-Star Polygons options
+      //***
+
+      if (isValid && theGenerateQSPolygonsFlag)
+      {
+         if (theNumberOfQSPolygons <= 0)
+         {
+            msg = "Quick-Star Polygon file must contain at least 1 element";
+            isValid = false;
+         }
+         if ((theNumberOfQSPolygons <= 0) || (theNumberOfQSPolygons >= theSceneLength))
          {
             msg = "Maximum radius length has to be < scene length, and > 0";
             isValid = false;
@@ -539,6 +562,16 @@ public class DataGenModel {
        if(aKey.equals("DisplacementBoundReduction"))
     	   theDisplacementBoundReduction = Double.valueOf(aValue);
        
+       // quick-star polygon options
+       if (aKey.equalsIgnoreCase("theGenerateQSPolygonsFlag"))
+    	   theGenerateQSPolygonsFlag = Boolean.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("theNumberOfQSPolygons"))
+    	   theNumberOfQSPolygons = Integer.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("theNumberOfQSVertices"))
+    	   theNumberOfQSVertices = Integer.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("theStarRadius"))
+    	   theStarRadius = Double.valueOf(aValue);
+       
        
    }
 
@@ -601,5 +634,11 @@ public class DataGenModel {
       bufWtr.write("RecursionDepth," + Integer.toString(theRecursionDepth) + "\n");
       bufWtr.write("DisplacementBound," + Double.toString(theDisplacementBound) + "\n");
       bufWtr.write("DisplacementBoundReduction," + Double.toString(theDisplacementBoundReduction) + "\n");
+      
+      // quick-star polygon options
+      bufWtr.write("theGenerateQSPolygonsFlag," + Boolean.toString(theGenerateQSPolygonsFlag) + "\n");
+      bufWtr.write("theNumberOfQSPolygons," + Integer.toString(theNumberOfQSPolygons) + "\n");
+      bufWtr.write("theNumberOfQSVertices," + Integer.toString(theNumberOfQSVertices) + "\n");
+      bufWtr.write("theStarRadius," + Double.toString(theStarRadius) + "\n");
    }
 }

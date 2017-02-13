@@ -55,6 +55,7 @@ public class DataGenerator implements ActionListener {
    RandomWalkGenerator theRandomWalkGenerator;
    ConicSpiralGenerator theConicSpiralGenerator;
    MidPointDisplacementGenerator theMidPointDisplacementGenerator;
+   QuickStarPolygonGenerator theQuickStarPolygonGenerator;
 
    // data generator views
    SceneOptionsView theSceneOptionsView;
@@ -68,6 +69,7 @@ public class DataGenerator implements ActionListener {
    RandomWalkGeneratorView theRandomWalkGeneratorView;
    ConicSpiralGeneratorView theConicSpiralGeneratorView;
    MidPointDisplacementGeneratorView theMidPointDisplacementGeneratorView;
+   QuickStarPolygonGeneratorView theQuickStarPolygonGeneratorView;
 
    /**
     * DataGenerator()
@@ -125,6 +127,7 @@ public class DataGenerator implements ActionListener {
       theRandomWalkGenerator = new RandomWalkGenerator();
       theConicSpiralGenerator = new ConicSpiralGenerator();
       theMidPointDisplacementGenerator = new MidPointDisplacementGenerator();
+      theQuickStarPolygonGenerator = new QuickStarPolygonGenerator();
       
 
       // build their views
@@ -139,6 +142,7 @@ public class DataGenerator implements ActionListener {
       theRandomWalkGeneratorView = new RandomWalkGeneratorView();
       theConicSpiralGeneratorView = new ConicSpiralGeneratorView();
       theMidPointDisplacementGeneratorView = new MidPointDisplacementGeneratorView();
+      theQuickStarPolygonGeneratorView = new QuickStarPolygonGeneratorView();
   }
 
    /**
@@ -165,6 +169,7 @@ public class DataGenerator implements ActionListener {
       theRandomWalkGeneratorView.build(theOptionsPane);
       theConicSpiralGeneratorView.build(theOptionsPane);
       theMidPointDisplacementGeneratorView.build(theOptionsPane);
+      theQuickStarPolygonGeneratorView.build(theOptionsPane);
 
   
       //***
@@ -304,7 +309,12 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theDisplacementBoundReduction = theMidPointDisplacementGeneratorView.getDisplacementBoundReduction();
       
       //Update Model
-      
+
+      // Quick-Star Polygon options
+      theDataGenModel.theGenerateQSPolygonsFlag = theQuickStarPolygonGeneratorView.getGenerateFlag();
+      theDataGenModel.theNumberOfQSPolygons = theQuickStarPolygonGeneratorView.getNumberOfQSPolygons();
+      theDataGenModel.theNumberOfQSVertices = theQuickStarPolygonGeneratorView.getVertexCount();
+      theDataGenModel.theStarRadius = theQuickStarPolygonGeneratorView.getStarRadius();
    }
 
    /**
@@ -366,6 +376,12 @@ public class DataGenerator implements ActionListener {
        theMidPointDisplacementGeneratorView.setDisplacementBound(theDataGenModel.theDisplacementBound);
        theMidPointDisplacementGeneratorView.setDisplacementBoundReduction(theDataGenModel.theDisplacementBoundReduction);
        
+       //Quick-Star Polygon options
+       theQuickStarPolygonGeneratorView.setGenerateFlag(theDataGenModel.theGenerateConicSpiralsFlag);
+       theQuickStarPolygonGeneratorView.setNumberOfQSPolygons(theDataGenModel.theNumberOfQSPolygons);
+       theQuickStarPolygonGeneratorView.setVertexCount(theDataGenModel.theNumberOfVertices);
+       theQuickStarPolygonGeneratorView.setStarRadius(theDataGenModel.theStarRadius);
+       
    }
 
    /**
@@ -402,6 +418,7 @@ public class DataGenerator implements ActionListener {
          theRandomWalkGenerator.generate(theDataGenModel);
          theConicSpiralGenerator.generate(theDataGenModel);
          theMidPointDisplacementGenerator.generate(theDataGenModel);
+         theQuickStarPolygonGenerator.generate(theDataGenModel);
          
          System.out.println("  finished data generation");
       }
