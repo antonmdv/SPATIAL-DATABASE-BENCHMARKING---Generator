@@ -53,7 +53,7 @@ public class ConicSpiralGenerator {
 	
 		while (cnt < numOfConicSpirals)
         {
-			out.print("LINESTRING (");
+			out.print("CONIC-SPIRAL (");
 			
 			// generating random center within scene bounds
 			centerX = r.nextDouble() * aModel.theSceneLength + 1;
