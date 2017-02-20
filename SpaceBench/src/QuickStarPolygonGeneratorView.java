@@ -1,8 +1,8 @@
 /*
  * QuickStarPolygonGeneratorView.java
  *
- * Authors:
- * Version Date:
+ * Authors:Hamad Altammami
+ * Version Date: 01/21/2017
  */
 
 import javax.swing.*;

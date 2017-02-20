@@ -1,15 +1,13 @@
 /*
  * ConicSpiralGenerator
  * 
- * Authors:
- * Version Date:
+ * Authors: Hamad Altammami
+ * Version Date: 02/19/2017
  * 
  * This file is used for generating line strings using the conic spiral generator
  */
-import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
-import java.awt.geom.Point2D;
 import java.util.*;
 
 public class ConicSpiralGenerator {
@@ -40,59 +38,73 @@ public class ConicSpiralGenerator {
 
 		// User input
 		int numOfConicSpirals = aModel.theNumberOfConicSpirals;
-		double radius = aModel.theMaximumRadiusLength;
-		//int vertices = aModel.theNumberOfVertices;
+		double radiusLength = aModel.theMaximumRadiusLength;
+		double angleGap = aModel.theAngleGap;
 		
 		
-		int cnt = 0;	// loop counter
+		int count = 0;	// loop counter
 		
 		
 		Random r = new Random();
 		// Variables needed for generating spirals
 		double x;
 		double y;
+		double radius;
+		double theta = 0;
 		double centerX;
 		double centerY;
 		double nextX;
 		double nextY;
+		boolean verify;
 		double dist;
-		double distLast2Pts;
-		double t;
-	
-		while (cnt < numOfConicSpirals)
+		
+		while (count < numOfConicSpirals)
         {
-			out.print("CONIC-SPIRAL (");
 			
 			// Generates random center within scene bounds
 			centerX = r.nextDouble() * aModel.theSceneLength + 1;
 			centerY = r.nextDouble() * aModel.theSceneLength + 1;
 			
-			t = 0;
-			
-			// Loops generate new points for line strings
-			do {
-				// Generates new vertex
-				x = centerX + t*Math.cos(2*Math.PI*t);
-				y = centerY + t*Math.sin(2*Math.PI*t);
-				
-				out.printf("%f %f, ", x, y);
-				
-				// projected vertex after the last one generated
-				nextX = x + 0.1*Math.cos(2*Math.PI*0.1);
-				nextY = y + 0.1*Math.sin(2*Math.PI*0.1);
-				
-				// distance formula between center and last vertex generated
-				dist = Math.sqrt(Math.pow(centerX - x, 2) + Math.pow(centerY - y, 2));
-				
-				// distance between last vertex and the projected one
-				distLast2Pts = Math.sqrt(Math.pow(nextX - x, 2) + Math.pow(nextY - y, 2));
-				
-				t += 0.1;	// time increment
-			} while (radius > dist + distLast2Pts);		// if next vertex will make spiral's radius > given radius, stop
-			out.println(")");
-			cnt++;
-        }
+			verify = false;
+			verify = withinSceneLength (aModel, radiusLength, centerX, centerY);
+			if (verify) {
+				out.print("LINESTRING (");
+				x = centerX;
+				y = centerY;
+
+				radius = 0;
+				// Loops generate new points for line strings
+				do {
+					// Generates new vertex
+					
+					x = x + radius*Math.cos(Math.PI*theta);
+					y = y + radius*Math.sin(Math.PI*theta);
+					
+					radius += 5;
+					theta += angleGap;
+					
+					out.printf("%f %f, ", x, y);
+					
+					// projected vertex after the last one generated
+					nextX = x + radius*Math.cos(Math.PI*theta);
+					nextY = y + radius*Math.sin(Math.PI*theta);
+
+					// distance formula between center and last vertex generated
+					dist = Math.sqrt(Math.pow(centerX - nextX, 2) + Math.pow(centerY - nextY, 2));
+					
+				} while (radiusLength > dist);
+				out.println(")");
+				count++;
+	        }
+		}
 		out.close();
 		System.out.println("    " + numOfConicSpirals + " conic spirals were generated.");
+	}
+	public boolean withinSceneLength (DataGenModel aModel, double maxRadius, double centerX, double centerY) {
+		if (centerX + maxRadius < aModel.theSceneLength && centerX - maxRadius > 0
+					&& centerY + maxRadius < aModel.theSceneLength && centerY - maxRadius > 0) {
+			return true;
+		}
+		return false;
 	}
 }

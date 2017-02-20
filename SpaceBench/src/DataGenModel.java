@@ -70,7 +70,7 @@ public class DataGenModel {
    public boolean theGenerateConicSpiralsFlag;
    public int theNumberOfConicSpirals;
    public double theMaximumRadiusLength;
-   public int theNumberOfVertices;
+   public double theAngleGap;
    
    //Midpoint Displacement values
    public boolean theGenerateMidpointDisplacementsFlag;
@@ -559,7 +559,7 @@ public class DataGenModel {
        if (aKey.equalsIgnoreCase("MaximumRadiusLength"))
         	theMaximumRadiusLength = Double.valueOf(aValue);
        if (aKey.equals("NumberOfVertices"))
-        	theNumberOfVertices = Integer.valueOf(aValue);
+        	theAngleGap = Integer.valueOf(aValue);
        
        // Midpoint Displacement options
        if (aKey.equalsIgnoreCase("GenerateMidPointDisplacemntFlag"))
@@ -638,7 +638,7 @@ public class DataGenModel {
       bufWtr.write("GenerateConicSpiralFlag," + Boolean.toString(theGenerateConicSpiralsFlag) + "\n");
       bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
       bufWtr.write("MaximumRadiusLength," + Double.toString(theMaximumRadiusLength) + "\n");
-      bufWtr.write("NumberOfVertices," + Integer.toString(theNumberOfVertices) + "\n");
+      bufWtr.write("NumberOfVertices," + Double.toString(theAngleGap) + "\n");
       
       // Midpoint Displacement options
       bufWtr.write("midpointDisplacementFlag," + Boolean.toString(theGenerateMidpointDisplacementsFlag) + "\n");

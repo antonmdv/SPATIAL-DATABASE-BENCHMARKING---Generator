@@ -1,8 +1,8 @@
 /*
  * SceneOptionsView.java
  *
- * Original Authors: 
- * Version Date: 
+ * Original Authors: Hamad Altammami
+ * Version Date: 01/20/2017
  * 
  * This file has to do with the mechanics of generating Quick-star polygons
  */

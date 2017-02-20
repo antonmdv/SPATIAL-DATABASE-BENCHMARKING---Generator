@@ -2,26 +2,26 @@
  * DataGenerator.java
  *
  * Original Author: Tim Faulkner
- * Editing Authors:
+ * Editing Authors: 
  * Version Date: 
  * 
  * This file has to do with creation of the main program window
  */
 
-import java.util.Scanner;
-import java.io.BufferedInputStream;
+//import java.util.Scanner;
+//import java.io.BufferedInputStream;
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 
-import java.text.NumberFormat;
+//import java.text.NumberFormat;
 import javax.swing.JTabbedPane;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+//import javax.swing.ImageIcon;
+//import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-import java.awt.event.WindowListener;
+//import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -305,7 +305,7 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theGenerateConicSpiralsFlag = theConicSpiralGeneratorView.getGenerateFlag();
       theDataGenModel.theNumberOfConicSpirals = theConicSpiralGeneratorView.getNumberOfConicSpirals();
       theDataGenModel.theMaximumRadiusLength = theConicSpiralGeneratorView.getMaximumRadiusLength();
-      theDataGenModel.theNumberOfVertices = theConicSpiralGeneratorView.getNumberOfVertices();
+      theDataGenModel.theAngleGap = theConicSpiralGeneratorView.getAngleGap();
       
       // MidPoint Displacement options 
       theDataGenModel.theGenerateMidpointDisplacementsFlag = theMidPointDisplacementGeneratorView.getGenerateFlag();
@@ -372,7 +372,7 @@ public class DataGenerator implements ActionListener {
        theConicSpiralGeneratorView.setGenerateFlag(theDataGenModel.theGenerateConicSpiralsFlag);
        theConicSpiralGeneratorView.setNumberOfConicSpirals(theDataGenModel.theNumberOfConicSpirals);
        theConicSpiralGeneratorView.setMaximumRadiusLength(theDataGenModel.theMaximumRadiusLength);
-       theConicSpiralGeneratorView.setNumberOfVertices(theDataGenModel.theNumberOfVertices);
+       theConicSpiralGeneratorView.setAngleGap(theDataGenModel.theAngleGap);
        
        //Midpoint Displacement options 
        theMidPointDisplacementGeneratorView.setGenerateFlag(true);
@@ -384,7 +384,7 @@ public class DataGenerator implements ActionListener {
        //Quick-Star Polygon options
        theQuickStarPolygonGeneratorView.setGenerateFlag(theDataGenModel.theGenerateConicSpiralsFlag);
        theQuickStarPolygonGeneratorView.setNumberOfQSPolygons(theDataGenModel.theNumberOfQSPolygons);
-       theQuickStarPolygonGeneratorView.setVertexCount(theDataGenModel.theNumberOfVertices);
+       theQuickStarPolygonGeneratorView.setVertexCount(theDataGenModel.theNumberOfQSVertices);
        theQuickStarPolygonGeneratorView.setStarRadius(theDataGenModel.theStarRadius);
        
    }

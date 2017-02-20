@@ -1,25 +1,25 @@
 /*
  * ConicSpiralGeneratorView
  * 
- * Authors: 
- * Version Date:
+ * Authors: Hamad Altammami
+ * Version Date: 02/19/2017
  * 
  * This file is for the GUI of the conic spiral generator
  */
 import javax.swing.*;
-import java.io.*;
-import java.awt.*;
+//import java.io.*;
+//import java.awt.*;
 import java.awt.event.*;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent; 
 import java.text.NumberFormat;
-import javax.swing.text.*;
+//import javax.swing.text.*;
 
-/*
+/*	#Input:
  * 	- number of spirals
- *	- Radius const
- *	- number of vertices
+ *	- maximum radius
+ *	- angle gap
  */
 
 public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemListener{
@@ -31,8 +31,8 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   private static final String GENERATE_CHECKBOX_TITLE = "Generate data file?";
 	   private static final boolean DEFAULT_GENERATE_FLAG = true;
 	   private static final int DEFAULT_CS_COUNT = 20;
-	   private static final int DEFAULT_RD_LENGTH = 10;
-	   private static final int DEFAULT_NV_COUNT = 15;
+	   private static final double DEFAULT_RD_MAX = 100;
+	   private static final double DEFAULT_AG = 0.25;
 	   
 	   //***
 	   // instance variables
@@ -52,22 +52,22 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   private JFormattedTextField theNumberOfConicSpiralField;	//theNumberOfConicSpiralField
 
 	   // Elements for 'radius length'
-	   private NumberFormat theMaximumRadiusFormat;
-	   private JPanel theMaximumRadiusPanel;
-	   private JLabel theMaximumRadiusLabel;
-	   private JFormattedTextField theMaximumRadiusField;
+	   private NumberFormat theMaximumRadiusLengthFormat;
+	   private JPanel theMaximumRadiusLengthPanel;
+	   private JLabel theMaximumRadiusLengthLabel;
+	   private JFormattedTextField theMaximumRadiusLengthField;
 	   
 	   // Elements for 'number of vertices'
-	   private NumberFormat theNumberOfVerticesFormat;
-	   private JPanel theNumberOfVerticesPanel;
-	   private JLabel theNumberOfVerticesLabel;
-	   private JFormattedTextField theNumberOfVerticesField;
+	   private NumberFormat theAngleGapFormat;
+	   private JPanel theAngleGapPanel;
+	   private JLabel theAngleGapLabel;
+	   private JFormattedTextField theAngleGapField;
 
 	   // Property values
 	   private boolean theGenerateFlag;
 	   private int theNumberOfConicSpirals;
-	   private double theMaximumRadius;
-	   private int theNumberOfVertices;
+	   private double theMaximumRadiusLength;
+	   private double theAngleGap;
 	   
 	   /*
 	    * ConicSpiralGeneratorView
@@ -80,13 +80,13 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   {
 	      theGenerateFlag = DEFAULT_GENERATE_FLAG;
 	      theNumberOfConicSpirals = DEFAULT_CS_COUNT;
-	      theMaximumRadius = DEFAULT_RD_LENGTH;
-	      theNumberOfVertices = DEFAULT_NV_COUNT;
+	      theMaximumRadiusLength = DEFAULT_RD_MAX;
+	      theAngleGap = DEFAULT_AG;
 	   }
 
 	   /*
 	    * setGenerateFlag
-	    * This method sets the generate datfile property
+	    * This method sets the generate datafile property
 	    */
 	   
 	   public void setGenerateFlag(boolean aFlag)
@@ -123,11 +123,11 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   
 	   public void setMaximumRadiusLength(double aLength)
 	   {
-		   theMaximumRadius = aLength;
-	      if (theMaximumRadiusField != null)
+		   theMaximumRadiusLength = aLength;
+	      if (theMaximumRadiusLengthField != null)
 	      {
-	    	  theMaximumRadiusField.setValue(theMaximumRadiusField);
-	    	  theMaximumRadiusField.updateUI();
+	    	  theMaximumRadiusLengthField.setValue(theMaximumRadiusLengthField);
+	    	  theMaximumRadiusLengthField.updateUI();
 	      }
 	   }
 	   
@@ -136,13 +136,13 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	    * This method sets the current number of vertices to generate
 	    */
 	   
-	   public void setNumberOfVertices(int aLength)
+	   public void setAngleGap(double aGap)
 	   {
-		   theNumberOfVertices = aLength;
-	      if (theNumberOfVerticesField != null)
+		   theAngleGap = aGap;
+	      if (theAngleGapField != null)
 	      {
-	    	  theNumberOfVerticesField.setValue(theNumberOfVerticesField);
-	    	  theNumberOfVerticesField.updateUI();
+	    	  theAngleGapField.setValue(theAngleGapField);
+	    	  theAngleGapField.updateUI();
 	      }
 	   }
 	   
@@ -173,7 +173,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		   
 		   public double getMaximumRadiusLength()
 		   {
-		      return theMaximumRadius;
+		      return theMaximumRadiusLength;
 		   }
 		   
 		   /*
@@ -181,9 +181,9 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		    * This method returns the current number of steps
 		    */
 		   
-		   public int getNumberOfVertices()
+		   public double getAngleGap()
 		   {
-			   return theNumberOfVertices;
+			   return theAngleGap;
 		   }
 		   /*
 		    * build
@@ -235,51 +235,51 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		      //***
 		      
 		      // Build format arguments
-		      theMaximumRadiusFormat = NumberFormat.getNumberInstance();
+		      theMaximumRadiusLengthFormat = NumberFormat.getNumberInstance();
 
 		      // Create number of point elements [label, field]
-		      theMaximumRadiusLabel = new JLabel("Radius Length:");
-		      theMaximumRadiusLabel.setHorizontalAlignment(JLabel.LEFT);
-		      theMaximumRadiusField = new JFormattedTextField(theMaximumRadiusFormat);
+		      theMaximumRadiusLengthLabel = new JLabel("Radius Length:");
+		      theMaximumRadiusLengthLabel.setHorizontalAlignment(JLabel.LEFT);
+		      theMaximumRadiusLengthField = new JFormattedTextField(theMaximumRadiusLengthFormat);
 		      
-		      theMaximumRadiusField.setValue(new Double(theMaximumRadius));
-		      theMaximumRadiusField.setColumns(10);
-		      theMaximumRadiusField.addPropertyChangeListener("value", this);
+		      theMaximumRadiusLengthField.setValue(new Double(theMaximumRadiusLength));
+		      theMaximumRadiusLengthField.setColumns(10);
+		      theMaximumRadiusLengthField.addPropertyChangeListener("value", this);
 		      
 
 		      // Add to containing panel
-		      theMaximumRadiusPanel = new JPanel();
-		      theMaximumRadiusPanel.add(theMaximumRadiusLabel);
-		      theMaximumRadiusPanel.add(theMaximumRadiusField);
+		      theMaximumRadiusLengthPanel = new JPanel();
+		      theMaximumRadiusLengthPanel.add(theMaximumRadiusLengthLabel);
+		      theMaximumRadiusLengthPanel.add(theMaximumRadiusLengthField);
 		      
 		      //***
 		      // Number of vertices
 		      //***
 		      
 		      // Build format arguments
-		      theNumberOfVerticesFormat = NumberFormat.getIntegerInstance();
+		      theAngleGapFormat = NumberFormat.getIntegerInstance();
 
 		      // Create number of point elements [label, field]
-		      theNumberOfVerticesLabel = new JLabel("Number of Vertices:");
-		      theNumberOfVerticesLabel.setHorizontalAlignment(JLabel.LEFT);
-		      theNumberOfVerticesField = new JFormattedTextField(theNumberOfVerticesFormat);
+		      theAngleGapLabel = new JLabel("Angle Gap (from 0.1 to 1.99)");
+		      theAngleGapLabel.setHorizontalAlignment(JLabel.LEFT);
+		      theAngleGapField = new JFormattedTextField(theAngleGapFormat);
 		      
-		      theNumberOfVerticesField.setValue(new Double(theNumberOfVertices));
-		      theNumberOfVerticesField.setColumns(10);
-		      theNumberOfVerticesField.addPropertyChangeListener("value", this);
+		      theAngleGapField.setValue(new Double(theAngleGap));
+		      theAngleGapField.setColumns(10);
+		      theAngleGapField.addPropertyChangeListener("value", this);
 		      
 		      // Add to containing panel
-		      theNumberOfVerticesPanel = new JPanel();
-		      theNumberOfVerticesPanel.add(theNumberOfVerticesLabel);
-		      theNumberOfVerticesPanel.add(theNumberOfVerticesField);
+		      theAngleGapPanel = new JPanel();
+		      theAngleGapPanel.add(theAngleGapLabel);
+		      theAngleGapPanel.add(theAngleGapField);
 		      
 		      // Build tab
 		      theTabbedPanePanel = new JPanel();
 		      theTabbedPanePanel.setLayout(new BoxLayout(theTabbedPanePanel, BoxLayout.PAGE_AXIS));
 		      theTabbedPanePanel.add(theGeneratePanel);
 		      theTabbedPanePanel.add(theNumberOfConicSpiralPanel);
-		      theTabbedPanePanel.add(theMaximumRadiusPanel);
-		      theTabbedPanePanel.add(theNumberOfVerticesPanel);
+		      theTabbedPanePanel.add(theMaximumRadiusLengthPanel);
+		      theTabbedPanePanel.add(theAngleGapPanel);
 		      
 		      
 		      // Add new tab to tabbed pane
@@ -301,17 +301,17 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		         if (TRACE)
 		            System.out.println("Conic Spiral: number of algorithms = " + theNumberOfConicSpirals);
 		      }
-		      else if (source == theMaximumRadiusField)
+		      else if (source == theMaximumRadiusLengthField)
 		      {
-		    	  theMaximumRadius = ((Number)theMaximumRadiusField.getValue()).doubleValue();
+		    	  theMaximumRadiusLength = ((Number)theMaximumRadiusLengthField.getValue()).doubleValue();
 		         if (TRACE)
-		            System.out.println("Conic Spiral: maximum step length = " + theMaximumRadius);
+		            System.out.println("Conic Spiral: radius increments = " + theMaximumRadiusLength);
 		      }
-		      else if (source == theNumberOfVerticesField)
+		      else if (source == theAngleGapField)
 		      {
-		    	  theNumberOfVertices = ((Number)theNumberOfVerticesField.getValue()).intValue();
+		    	  theAngleGap = ((Number)theAngleGapField.getValue()).intValue();
 		    	  if (TRACE)
-		    		  System.out.println("Conic Spiral: number of steps = " + theNumberOfVertices);
+		    		  System.out.println("Conic Spiral: angle gap = " + theAngleGap);
 		      }
 		   }
 		   
@@ -329,14 +329,14 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		         if (theGenerateFlag)
 		         {
 		        	 theNumberOfConicSpiralField.setEnabled(true);
-		        	 theMaximumRadiusField.setEnabled(true);
-		        	 theNumberOfVerticesField.setEnabled(true);
+		        	 theMaximumRadiusLengthField.setEnabled(true);
+		        	 theAngleGapField.setEnabled(true);
 		         }
 		         else
 		         {
 		        	 theNumberOfConicSpiralField.setEnabled(false);
-		        	 theMaximumRadiusField.setEnabled(false);
-		        	 theNumberOfVerticesField.setEnabled(false);
+		        	 theMaximumRadiusLengthField.setEnabled(false);
+		        	 theAngleGapField.setEnabled(false);
 		         }
 		         if (TRACE)
 		            System.out.println("Random Walk: generate = " + theGenerateFlag);
