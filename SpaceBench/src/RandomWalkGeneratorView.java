@@ -8,14 +8,10 @@
  */
 
 import javax.swing.*;
-import java.io.*;
-import java.awt.*;
 import java.awt.event.*;
-
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent; 
 import java.text.NumberFormat;
-import javax.swing.text.*;
 
 public class RandomWalkGeneratorView implements PropertyChangeListener, ItemListener {
 	

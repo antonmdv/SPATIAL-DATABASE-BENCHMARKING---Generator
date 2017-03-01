@@ -9,7 +9,6 @@
  */
 
 
-import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
 
@@ -30,11 +29,11 @@ public class TriangleGenerator {
     */
    public void generate(DataGenModel aModel) throws IOException
    {
-      String parameter;
+      //String parameter;
       
         int cnt;
         double leftX, lowerY;
-        double i, x, y;
+        double x, y;
         boolean collinear = false, inlist = false;
         String outFilename;
         FileWriter f = null;

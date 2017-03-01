@@ -8,10 +8,7 @@
  * This file relates to the generation mechanics for the point generator
  */
 
-import javax.swing.*;
 import java.io.*;
-import java.awt.*;
-import java.awt.event.*;
 
 public class PointGenerator
 {
@@ -40,7 +37,8 @@ public class PointGenerator
    
    public void generate(DataGenModel aModel) throws IOException
    {
-      double x,y,i,j;
+      double x,y;
+      //,i,j;
       long cnt;
       String outFilename;
       FileWriter f = null;

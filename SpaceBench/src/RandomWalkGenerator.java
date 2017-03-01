@@ -7,7 +7,7 @@
  * This file has to do with the mechanics of generating a string via the Random Walk algorithm
  */
 
-import javax.swing.*;
+
 import java.lang.Math;
 import java.io.*;
 import java.awt.geom.Point2D;
@@ -65,7 +65,6 @@ public class RandomWalkGenerator {
 	   
 	   
 	   //prepare algorithm counters
-	   int currentStep;
 	   int amountProduced = 0;
 	   
 	   //Generate desired number of algorithms
@@ -78,7 +77,6 @@ public class RandomWalkGenerator {
 		   //prepare
 		   List<Point2D> xyCoords = new ArrayList<Point2D>();
 		   	xyCoords.clear();
-		   	currentStep = 0;
 		   	x = 0;
 		   	y = 0;
 		   	
@@ -131,7 +129,6 @@ public class RandomWalkGenerator {
 		            	  //if conditions satisfied, add point to the path and up the counter
 		                  xyCoords.add(candidatePt);
 		                  checkPt = candidatePt;
-		                  currentStep++;
 		                  
 		               }   
 		   	   

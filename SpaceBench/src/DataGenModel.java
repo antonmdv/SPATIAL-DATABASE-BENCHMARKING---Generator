@@ -9,12 +9,8 @@
  * and reads / writes to CSV files for options loading / saving
  */
 
-import java.util.Scanner;
-import java.io.BufferedInputStream;
 import javax.swing.*;
 import java.io.*;
-import java.awt.*;
-import java.awt.event.*;
 import javax.swing.JFileChooser;
 import java.util.StringTokenizer;
 

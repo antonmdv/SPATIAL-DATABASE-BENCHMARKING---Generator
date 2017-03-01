@@ -7,7 +7,6 @@
  * This file has to do with the mechanics of generating line strings with the midpoint displacement algorithm
  */
 
-import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
 import java.awt.geom.Point2D;
@@ -26,7 +25,7 @@ public class MidPointDisplacementGenerator {
 		String outFilename;
 		FileWriter f = null;
 		PrintWriter out = null;
-		Random rnd = new Random();
+		//Random rnd = new Random();
 		
 		//generate output file
 		outFilename = aModel.theFilenamePrefix + "midPointDisplacement.txt";

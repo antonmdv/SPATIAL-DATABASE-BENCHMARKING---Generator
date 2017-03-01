@@ -7,17 +7,14 @@
  * This file has to do with the mechanics of generating Quick-star polygons
  */
 
-import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
-import java.awt.geom.Point2D;
 import java.util.*;
 
 public class QuickStarPolygonGenerator {
 	
 	QuickStarPolygonGenerator() {}
 	
-	@SuppressWarnings("resource")
 	public void generate(DataGenModel aModel) throws IOException
 	{
 		// set up file output 

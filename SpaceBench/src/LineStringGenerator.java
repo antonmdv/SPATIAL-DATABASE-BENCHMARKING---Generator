@@ -9,7 +9,6 @@
  * via a simple plane sweep algorithm
  */
 
-import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
 import java.awt.geom.Point2D;

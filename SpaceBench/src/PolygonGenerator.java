@@ -18,7 +18,6 @@
                     Grid[x][y] = '*' means (x, y) is an existing vertice of the polygon being generated
 */
 
-import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
 
@@ -45,129 +44,126 @@ public class PolygonGenerator {
    
    public void generate(DataGenModel aModel) throws IOException
    {
-
-      String parameter;
-
-        int PolygonCNT;
-        int NumVer, VerCNT;
-        int i, j;
-        double x, y, leftX, lowerY;
-      String outFilename;
-      FileWriter f = null;
-      PrintWriter out = null;
-
-      // do we wish polygons generated?
-      if (aModel.theGeneratePolygonsFlag == false)
-         return;
-         
-      // setup file output
-      outFilename = aModel.theFilenamePrefix + "polygons.txt";
-      f = new FileWriter(outFilename);
-      out = new PrintWriter(f);
-
-      // generate polygons
-      System.out.println("  creating polygon datafile [" + outFilename + "]");
-
-        double[] pointsX = new double[aModel.thePolygonMaxVertexCount + 1];
-        double[] pointsY = new double[aModel.thePolygonMaxVertexCount + 1];
-
-      int cnt, trialNum = (int)Math.pow((double)(aModel.thePolygonBBoxLength + 1), 2.0) / 2;
-
-        PolygonCNT = 0;
-        while (PolygonCNT < aModel.theNumberOfPolygons)
-        {
-
-            // the number of vertices of the polygon >= 3
-            NumVer = (int)Math.round( Math.random() * (aModel.thePolygonMaxVertexCount - aModel.thePolygonMinVertexCount) + aModel.thePolygonMinVertexCount);
-
-            // the least x & y of the bounding square
-            leftX  = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
-            lowerY = leftX;
-
-            // the vertex 0 of the polygon
-            x = leftX + Math.random() * aModel.thePolygonBBoxLength;
-            y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
-            pointsX[0] = x;
-            pointsY[0] = y;
-
-            while(true)
-            {
-            x = leftX + Math.random() * aModel.thePolygonBBoxLength;
-            y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
-
-             if ( (x >= leftX && x <= (leftX+aModel.thePolygonBBoxLength)) && (y >= lowerY && y <= (lowerY+aModel.thePolygonBBoxLength))
-                 // if (x, y) falls in the bounding square
-                 && (x != pointsX[0] || y != pointsY[0]) )
-            {
-               pointsX[1] = x;
-               pointsY[1] = y;
-               break;
-            }
-
-            }
-
-
-         // finish the polygon: a sequence of >= 3 vertices
-         VerCNT = 2;
-         while (VerCNT < NumVer)
-         {
-            // generate a randomly vertex
-            cnt = 1;
-            while (cnt <= trialNum)
-            {
-                 // give a candidate vertex
-               x = leftX + Math.random() * aModel.thePolygonBBoxLength;
-               y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
-
-                  // check the validness of the vertex
-                if ( (x < leftX || x > (leftX+aModel.thePolygonBBoxLength)) || (y < lowerY || y > (lowerY+aModel.thePolygonBBoxLength)) )
-                  //if (x, y) is outside the bounding square
-                   ;
-
-                else if ( InvalidVertex(x, y, pointsX, pointsY, VerCNT - 1) )
-                        ;
-
-                else
-                {
-                  // (x, y) is selected
-                   pointsX[VerCNT] = x;
-                   pointsY[VerCNT] = y;
-                   break;
-                }
-
-                    cnt ++;
-
-            }  // while (cnt <= trialNum)
-
-            if (cnt > trialNum)
-               break;
-            VerCNT ++;
-            if (VerCNT % 1000 == 0)
-               System.out.println(VerCNT/1000);
-
-         }  // while loop: finish the polygon
-
-         // print out & draw the polygon
-         //Old format - POLYGON ((926 918) (941 903) (913 954) (882 881))
-         //New format - POLYGON ((926 918, 941 903, 913 954, 882 881))
-            if (VerCNT >= 3)
-            {
-               NumVer = VerCNT;
-               pointsX[NumVer] = pointsX[0];
-               pointsY[NumVer] = pointsY[0];
-               out.print("POLYGON ((");
-               out.print(pointsX[0] + " " + pointsY[0] + ", ");
-               for (i = 1; i <= NumVer-2; i++)
-                  out.print(pointsX[i] +" " + pointsY[i] + ", ");
-               out.print(pointsX[NumVer-1] +" " + pointsY[NumVer-1]);
-               out.println("))");
-            }
-            PolygonCNT ++;
-            if (PolygonCNT % 1000 == 0)
-               System.out.println(PolygonCNT/1000);
-        }  // while (PolygonCNT < PolygonNum)
-        out.close();
-        System.out.println("    " + aModel.theNumberOfPolygons + " polygons were generated.");
+	  int PolygonCNT;
+	  int NumVer, VerCNT;
+	  int i;
+	  double x, y, leftX, lowerY;
+	  String outFilename;
+	  FileWriter f = null;
+	  PrintWriter out = null;
+	
+	  // do we wish polygons generated?
+	  if (aModel.theGeneratePolygonsFlag == false)
+	     return;
+	     
+	  // setup file output
+	  outFilename = aModel.theFilenamePrefix + "polygons.txt";
+	  f = new FileWriter(outFilename);
+	  out = new PrintWriter(f);
+	
+	  // generate polygons
+	  System.out.println("  creating polygon datafile [" + outFilename + "]");
+	
+	  double[] pointsX = new double[aModel.thePolygonMaxVertexCount + 1];
+	  double[] pointsY = new double[aModel.thePolygonMaxVertexCount + 1];
+	
+	  int cnt, trialNum = (int)Math.pow((double)(aModel.thePolygonBBoxLength + 1), 2.0) / 2;
+	
+	  PolygonCNT = 0;
+	    while (PolygonCNT < aModel.theNumberOfPolygons)
+	    {
+	
+	        // the number of vertices of the polygon >= 3
+	NumVer = (int)Math.round( Math.random() * (aModel.thePolygonMaxVertexCount - aModel.thePolygonMinVertexCount) + aModel.thePolygonMinVertexCount);
+	
+	// the least x & y of the bounding square
+	leftX  = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
+	lowerY = leftX;
+	
+	// the vertex 0 of the polygon
+	x = leftX + Math.random() * aModel.thePolygonBBoxLength;
+	y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
+	pointsX[0] = x;
+	pointsY[0] = y;
+	
+	while(true)
+	{
+	x = leftX + Math.random() * aModel.thePolygonBBoxLength;
+	y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
+	
+	 if ( (x >= leftX && x <= (leftX+aModel.thePolygonBBoxLength)) && (y >= lowerY && y <= (lowerY+aModel.thePolygonBBoxLength))
+	     // if (x, y) falls in the bounding square
+	         && (x != pointsX[0] || y != pointsY[0]) )
+	    {
+	       pointsX[1] = x;
+	       pointsY[1] = y;
+	       break;
+	    }
+	
+	    }
+	
+	
+	 // finish the polygon: a sequence of >= 3 vertices
+	 VerCNT = 2;
+	 while (VerCNT < NumVer)
+	 {
+	    // generate a randomly vertex
+	cnt = 1;
+	while (cnt <= trialNum)
+	{
+	     // give a candidate vertex
+	   x = leftX + Math.random() * aModel.thePolygonBBoxLength;
+	   y = lowerY + Math.random() * aModel.thePolygonBBoxLength;
+	
+	      // check the validness of the vertex
+	    if ( (x < leftX || x > (leftX+aModel.thePolygonBBoxLength)) || (y < lowerY || y > (lowerY+aModel.thePolygonBBoxLength)) )
+	      //if (x, y) is outside the bounding square
+	       ;
+	
+	    else if ( InvalidVertex(x, y, pointsX, pointsY, VerCNT - 1) )
+	            ;
+	
+	    else
+	    {
+	      // (x, y) is selected
+	       pointsX[VerCNT] = x;
+	       pointsY[VerCNT] = y;
+	       break;
+	    }
+	
+	        cnt ++;
+	
+	}  // while (cnt <= trialNum)
+	
+	    if (cnt > trialNum)
+	       break;
+	    VerCNT ++;
+	    if (VerCNT % 1000 == 0)
+	       System.out.println(VerCNT/1000);
+	
+	 }  // while loop: finish the polygon
+	
+	 // print out & draw the polygon
+	 //Old format - POLYGON ((926 918) (941 903) (913 954) (882 881))
+	 //New format - POLYGON ((926 918, 941 903, 913 954, 882 881))
+	if (VerCNT >= 3)
+	{
+	   NumVer = VerCNT;
+	   pointsX[NumVer] = pointsX[0];
+	   pointsY[NumVer] = pointsY[0];
+	   out.print("POLYGON ((");
+	   out.print(pointsX[0] + " " + pointsY[0] + ", ");
+	   for (i = 1; i <= NumVer-2; i++)
+	      out.print(pointsX[i] +" " + pointsY[i] + ", ");
+	   out.print(pointsX[NumVer-1] +" " + pointsY[NumVer-1]);
+	   out.println("))");
+	    }
+	    PolygonCNT ++;
+	    if (PolygonCNT % 1000 == 0)
+	       System.out.println(PolygonCNT/1000);
+	}  // while (PolygonCNT < PolygonNum)
+	out.close();
+	System.out.println("    " + aModel.theNumberOfPolygons + " polygons were generated.");
     }
     
     private boolean isCollinear(double pointsX, double pointsY, double pointsX2, double pointsY2, double x, double y)  {

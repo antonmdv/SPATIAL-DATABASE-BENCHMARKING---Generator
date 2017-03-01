@@ -8,20 +8,13 @@
  * This file has to do with creation of the main program window
  */
 
-//import java.util.Scanner;
-//import java.io.BufferedInputStream;
 import javax.swing.*;
 import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
-
-//import java.text.NumberFormat;
 import javax.swing.JTabbedPane;
-//import javax.swing.ImageIcon;
-//import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
-//import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -207,7 +200,7 @@ public class DataGenerator implements ActionListener {
       //***
 
       theAppFrame.getContentPane().add(theOptionsPane, BorderLayout.CENTER);
-      theAppFrame.setSize(500, 320);
+      theAppFrame.setSize(500, 350);
       theAppFrame.setVisible(true);
    }
 

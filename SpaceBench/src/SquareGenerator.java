@@ -8,11 +8,9 @@
  * This file has to do with the mechanics of generating a square
  */
 
-import javax.swing.*;
 import java.lang.Math;
 import java.io.*;
-import java.awt.*;
-import java.awt.event.*;
+
 
 public class SquareGenerator {
 
@@ -38,9 +36,8 @@ public class SquareGenerator {
    {
       String outFilename;
 
-      int cnt, SquareNum;
-      double MaxSize, d, s;
-      double i;
+      int cnt;
+      double d, s;
       double leftX, lowerY, x1, x2, y1, y2, tmp;
       FileWriter f = null;
       PrintWriter out = null;
