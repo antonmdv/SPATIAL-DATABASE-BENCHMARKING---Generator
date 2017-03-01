@@ -39,7 +39,10 @@ public class ConicSpiralGenerator {
 		// User input
 		int numOfConicSpirals = aModel.theNumberOfConicSpirals;
 		double radiusLength = aModel.theMaximumRadiusLength;
-		double angleGap = aModel.theAngleGap;
+		double segmentInc = aModel.theSegmentInc;
+		double baseRadius = aModel.theRadius;
+		double angleGapLower = aModel.theAngleGapLower;
+		double angleGapUpper = aModel.theAngleGapUpper;
 		
 		
 		int count = 0;	// loop counter
@@ -49,18 +52,17 @@ public class ConicSpiralGenerator {
 		// Variables needed for generating spirals
 		double x;
 		double y;
-		double radius;
-		double theta = 0;
+		double theta;
 		double centerX;
 		double centerY;
 		double nextX;
 		double nextY;
+		double randAngleGap;
 		boolean verify;
 		double dist;
 		
 		while (count < numOfConicSpirals)
         {
-			
 			// Generates random center within scene bounds
 			centerX = r.nextDouble() * aModel.theSceneLength + 1;
 			centerY = r.nextDouble() * aModel.theSceneLength + 1;
@@ -72,22 +74,23 @@ public class ConicSpiralGenerator {
 				x = centerX;
 				y = centerY;
 
-				radius = 0;
+				theta = 0;
+				baseRadius = aModel.theRadius;
 				// Loops generate new points for line strings
 				do {
 					// Generates new vertex
+					randAngleGap = angleGapLower + (angleGapUpper - angleGapLower) * r.nextDouble();
+					baseRadius += r.nextDouble() * segmentInc;
+					theta += randAngleGap;
 					
-					x = x + radius*Math.cos(Math.PI*theta);
-					y = y + radius*Math.sin(Math.PI*theta);
-					
-					radius += 5;
-					theta += angleGap;
+					x = x + baseRadius*Math.cos(theta);
+					y = y + baseRadius*Math.sin(theta);
 					
 					out.printf("%f %f, ", x, y);
 					
 					// projected vertex after the last one generated
-					nextX = x + radius*Math.cos(Math.PI*theta);
-					nextY = y + radius*Math.sin(Math.PI*theta);
+					nextX = x + baseRadius*Math.cos(Math.PI*theta);
+					nextY = y + baseRadius*Math.sin(Math.PI*theta);
 
 					// distance formula between center and last vertex generated
 					dist = Math.sqrt(Math.pow(centerX - nextX, 2) + Math.pow(centerY - nextY, 2));

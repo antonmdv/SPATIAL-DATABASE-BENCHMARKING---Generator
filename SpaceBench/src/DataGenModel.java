@@ -70,7 +70,10 @@ public class DataGenModel {
    public boolean theGenerateConicSpiralsFlag;
    public int theNumberOfConicSpirals;
    public double theMaximumRadiusLength;
-   public double theAngleGap;
+   public double theSegmentInc;
+   public double theRadius;
+   public double theAngleGapLower;
+   public double theAngleGapUpper;
    
    //Midpoint Displacement values
    public boolean theGenerateMidpointDisplacementsFlag;
@@ -262,6 +265,14 @@ public class DataGenModel {
          {
             msg = "Maximum radius length has to be < scene length, and > 0";
             isValid = false;
+         }
+         if ((theSegmentInc < 10) || (theSegmentInc > 50)) {
+        	 msg = "Segment increment has to be > 10 and < 50";
+             isValid = false;
+         }
+         if ((theRadius < 0) || (theRadius > theMaximumRadiusLength)) {
+        	 msg = "Radius has to be > 0 and < Maximum radius length";
+             isValid = false;
          }
       }
       //***
@@ -558,8 +569,14 @@ public class DataGenModel {
         	theNumberOfConicSpirals = Integer.valueOf(aValue);
        if (aKey.equalsIgnoreCase("MaximumRadiusLength"))
         	theMaximumRadiusLength = Double.valueOf(aValue);
-       if (aKey.equals("NumberOfVertices"))
-        	theAngleGap = Integer.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("SegmentInc"))
+       		theSegmentInc = Double.valueOf(aValue);
+       if (aKey.equalsIgnoreCase("Radius"))
+      		theRadius = Double.valueOf(aValue);
+       if (aKey.equals("AngleGapLower"))
+        	theAngleGapLower = Double.valueOf(aValue);
+       if (aKey.equals("AngleGapUpper"))
+       		theAngleGapUpper = Double.valueOf(aValue);
        
        // Midpoint Displacement options
        if (aKey.equalsIgnoreCase("GenerateMidPointDisplacemntFlag"))
@@ -582,8 +599,6 @@ public class DataGenModel {
     	   theNumberOfQSVertices = Integer.valueOf(aValue);
        if (aKey.equalsIgnoreCase("theStarRadius"))
     	   theStarRadius = Double.valueOf(aValue);
-       
-       
    }
 
    /*
@@ -638,7 +653,9 @@ public class DataGenModel {
       bufWtr.write("GenerateConicSpiralFlag," + Boolean.toString(theGenerateConicSpiralsFlag) + "\n");
       bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
       bufWtr.write("MaximumRadiusLength," + Double.toString(theMaximumRadiusLength) + "\n");
-      bufWtr.write("NumberOfVertices," + Double.toString(theAngleGap) + "\n");
+      bufWtr.write("SegmentInc," + Double.toString(theSegmentInc) + "\n");
+      bufWtr.write("AngleGapLower," + Double.toString(theAngleGapLower) + "\n");
+      bufWtr.write("AngleGapUpper," + Double.toString(theAngleGapUpper) + "\n");
       
       // Midpoint Displacement options
       bufWtr.write("midpointDisplacementFlag," + Boolean.toString(theGenerateMidpointDisplacementsFlag) + "\n");

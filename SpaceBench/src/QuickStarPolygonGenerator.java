@@ -54,37 +54,45 @@ public class QuickStarPolygonGenerator {
 		double centerX;
 		double centerY;
 		double gap;		// angle gap
+		boolean verify;
 		
 		
 		gap = (2 * Math.PI) / numOfQSVertices;
 		Random rand = new Random();
-		
 		while (outerCount < numOfQSPolygons) {
-			
-			out.print("Quick-Star (");
-			
 			// generating random center within scene bound
 			centerX = rand.nextDouble() * aModel.theSceneLength + 1;
 			centerY = rand.nextDouble() * aModel.theSceneLength + 1;
+			verify = withinSceneLength(aModel, starRadius, centerX, centerY);
 			
-			
-			angle = 0;
-			innerCount = 0;
-			
-			// Generates Vertices
-			while (innerCount < numOfQSVertices) {
-				randRadius = rand.nextFloat() * starRadius;
-				x = centerX + randRadius * Math.cos(angle * Math.PI);
-				y = centerY + randRadius * Math.sin(angle * Math.PI);
-				out.printf("%f %f, ", x, y);
-				angle += gap;
-				innerCount++;
+			if (verify) {
+				out.print("POLYGON (");
+				
+				angle = 0;
+				innerCount = 0;
+				
+				// Generates Vertices
+				while (innerCount < numOfQSVertices) {
+					randRadius = rand.nextFloat() * starRadius;
+					x = centerX + randRadius * Math.cos(angle);
+					y = centerY + randRadius * Math.sin(angle);
+					out.printf("%f %f, ", x, y);
+					angle += gap;
+					innerCount++;
+				}
+				out.println(")");
+				outerCount++;
 			}
-			out.println(")");
-			outerCount++;
 		}
 		out.close();
 		System.out.println("    " + numOfQSPolygons + " quick-star polygons were generated.");
 
+	}
+	public boolean withinSceneLength (DataGenModel aModel, double maxRadius, double centerX, double centerY) {
+		if (centerX + maxRadius < aModel.theSceneLength && centerX - maxRadius > 0
+					&& centerY + maxRadius < aModel.theSceneLength && centerY - maxRadius > 0) {
+			return true;
+		}
+		return false;
 	}
 }

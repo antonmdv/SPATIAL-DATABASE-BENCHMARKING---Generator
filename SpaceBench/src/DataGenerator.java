@@ -207,7 +207,7 @@ public class DataGenerator implements ActionListener {
       //***
 
       theAppFrame.getContentPane().add(theOptionsPane, BorderLayout.CENTER);
-      theAppFrame.setSize(500, 250);
+      theAppFrame.setSize(500, 320);
       theAppFrame.setVisible(true);
    }
 
@@ -305,7 +305,10 @@ public class DataGenerator implements ActionListener {
       theDataGenModel.theGenerateConicSpiralsFlag = theConicSpiralGeneratorView.getGenerateFlag();
       theDataGenModel.theNumberOfConicSpirals = theConicSpiralGeneratorView.getNumberOfConicSpirals();
       theDataGenModel.theMaximumRadiusLength = theConicSpiralGeneratorView.getMaximumRadiusLength();
-      theDataGenModel.theAngleGap = theConicSpiralGeneratorView.getAngleGap();
+      theDataGenModel.theSegmentInc = theConicSpiralGeneratorView.getSegmentInc();
+      theDataGenModel.theRadius = theConicSpiralGeneratorView.getRadius();
+      theDataGenModel.theAngleGapLower = theConicSpiralGeneratorView.getAngleGapLower();
+      theDataGenModel.theAngleGapUpper = theConicSpiralGeneratorView.getAngleGapUpper();
       
       // MidPoint Displacement options 
       theDataGenModel.theGenerateMidpointDisplacementsFlag = theMidPointDisplacementGeneratorView.getGenerateFlag();
@@ -372,7 +375,10 @@ public class DataGenerator implements ActionListener {
        theConicSpiralGeneratorView.setGenerateFlag(theDataGenModel.theGenerateConicSpiralsFlag);
        theConicSpiralGeneratorView.setNumberOfConicSpirals(theDataGenModel.theNumberOfConicSpirals);
        theConicSpiralGeneratorView.setMaximumRadiusLength(theDataGenModel.theMaximumRadiusLength);
-       theConicSpiralGeneratorView.setAngleGap(theDataGenModel.theAngleGap);
+       theConicSpiralGeneratorView.setSegmentInc(theDataGenModel.theSegmentInc);
+       theConicSpiralGeneratorView.setRadius(theDataGenModel.theRadius);
+       theConicSpiralGeneratorView.setAngleGapLower(theDataGenModel.theAngleGapLower);
+       theConicSpiralGeneratorView.setAngleGapUpper(theDataGenModel.theAngleGapUpper);
        
        //Midpoint Displacement options 
        theMidPointDisplacementGeneratorView.setGenerateFlag(true);

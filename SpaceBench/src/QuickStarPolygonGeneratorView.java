@@ -29,8 +29,8 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
    private static final boolean DEFAULT_GENERATE_FLAG = true;
    private static final int DEFAULT_POLYGON_COUNT = 10;
    private static final int DEFAULT_MAX_VERTEX_COUNT = 4;
-   private static final int DEFAULT_BBOX_LENGTH = 100;
-   private static final double DEFAULT_RADIUS_LENGTH = 10;
+   //private static final int DEFAULT_BBOX_LENGTH = 100;
+   private static final double DEFAULT_RADIUS_LENGTH = 100;
    
    //***
    // instance variables
@@ -55,11 +55,14 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
    private JLabel theMaximumVertexCountLabel;
    private JFormattedTextField theMaximumVertexCountField;
 
+   /*
    // elements for 'bounding box length'
    private NumberFormat theBBoxLengthFormat;
    private JPanel theBBoxLengthPanel;
    private JLabel theBBoxLengthLabel;
    private JFormattedTextField theBBoxLengthField;
+   */
+   
    
    // elements for 'star radius'
    private NumberFormat theStarRadiusFormat;
@@ -71,7 +74,7 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
    private boolean theGenerateFlag;
    private int theNumberOfQSPolygons;
    private int theNumberOfQSVertices;
-   private int theBBoxLength;
+   //private int theBBoxLength;
    private double theStarRadius;
 
    /*
@@ -86,7 +89,7 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
       theGenerateFlag = DEFAULT_GENERATE_FLAG;
       theNumberOfQSPolygons = DEFAULT_POLYGON_COUNT;
       theNumberOfQSVertices = DEFAULT_MAX_VERTEX_COUNT;
-      theBBoxLength = DEFAULT_BBOX_LENGTH;
+      //theBBoxLength = DEFAULT_BBOX_LENGTH;
       theStarRadius = DEFAULT_RADIUS_LENGTH;
    }
 
@@ -161,7 +164,7 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
     * 
     * This method sets the current maximum bounding box length
     */
-   
+   /*
    public void setBBoxLength(int aLength)
    {
       theBBoxLength = aLength;
@@ -171,7 +174,7 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
          theBBoxLengthField.updateUI();
       }
    }
-
+	*/
   /*
    * getGenerateFlag
    *
@@ -221,12 +224,12 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
      * 
      * This method returns the current bounding box side length
      */
-    
+    /*
     public int getBBoxLength()
     {
        return theBBoxLength;
     }
-    
+    */
     /*
      * build
      * 
@@ -309,6 +312,7 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        theStarRadiusPanel.add(theStarRadiusLabel);
        theStarRadiusPanel.add(theStarRadiusField);
        
+       /*
        //***
        // bounding box length
        //***
@@ -328,7 +332,9 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        theBBoxLengthPanel = new JPanel();
        theBBoxLengthPanel.add(theBBoxLengthLabel);
        theBBoxLengthPanel.add(theBBoxLengthField);
-
+       
+       */
+       
        //***
        // update tabbed pane
        //***
@@ -339,7 +345,8 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        theTabbedPanePanel.add(theGeneratePanel);
        theTabbedPanePanel.add(theNumberOfPolygonsPanel);
        theTabbedPanePanel.add(theMaximumVertexCountPanel);
-       theTabbedPanePanel.add(theBBoxLengthPanel);
+       theTabbedPanePanel.add(theStarRadiusPanel);
+       //theTabbedPanePanel.add(theBBoxLengthPanel);
 
        // add new tab to tabbed pane
        aTabbedPane.addTab(TAB_TITLE, null, theTabbedPanePanel, TAB_TOOLTIP);
@@ -371,12 +378,14 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
            if (TRACE)
               System.out.println("Quick-Star Polygons: star radius length = " + theStarRadius);
        }
+       /*
        else if (source == theBBoxLengthField)
        {
           theBBoxLength = ((Number)theBBoxLengthField.getValue()).intValue();
           if (TRACE)
              System.out.println("Quick-Star Polygons: maximum side length = " + theBBoxLength);
        }
+       */
        
     }
     
@@ -396,14 +405,14 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
           {
             theNumberOfPolygonsField.setEnabled(true);
             theMaximumVertexCountField.setEnabled(true);
-            theBBoxLengthField.setEnabled(true);
+            //theBBoxLengthField.setEnabled(true);
             theStarRadiusField.setEnabled(true);
           }
           else
           {
             theNumberOfPolygonsField.setEnabled(false);
             theMaximumVertexCountField.setEnabled(false);
-            theBBoxLengthField.setEnabled(false);
+            //theBBoxLengthField.setEnabled(false);
             theStarRadiusField.setEnabled(false);
           }
           if (TRACE)
