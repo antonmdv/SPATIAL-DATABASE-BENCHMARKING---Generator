@@ -27,10 +27,10 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	   private static final boolean DEFAULT_GENERATE_FLAG = true;
 
 	   //Default displays
-	   private static final int DEFAULT_COUNT = 20;
-	   private static final int DEFAULT_REC_DEPTH = 10;
-	   private static final double DEFAULT_DISP_BOUND = 5.8;
-	   private static final double	DEFAULT_DISP_BOUND_REDUCTION = 0.7;
+	   private static final int DEFAULT_COUNT = 15;
+	   private static final int DEFAULT_REC_DEPTH = 3;
+	   private static final double DEFAULT_DISP_BOUND = 40;
+	   private static final double	DEFAULT_DISP_BOUND_REDUCTION = 0.8;
 	   
 	   //***
 	   // instance variables
