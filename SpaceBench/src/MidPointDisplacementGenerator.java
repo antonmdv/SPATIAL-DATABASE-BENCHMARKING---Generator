@@ -145,7 +145,6 @@ public class MidPointDisplacementGenerator {
 				//increase recursion 
 				it++;
 			}
-			System.out.println(midPointDisp.size());
 			
 			//print to txt
 			//output line string to text file 
