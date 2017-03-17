@@ -216,7 +216,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      theNumberOfStepsFormat = NumberFormat.getIntegerInstance();
 	      
 	      //create number of point elements [label, field]
-	      theNumberOfStepsLabel = new JLabel("Maximum bound of steps (3<n) :");
+	      theNumberOfStepsLabel = new JLabel("Maximum Number of Steps:");
 	      theNumberOfStepsLabel.setHorizontalAlignment(JLabel.LEFT);
 	      theNumberOfStepsField = new JFormattedTextField(theNumberOfStepsFormat);
 	      
@@ -236,7 +236,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      theNumberOfRandomWalksFormat = NumberFormat.getIntegerInstance();
 
 	      // create number of point elements [label, field]
-	      theNumberOfRandomWalksLabel = new JLabel("Number of Random Walks:");
+	      theNumberOfRandomWalksLabel = new JLabel("Number of LineStrings to Generate:");
 	      theNumberOfRandomWalksLabel.setHorizontalAlignment(JLabel.LEFT);
 	      theNumberOfRandomWalksField = new JFormattedTextField(theNumberOfRandomWalksFormat);
 	      
@@ -260,7 +260,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	      theMaximumStepLengthFormat = NumberFormat.getNumberInstance();
 
 	      // create number of point elements [label, field]
-	      theMaximumStepLengthLabel = new JLabel("Maximum bound of each step length (0<n) :");
+	      theMaximumStepLengthLabel = new JLabel("Maximum Length of Steps:");
 	      theMaximumStepLengthLabel.setHorizontalAlignment(JLabel.LEFT);
 	      theMaximumStepLengthField = new JFormattedTextField(theMaximumStepLengthFormat);
 	      theMaximumStepLengthField.setValue(new Double(theMaximumStepLength));

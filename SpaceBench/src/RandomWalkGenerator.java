@@ -39,20 +39,15 @@ public class RandomWalkGenerator {
 		String outFilename;
 	    FileWriter f = null;
 	    PrintWriter out = null;
-	    Random rnd = new Random();
 	    
 	    //Points
 	    double x,y;
 	    
-	    //For random walk direction choice 
-	    String[] direction = {"North","South","East","West"};
-	    int decision;
-	    
-	    // do we wish squares generated?
+	    // do we wish line strings generated?
 	    if (aModel.theGenerateRandomWalksFlag == false)
 	    	return;
 	    
-	    // Input from User (grabbign from data model)
+	    // Input from User (grabbing from data model)
 	    int desiredNumberOfAlgorithms = aModel.theNumberOfRandomWalks;		//number of paths produced 	 
 	    int desiredNumberOfSteps = aModel.theNumberOfSteps;					//Range of steps per algorithm (from 3 to n)
 	    double stepLength = aModel.theMaximumStepLength;						//Range of step length(from 0 to n)
@@ -81,7 +76,8 @@ public class RandomWalkGenerator {
 		   	y = 0;
 		   	
 		   	//Random the steps per algorithm 
-		   	desiredNumberOfSteps = rnd.nextInt(desiredNumberOfSteps) + 3;		
+
+		   	int usedDesiredNumberOfSteps = (int)(Math.random()*(desiredNumberOfSteps)+1);
 			
 			//generate the starting point
 			x = (Math.random()*aModel.theSceneLength)+1;
@@ -93,44 +89,30 @@ public class RandomWalkGenerator {
             xyCoords.add(startPt);
 		
 			//generate path from point
-		   	for(int i = 1; i<desiredNumberOfSteps; i++){
+		   	for(int i = 1; i<usedDesiredNumberOfSteps; i++){
+		   		
 		   	   
 		   		//chose direction to move
-		   	    decision = rnd.nextInt(4);
-					   
-					   if(direction[decision].equals("North")){
-
-			               y = y + stepLength;
-			               
-					   }else if(direction[decision].equals("South")){
-						   
-						   y = y - stepLength;
-						   
-					   }else if(direction[decision].equals("East")){
-						   
-						   x = x + stepLength;
-						   
-					   }else if(direction[decision].equals("West")){
-						   
-						   x = x - stepLength;
-					   }
+		   	    double xDistance = (Math.random()*(2*stepLength))-(stepLength/2);
+		   	    double yDistance = (Math.random()*(2*stepLength))-(stepLength/2);		
 					   
 					   //Create Candidate Point
-		               Point2D candidatePt = new Point2D.Double(x,y);
+		               Point2D candidatePt = new Point2D.Double(x + xDistance,y + yDistance);
 		               
 		               //Check if: 
 		               //			1) the point will not come back to the previous location(redundancy)
 		               //			2) the point will not be outside the scene
-		               if ( ( ((checkPt.getX() != x) && (checkPt.getY() == y)) 
-		            		   || ((checkPt.getX() == x) && (checkPt.getY() != y)) ) 
-		            		   && ((x != 0)&&(x > 0) && (y != 0) && (y>0)) ) 
+		               if (((checkPt.getX() != (x + xDistance)) || (checkPt.getY() != (y + yDistance))) && (((x + xDistance) <= aModel.theSceneLength )&&((x + xDistance) >= 0) && ((y + yDistance) <= aModel.theSceneLength) && ((y + yDistance)>=0))) 
 		               {
 		            	   
-		            	  //if conditions satisfied, add point to the path and up the counter
+		            	  //if conditions satisfied, add point to the path
 		                  xyCoords.add(candidatePt);
 		                  checkPt = candidatePt;
-		                  
-		               }   
+		                  x = x + xDistance;
+		                  y = y + yDistance;
+		               } else {
+		            	   i--;
+		               }
 		   	   
 		   }
 		   	
@@ -150,11 +132,10 @@ public class RandomWalkGenerator {
 		            
 		            x = xyCoords.get(xyCoords.size()-1).getX();
 		            y = xyCoords.get(xyCoords.size()-1).getY();
-		            out.println(x+" "+y+")");   
+		            out.println(x+" "+y+")"); 
 		            
         	}
         	out.close();
         	
-    	System.out.println("    " + desiredNumberOfAlgorithms + " line strings were generated.");
 	}
 }
