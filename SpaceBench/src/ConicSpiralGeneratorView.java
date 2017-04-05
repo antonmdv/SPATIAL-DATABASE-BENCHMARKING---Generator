@@ -397,7 +397,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	      
 	      
 	      // Build format arguments
-	      theAngleGapLowerFormat = NumberFormat.getIntegerInstance();
+	      theAngleGapLowerFormat = NumberFormat.getNumberInstance();
 
 	      // Create number of point elements [label, field]
 	      theAngleGapLowerLabel = new JLabel("Angle Gap (Lower):");
@@ -419,7 +419,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	      //***
 	      
 	      // Build format arguments
-	      theAngleGapUpperFormat = NumberFormat.getIntegerInstance();
+	      theAngleGapUpperFormat = NumberFormat.getNumberInstance();
 
 	      // Create number of point elements [label, field]
 	      theAngleGapUpperLabel = new JLabel("Angle Gap (Upper):");

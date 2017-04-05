@@ -293,7 +293,7 @@ public class QuickStarPolygonGeneratorView implements PropertyChangeListener, It
        //***
 
        // build format arguments
-       theStarRadiusFormat = NumberFormat.getIntegerInstance();
+       theStarRadiusFormat = NumberFormat.getNumberInstance();
 
        // create number of point elements [label, field]
        theStarRadiusLabel = new JLabel("Star Radius Length:");

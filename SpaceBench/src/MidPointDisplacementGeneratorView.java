@@ -324,7 +324,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 	      //***
 	      
 	      //build format argument
-	      theDisplacementBoundReductionFormat = NumberFormat.getIntegerInstance();
+	      theDisplacementBoundReductionFormat = NumberFormat.getNumberInstance();
 	      
 	      //create number of point elements [label, field]
 	      theDisplacementBoundReductionLabel = new JLabel("Displacement Bound Reduction: ");
