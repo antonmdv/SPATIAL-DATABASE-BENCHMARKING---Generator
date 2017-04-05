@@ -27,7 +27,7 @@ public class PolygonGenerator {
     * PolygonGenerator
     *
     * This class generates polygons randomly within a (N by N) space.  The
-    * polygons are writen to a ASCII text file.
+    * polygons are written to a ASCII text file.
     */
 	
    PolygonGenerator()
@@ -78,7 +78,9 @@ public class PolygonGenerator {
 	
 	// the least x & y of the bounding square
 	leftX  = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
-	lowerY = leftX;
+	lowerY = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
+	System.out.println(leftX);
+	System.out.println(lowerY);
 	
 	// the vertex 0 of the polygon
 	x = leftX + Math.random() * aModel.thePolygonBBoxLength;
@@ -107,7 +109,7 @@ public class PolygonGenerator {
 	 VerCNT = 2;
 	 while (VerCNT < NumVer)
 	 {
-	    // generate a randomly vertex
+	    // generate a random vertex
 	cnt = 1;
 	while (cnt <= trialNum)
 	{
