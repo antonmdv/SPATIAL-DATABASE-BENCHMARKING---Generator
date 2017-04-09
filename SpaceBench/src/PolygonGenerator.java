@@ -79,8 +79,6 @@ public class PolygonGenerator {
 	// the least x & y of the bounding square
 	leftX  = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
 	lowerY = Math.random() * (aModel.theSceneLength - aModel.thePolygonBBoxLength);
-	System.out.println(leftX);
-	System.out.println(lowerY);
 	
 	// the vertex 0 of the polygon
 	x = leftX + Math.random() * aModel.thePolygonBBoxLength;
