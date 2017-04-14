@@ -120,7 +120,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 		   theMaximumStepLength = aLength;
 	      if (theMaximumStepLengthField != null)
 	      {
-	    	  theMaximumStepLengthField.setValue(theMaximumStepLengthField);
+	    	  theMaximumStepLengthField.setValue(theMaximumStepLength);
 	    	  theMaximumStepLengthField.updateUI();
 	      }
 	   }
@@ -136,7 +136,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 		   theNumberOfSteps = aLength;
 	      if (theNumberOfStepsField != null)
 	      {
-	    	  theNumberOfStepsField.setValue(theNumberOfStepsField);
+	    	  theNumberOfStepsField.setValue(theNumberOfSteps);
 	    	  theNumberOfStepsField.updateUI();
 	      }
 	   }

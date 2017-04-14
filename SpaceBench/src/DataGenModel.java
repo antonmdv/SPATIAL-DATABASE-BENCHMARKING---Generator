@@ -549,7 +549,7 @@ public class DataGenModel {
           theLineStringMinSegmentCount = Integer.valueOf(aValue);
       
       // random walks options
-      if (aKey.equalsIgnoreCase("GenerateRandomWalksFlag"))
+      if (aKey.equalsIgnoreCase("GenerateRandomWalkFlag"))
           theGenerateRandomWalksFlag = Boolean.valueOf(aValue);
       if (aKey.equalsIgnoreCase("NumberOfRandomWalks"))
           theNumberOfRandomWalks = Integer.valueOf(aValue);
@@ -567,7 +567,7 @@ public class DataGenModel {
         	theMaximumRadiusLength = Double.valueOf(aValue);
        if (aKey.equalsIgnoreCase("SegmentInc"))
        		theSegmentInc = Double.valueOf(aValue);
-       if (aKey.equalsIgnoreCase("Radius"))
+       if (aKey.equalsIgnoreCase("BaseRadius"))
       		theRadius = Double.valueOf(aValue);
        if (aKey.equals("AngleGapLower"))
         	theAngleGapLower = Double.valueOf(aValue);
@@ -577,7 +577,7 @@ public class DataGenModel {
        // Midpoint Displacement options
        if (aKey.equalsIgnoreCase("GenerateMidPointDisplacemntFlag"))
     	   theGenerateMidpointDisplacementsFlag = Boolean.valueOf(aValue);
-       if (aKey.equalsIgnoreCase("MidPointDisplacemnts"))
+       if (aKey.equalsIgnoreCase("NumberOfMidPointDisplacemnts"))
     	   theNumberofMidpointDisplacements = Integer.valueOf(aValue);
        if (aKey.equalsIgnoreCase("RecursionDepth"))
     	   theRecursionDepth = Integer.valueOf(aValue);
@@ -650,6 +650,7 @@ public class DataGenModel {
       bufWtr.write("NumberOfConicSpirals," + Integer.toString(theNumberOfConicSpirals) + "\n");
       bufWtr.write("MaximumRadiusLength," + Double.toString(theMaximumRadiusLength) + "\n");
       bufWtr.write("SegmentInc," + Double.toString(theSegmentInc) + "\n");
+      bufWtr.write("BaseRadius," + Double.toString(theRadius) + "\n");
       bufWtr.write("AngleGapLower," + Double.toString(theAngleGapLower) + "\n");
       bufWtr.write("AngleGapUpper," + Double.toString(theAngleGapUpper) + "\n");
       

@@ -150,7 +150,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		   theMaximumRadiusLength = aLength;
 	      if (theMaximumRadiusLengthField != null)
 	      {
-	    	  theMaximumRadiusLengthField.setValue(theMaximumRadiusLengthField);
+	    	  theMaximumRadiusLengthField.setValue(theMaximumRadiusLength);
 	    	  theMaximumRadiusLengthField.updateUI();
 	      }
 	   }
@@ -165,7 +165,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		   theSegmentInc = aLength;
 	      if (theSegmentIncField != null)
 	      {
-	    	  theSegmentIncField.setValue(theSegmentIncField);
+	    	  theSegmentIncField.setValue(theSegmentInc);
 	    	  theSegmentIncField.updateUI();
 	      }
 	   }
@@ -180,7 +180,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		   theRadius = aLength;
 	      if (theRadiusField != null)
 	      {
-	    	  theRadiusField.setValue(theRadiusField);
+	    	  theRadiusField.setValue(theRadius);
 	    	  theRadiusField.updateUI();
 	      }
 	   }
@@ -194,7 +194,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		   theAngleGapLower = aGap;
 	      if (theAngleGapLowerField != null)
 	      {
-	    	  theAngleGapLowerField.setValue(theAngleGapLowerField);
+	    	  theAngleGapLowerField.setValue(theAngleGapLower);
 	    	  theAngleGapLowerField.updateUI();
 	      }
 	   }
@@ -208,7 +208,7 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 		   theAngleGapUpper = aGap;
 	      if (theAngleGapUpperField != null)
 	      {
-	    	  theAngleGapUpperField.setValue(theAngleGapUpperField);
+	    	  theAngleGapUpperField.setValue(theAngleGapUpper);
 	    	  theAngleGapUpperField.updateUI();
 	      }
 	   }

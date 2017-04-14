@@ -127,7 +127,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 		   theNumberOfMidPointDisplacement = aCount;
 	      if (theNumberOfMidpointDisplacementsField != null)
 	      {
-	    	  theNumberOfMidpointDisplacementsField.setValue(theNumberOfMidpointDisplacementsField);
+	    	  theNumberOfMidpointDisplacementsField.setValue(theNumberOfMidPointDisplacement);
 	    	  theNumberOfMidpointDisplacementsField.updateUI();
 	      }
 	   }
@@ -143,7 +143,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 		   theRecursionDepth = aLength;
 	      if (theRecursionDepthField != null)
 	      {
-	    	  theRecursionDepthField.setValue(theRecursionDepthField);
+	    	  theRecursionDepthField.setValue(theRecursionDepth);
 	    	  theRecursionDepthField.updateUI();
 	      }
 	   }
@@ -159,7 +159,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 		   theDisplacementBound = aLength;
 	      if (theDisplacementBoundField != null)
 	      {
-	    	  theDisplacementBoundField.setValue(theDisplacementBoundField);
+	    	  theDisplacementBoundField.setValue(theDisplacementBound);
 	    	  theDisplacementBoundField.updateUI();
 	      }
 	   }
@@ -175,7 +175,7 @@ public class MidPointDisplacementGeneratorView implements PropertyChangeListener
 		   theDisplacementBoundReduction = aLength;
 	      if (theDisplacementBoundReductionField != null)
 	      {
-	    	  theDisplacementBoundReductionField.setValue(theDisplacementBoundReductionField);
+	    	  theDisplacementBoundReductionField.setValue(theDisplacementBoundReduction);
 	    	  theDisplacementBoundReductionField.updateUI();
 	      }
 	   }
