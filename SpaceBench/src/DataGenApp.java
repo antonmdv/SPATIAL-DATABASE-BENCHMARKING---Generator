@@ -2,7 +2,7 @@
  * DataGenApp.java
  *
  * Original Author: Tim Faulkner
- * Editing Authors:
+ * Editing Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
  * Version Date: 12/28/2011
  * 
  * This file creates the data generator 

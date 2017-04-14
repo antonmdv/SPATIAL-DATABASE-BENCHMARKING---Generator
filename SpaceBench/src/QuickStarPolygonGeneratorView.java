@@ -1,8 +1,10 @@
 /*
  * QuickStarPolygonGeneratorView.java
  *
- * Authors:Hamad Altammami
- * Version Date: 01/21/2017
+ * Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
+ * Version Date: 4/13/2017
+ * 
+ * This file has to do with creating the panel for the Quick Star polygon generator
  */
 
 import javax.swing.*;

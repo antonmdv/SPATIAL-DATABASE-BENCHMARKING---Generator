@@ -2,8 +2,8 @@
  * DataGenerator.java
  *
  * Original Author: Tim Faulkner
- * Editing Authors: 
- * Version Date: 
+ * Editing Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
+ * Version Date: 4/13/2017
  * 
  * This file has to do with creation of the main program window
  */

@@ -1,8 +1,8 @@
 /*
  * RandomWalkGeneratorView.java
  *
- * Original Authors: 
- * Version Date:
+ * Original Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
+ * Version Date: 4/13/2017
  * 
  * This file has to do with creating a panel for the Random Walk Generator
  */
@@ -22,7 +22,7 @@ public class RandomWalkGeneratorView implements PropertyChangeListener, ItemList
 	   private static final String GENERATE_CHECKBOX_TITLE = "Generate data file?";
 	   private static final boolean DEFAULT_GENERATE_FLAG = true;
 	   private static final int DEFAULT_RW_COUNT = 20;
-	   private static final double DEFAULT_STEP_LENGTH = 10;
+	   private static final double DEFAULT_STEP_LENGTH = 25;
 	   private static final int DEFAULT_NS_COUNT = 10;
 	   
 	   //***

@@ -2,8 +2,8 @@
  * LineStringGenerator.java
  *
  * Original Authors: Weijun Huang, Tim Faulkner
- * Editing Authors: 
- * Version Date:
+ * Editing Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
+ * Version Date: 4/13/2017
  * 
  * This file has to do with the mechanics for generating line strings 
  * via a simple plane sweep algorithm

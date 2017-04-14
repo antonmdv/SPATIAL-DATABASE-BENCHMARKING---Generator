@@ -1,8 +1,8 @@
 /*
  * ConicSpiralGenerator
  * 
- * Authors: Hamad Altammami
- * Version Date: 02/19/2017
+ * Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
+ * Version Date: 4/13/2017
  * 
  * This file is used for generating line strings using the conic spiral generator
  */

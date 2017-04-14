@@ -1,8 +1,8 @@
 /*
  * ConicSpiralGeneratorView
  * 
- * Authors: Hamad Altammami
- * Version Date: 02/19/2017
+ * Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
+ * Version Date: 4/13/2017
  * 
  * This file is for the GUI of the conic spiral generator
  */
@@ -31,8 +31,8 @@ public class ConicSpiralGeneratorView implements PropertyChangeListener, ItemLis
 	   private static final double DEFAULT_RD_MAX = 300;
 	   private static final double DEFAULT_RD_INC = 15;
 	   private static final double DEFAULT_BASE_RD = 40;
-	   private static final double DEFAULT_AGL = 0.1;
-	   private static final double DEFAULT_AGU = 0.25;
+	   private static final double DEFAULT_AGL = 0.8;
+	   private static final double DEFAULT_AGU = 1;
 	   
 	   //***
 	   // instance variables

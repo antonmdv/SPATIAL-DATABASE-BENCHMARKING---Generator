@@ -1,8 +1,8 @@
 /*
  * MidPointDisplacementGenerator.java
  *
- * Original Authors: 
- * Version Date: 
+ * Original Authors: Jacob Gollert, Anton Medvedev, Gregory Lucas Moody, Hamad Altammami
+ * Version Date: 4/13/2017
  * 
  * This file has to do with the mechanics of generating line strings with the midpoint displacement algorithm
  */
