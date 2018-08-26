@@ -8,7 +8,7 @@ See SpatialDatabaseBenchmarking-Vizualizer repo
 https://sites.google.com/site/spatialdatabasebenchmarking/
 
 # Contributors:
-  Anton Medvedev      -> amedvedev2013; <br>
+  Anton Medvedev<t><t>-> amedvedev2013; <br>
   Gregory Lucas Moody -> gmoody2013; <br>
   Hamad Altammami     -> haltammami2013; <br>
   Jacob Gollert       -> jgollert2013; <br>
