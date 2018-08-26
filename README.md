@@ -2,7 +2,7 @@
 # Part 2: See SpatialDatabaseBenchmarking-Vizualizer repo
 # Documentation: https://sites.google.com/site/spatialdatabasebenchmarking/
 # Contributors:
-  Anton Medvedev      -> amedvedev2013; /n
+  Anton Medvedev      -> amedvedev2013; <br>
   Gregory Lucas Moody -> gmoody2013; 
   Hamad Altammami(haltammami@my.fit.edu)    -> haltammami2013; 
   Jacob Gollert(jgollert2013@my.fit.edu)    -> jgollert2013;
